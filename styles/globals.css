@@ -96,3 +96,9 @@
     transition-all duration-150 ease-in-out;
   }
 }
+
+@layer base {
+  .selected {
+    @apply border-brand text-brand border-b-2 opacity-100;
+  }
+}

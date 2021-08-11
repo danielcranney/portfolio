@@ -11,6 +11,7 @@ module.exports = {
         body: ['"acumin-pro"', "sans-serif"],
       },
       width: {
+        "30pc": "30%",
         "32pc": "32%",
         "49pc": "49%",
         "48pc": "48%",
@@ -21,6 +22,9 @@ module.exports = {
         "5/8": "65.8%",
         "6/8": "75%",
         "7/8": "87.5%",
+      },
+      transitionProperty: {
+        width: "width",
       },
       colors: {
         brand: "#7364d0",
@@ -33,7 +37,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      blur: ["hover", "focus"],
+    },
   },
   plugins: [],
 };
