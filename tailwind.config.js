@@ -12,6 +12,7 @@ module.exports = {
       },
       width: {
         "30pc": "30%",
+        "31pc": "31%",
         "32pc": "32%",
         "49pc": "49%",
         "48pc": "48%",
@@ -28,8 +29,11 @@ module.exports = {
       },
       colors: {
         brand: "#7364d0",
-        mid: "#282a38",
+        brandAlt: "#867dd8",
+        light: "#a2a1a6",
+        mid: "#282833",
         dark: "#22222b",
+        darker: "#1d1d23",
       },
       backgroundImage: (theme) => ({
         "header-img": "url('/bg.svg')",
@@ -38,6 +42,8 @@ module.exports = {
   },
   variants: {
     extend: {
+      rotate: ["active", "group-hover"],
+      fill: ["group-hover"],
       blur: ["hover", "focus"],
     },
   },
