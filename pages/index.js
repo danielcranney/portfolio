@@ -24,11 +24,12 @@ import AdobeXd from "../components/icons/AdobeXd";
 // Project Card
 import ProjectCard from "../components/ProjectCard";
 import Live from "../components/Live";
-import GitHub from "../components/Source";
+import Source from "../components/Source";
 import MockupToolbar from "../components/MockupToolbar";
 import GitHubProfile from "../components/icons/GitHubProfile";
 import TwitterProfile from "../components/icons/TwitterProfile";
 import LinkedInProfile from "../components/icons/LinkedInProfile";
+import FeaturedProjectCard from "../components/FeaturedProjectCard";
 
 const projects = [
   {
@@ -83,11 +84,11 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
 
   const handleResize = () => {
-    if (window.innerWidth < 768) {
-      console.log("LESS THAN 768!");
+    if (window.innerWidth < 1024) {
+      console.log("LESS THAN 1024!");
       setIsMobile(true);
     } else {
-      console.log("MORE THAN 768!");
+      console.log("MORE THAN 1024!");
       setNavbarOpen(false);
       setIsMobile(false);
     }
@@ -173,7 +174,7 @@ export default function Home() {
         <div className="container relative mx-auto">
           <nav className="block ml-auto">
             <ul className="z-50 flex flex-col items-start">
-              <li className="z-50 block py-2 list-none md:inline-block">
+              <li className="z-50 block py-2 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
@@ -189,7 +190,7 @@ export default function Home() {
                   Home
                 </button>
               </li>
-              <li className="z-50 block py-2 list-none md:inline-block">
+              <li className="z-50 block py-2 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
@@ -205,7 +206,7 @@ export default function Home() {
                   About
                 </button>
               </li>
-              <li className="z-50 block py-2 list-none md:inline-block">
+              <li className="z-50 block py-2 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
@@ -221,7 +222,7 @@ export default function Home() {
                   Skills
                 </button>
               </li>
-              <li className="z-50 block py-2 list-none md:inline-block">
+              <li className="z-50 block py-2 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
@@ -237,7 +238,7 @@ export default function Home() {
                   My Work
                 </button>
               </li>
-              <li className="z-50 block py-2 list-none md:inline-block">
+              <li className="z-50 block py-2 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
@@ -253,7 +254,7 @@ export default function Home() {
                   Blog
                 </button>
               </li>
-              <li className="z-50 block py-2 list-none md:inline-block">
+              <li className="z-50 block py-2 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
@@ -269,7 +270,7 @@ export default function Home() {
                   Contact
                 </button>
               </li>
-              <li className="z-50 block py-2 list-none md:inline-block">
+              <li className="z-50 block py-2 list-none lg:inline-block">
                 <button className="text-xl btn-brand btn-lg">Hire me</button>
               </li>
             </ul>
@@ -344,7 +345,7 @@ export default function Home() {
           {/* Nav */}
           <nav className="block ml-auto">
             <ul className="z-50 flex items-center">
-              <li className="z-50 hidden mx-5 list-none md:inline-block">
+              <li className="z-50 hidden mx-5 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
@@ -359,7 +360,7 @@ export default function Home() {
                   Home
                 </button>
               </li>
-              <li className="z-50 hidden mx-5 list-none md:inline-block">
+              <li className="z-50 hidden mx-5 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
@@ -374,7 +375,7 @@ export default function Home() {
                   About
                 </button>
               </li>
-              <li className="z-50 hidden mx-5 list-none md:inline-block">
+              <li className="z-50 hidden mx-5 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
@@ -389,7 +390,7 @@ export default function Home() {
                   Skills
                 </button>
               </li>
-              <li className="z-50 hidden mx-5 list-none md:inline-block">
+              <li className="z-50 hidden mx-5 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
@@ -404,7 +405,7 @@ export default function Home() {
                   My Work
                 </button>
               </li>
-              <li className="z-50 hidden mx-5 list-none md:inline-block">
+              <li className="z-50 hidden mx-5 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
@@ -419,7 +420,7 @@ export default function Home() {
                   Blog
                 </button>
               </li>
-              <li className="z-50 hidden mx-5 list-none md:inline-block">
+              <li className="z-50 hidden mx-5 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
@@ -434,11 +435,11 @@ export default function Home() {
                   Contact
                 </button>
               </li>
-              <li className="z-50 hidden ml-5 list-none md:inline-block">
+              <li className="z-50 hidden ml-5 list-none lg:inline-block">
                 <button className="btn-brand btn-md">Hire me</button>
               </li>
-              <li className="z-50 inline-block ml-5 list-none md:hidden">
-                <button
+              <li className="z-50 inline-block ml-5 list-none lg:hidden">
+                {/* <button
                   className="block text-xl leading-none text-white bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer focus:outline-none"
                   type="button"
                   onClick={() => setNavbarOpen(!navbarOpen)}
@@ -457,6 +458,32 @@ export default function Home() {
                       d="M4 6h16M4 12h16M4 18h16"
                     ></path>
                   </svg>
+                </button> */}
+
+                <button
+                  className="relative w-10 h-10 text-white focus:outline-none"
+                  onClick={() => setNavbarOpen(!navbarOpen)}
+                >
+                  <div className="absolute block w-5 transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                    <span
+                      aria-hidden="true"
+                      className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${
+                        navbarOpen ? "rotate-45" : "-translate-y-1.5"
+                      }`}
+                    ></span>
+                    <span
+                      aria-hidden="true"
+                      className={`block absolute  h-0.5 w-5 bg-current   transform transition duration-500 ease-in-out ${
+                        navbarOpen ? "opacity-0" : "opacity-100"
+                      }`}
+                    ></span>
+                    <span
+                      aria-hidden="true"
+                      className={`block absolute  h-0.5 w-5 bg-current transform  transition duration-500 ease-in-out ${
+                        navbarOpen ? "-rotate-45" : "translate-y-1.5"
+                      }`}
+                    ></span>
+                  </div>
                 </button>
               </li>
             </ul>
@@ -561,177 +588,244 @@ export default function Home() {
 
           {/* Skills icons */}
           <div className="flex flex-wrap w-full pr-4 mt-8">
-            {/* HTML icon */}
+            {/* HTML */}
             <Icon
               IconType={Html}
+              title="HTML"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="HTML"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* CSS */}
             <Icon
               IconType={Css}
+              title="CSS"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="CSS"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* Sass */}
             <Icon
               IconType={Sass}
+              title="Sass"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="Sass"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* Bootstrap */}
             <Icon
               IconType={Bootstrap}
+              title="Bootstrap"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="Bootstrap"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* Tailwind */}
             <Icon
               IconType={Tailwind}
+              title="Tailwind"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="Tailwind"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* Javascript */}
             <Icon
               IconType={Javascript}
+              title="Javascript"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="Javascript"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* React */}
             <Icon
               IconType={ReactJs}
+              title="React"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="React"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* Next */}
-
             <Icon
               IconType={NextJs}
+              title="Next"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="Next"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* Node */}
-
             <Icon
               IconType={NodeJs}
+              title="Node"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="Node"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* Firebase */}
-
             <Icon
               IconType={Firebase}
+              title="Firebase"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="Firebase"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* Photoshop */}
-
             <Icon
               IconType={Photoshop}
+              title="Photoshop"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="Photoshop"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* Illustrator */}
-
             <Icon
               IconType={Illustrator}
+              title="Illustrator"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="Illustrator"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* After Effects */}
-
             <Icon
               IconType={AfterEffects}
+              title="After Effects"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="After Effects"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* Adobe XD */}
-
             <Icon
               IconType={AdobeXd}
+              title="Adobe XD"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="Adobe XD"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
 
             {/* Figma */}
-
             <Icon
               IconType={Figma}
+              title="Figma"
               columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
-              title="Figma"
+              flexDirection={"flex-col"}
+              titleMargins={"mt-4"}
+              titleSize={"text-base"}
               marginBottom={"mb-4"}
+              marginRight={"mr-0"}
+              textTransform={"normal-case"}
             />
           </div>
         </section>
@@ -748,142 +842,143 @@ export default function Home() {
 
           {/* Featured Projects Container */}
           <div className="flex flex-col w-full mb-12">
-            {/* Project one */}
-            <article className="relative flex flex-col items-end w-full my-4 lg:flex-row">
-              {/* Empty Column */}
-              <div className="hidden w-1/6 lg:flex"></div>
-              {/* Project image */}
-              <div className="flex flex-col w-full p-3 rounded-md lg:w-5/6 bg-mid">
-                <MockupToolbar />
-                <Image src="/projects/culors.png" width={1366} height={666} />
-              </div>
+            <FeaturedProjectCard
+              title={"Culors"}
+              status={"Currently working on"}
+              description={"Project description goes here"}
+              float={`left-0`}
+              flexDirection={`flex-row`}
+              imgWidth={"1366"}
+              imgHeight={"666"}
+              imgSrc={"/projects/culors.png"}
+              liveLink={"https://culors.vercel.app/"}
+              sourceLink={"https://github.com/danielcranney/Culors"}
+              stack={
+                <>
+                  <Icon
+                    IconType={Html}
+                    title="HTML"
+                    columnSizing={"w-auto"}
+                    width={"w-6"}
+                    height={"h-6"}
+                    flexDirection={"flex-row"}
+                    padding={"p-0"}
+                    titleMargins={"my-0 ml-1"}
+                    titleSize={"text-sm"}
+                    marginBottom={"mb-4"}
+                    marginRight={"mr-3"}
+                    textTransform={"uppercase"}
+                  />
 
-              {/* Project info */}
-              <div className="relative w-full px-8 py-8 border-t-4 rounded-tl-none rounded-tr-none lg:transform lg:-translate-y-1/2 lg:w-1/2 lg:left-0 lg:absolute lg:-translate-x-0 lg:top-1/2 bg-mid rounded-bl-md rounded-br-md border-brand">
-                <p className="mb-2 tracking-wider small-text">
-                  Currently working on
-                </p>
-                <h3>Culors</h3>
-                <div className="flex mb-4">
-                  {/* React */}
-                  <div className="flex items-center mr-5">
-                    <Icon
-                      IconType={ReactJs}
-                      columnSizing={"w-full"}
-                      width={"w-6"}
-                      height={"h-6"}
-                      padding={"p-0"}
-                      title={null}
-                    />
-                    <span className="ml-1 small-text">React</span>
-                  </div>
-                  {/* NextJS */}
-                  <div className="flex items-center mr-5">
-                    <Icon
-                      IconType={NextJs}
-                      columnSizing={"w-full"}
-                      width={"w-6"}
-                      height={"h-6"}
-                      padding={"p-0"}
-                      title={null}
-                    />
+                  <Icon
+                    IconType={Tailwind}
+                    title="Tailwind"
+                    columnSizing={"w-auto"}
+                    width={"w-6"}
+                    height={"h-6"}
+                    flexDirection={"flex-row"}
+                    padding={"p-0"}
+                    titleMargins={"my-0 ml-1"}
+                    titleSize={"text-sm"}
+                    marginBottom={"mb-4"}
+                    marginRight={"mr-3"}
+                    textTransform={"uppercase"}
+                  />
 
-                    <span className="ml-1 small-text">Next</span>
-                  </div>
-                  {/* Tailwind */}
-                  <div className="flex items-center mr-5">
-                    <Icon
-                      IconType={Tailwind}
-                      columnSizing={"w-full"}
-                      width={"w-6"}
-                      height={"h-6"}
-                      padding={"p-0"}
-                      title={null}
-                    />
-                    <span className="ml-1 small-text">Tailwind</span>
-                  </div>
-                </div>
-                <p>
-                  Project outline and description of what problem it solves.
-                  More information here.
-                </p>
-                <div className="flex">
-                  <Live />
-                  <GitHub />
-                </div>
-              </div>
-            </article>
+                  <Icon
+                    IconType={ReactJs}
+                    title="React"
+                    columnSizing={"w-auto"}
+                    width={"w-6"}
+                    height={"h-6"}
+                    flexDirection={"flex-row"}
+                    padding={"p-0"}
+                    titleMargins={"my-0 ml-1"}
+                    titleSize={"text-sm"}
+                    marginBottom={"mb-4"}
+                    marginRight={"mr-3"}
+                    textTransform={"uppercase"}
+                  />
+
+                  <Icon
+                    IconType={NextJs}
+                    title="Next"
+                    columnSizing={"w-auto"}
+                    width={"w-6"}
+                    height={"h-6"}
+                    flexDirection={"flex-row"}
+                    padding={"p-0"}
+                    titleMargins={"my-0 ml-1"}
+                    titleSize={"text-sm"}
+                    marginBottom={"mb-4"}
+                    marginRight={"mr-3"}
+                    textTransform={"uppercase"}
+                  />
+                </>
+              }
+            />
 
             {/* Project two */}
-            <article className="relative flex flex-col items-end w-full my-4 lg:flex-row">
-              {/* Project image */}
-              <div className="flex flex-col w-full p-3 rounded-md lg:w-5/6 bg-mid">
-                <MockupToolbar />
-                <Image
-                  src="/projects/quotr.png"
-                  width={1366}
-                  height={806}
-                  className="rounded-bl-md rounded-br-md"
-                />
-              </div>
-              {/* Empty Column */}
-              <div className="hidden w-1/6 lg:flex"></div>
+            <FeaturedProjectCard
+              title={"Quotr"}
+              status={"Featured Project"}
+              description={"Project description goes here"}
+              float={`right-0`}
+              flexDirection={`flex-row-reverse`}
+              imgWidth={"1366"}
+              imgHeight={"806"}
+              imgSrc={"/projects/quotr.png"}
+              liveLink={"https://quotr.vercel.app/"}
+              sourceLink={"https://github.com/danielcranney/Quotr"}
+              stack={
+                <>
+                  <Icon
+                    IconType={Html}
+                    title="HTML"
+                    columnSizing={"w-auto"}
+                    width={"w-6"}
+                    height={"h-6"}
+                    flexDirection={"flex-row"}
+                    padding={"p-0"}
+                    titleMargins={"my-0 ml-1"}
+                    titleSize={"text-sm"}
+                    marginBottom={"mb-4"}
+                    marginRight={"mr-3"}
+                    textTransform={"uppercase"}
+                  />
 
-              {/* Project info */}
-              <div className="relative w-full px-8 py-8 border-t-4 rounded-tl-none rounded-tr-none lg:transform lg:-translate-y-1/2 lg:w-1/2 lg:right-0 lg:absolute lg:-translate-x-0 lg:top-1/2 bg-mid rounded-bl-md rounded-br-md border-brand">
-                <p className="mb-2 tracking-wider small-text">
-                  Featured Project
-                </p>
-                <h3>Quotr</h3>
-                <div className="flex mb-4">
-                  {/* HTML */}
-                  <div className="flex items-center mr-5">
-                    <Icon
-                      IconType={Html}
-                      columnSizing={"w-full"}
-                      width={"w-6"}
-                      height={"h-6"}
-                      padding={"p-0"}
-                      title={null}
-                    />
+                  <Icon
+                    IconType={Tailwind}
+                    title="Tailwind"
+                    columnSizing={"w-auto"}
+                    width={"w-6"}
+                    height={"h-6"}
+                    flexDirection={"flex-row"}
+                    padding={"p-0"}
+                    titleMargins={"my-0 ml-1"}
+                    titleSize={"text-sm"}
+                    marginBottom={"mb-4"}
+                    marginRight={"mr-3"}
+                    textTransform={"uppercase"}
+                  />
 
-                    <span className="ml-1 small-text">Next</span>
-                  </div>
-                  {/* React */}
-                  <div className="flex items-center mr-5">
-                    <Icon
-                      IconType={ReactJs}
-                      columnSizing={"w-full"}
-                      width={"w-6"}
-                      height={"h-6"}
-                      padding={"p-0"}
-                      title={null}
-                    />
-                    <span className="ml-1 small-text">React</span>
-                  </div>
-                  {/* Tailwind */}
-                  <div className="flex items-center mr-5">
-                    <Icon
-                      IconType={Tailwind}
-                      columnSizing={"w-full"}
-                      width={"w-6"}
-                      height={"h-6"}
-                      padding={"p-0"}
-                      title={null}
-                    />
-                    <span className="ml-1 small-text">Tailwind</span>
-                  </div>
-                </div>
-                <p>
-                  Project outline and description of what problem it solves.
-                  More information here.
-                </p>
-                <div className="flex">
-                  <Live />
-                  <GitHub />
-                </div>
-              </div>
-            </article>
+                  <Icon
+                    IconType={ReactJs}
+                    title="ReactJs"
+                    columnSizing={"w-auto"}
+                    width={"w-6"}
+                    height={"h-6"}
+                    flexDirection={"flex-row"}
+                    padding={"p-0"}
+                    titleMargins={"my-0 ml-1"}
+                    titleSize={"text-sm"}
+                    marginBottom={"mb-4"}
+                    marginRight={"mr-3"}
+                    textTransform={"uppercase"}
+                  />
+                </>
+              }
+            />
           </div>
 
           {/* Other Projects header */}
