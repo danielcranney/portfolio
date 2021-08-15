@@ -439,27 +439,6 @@ export default function Home() {
                 <button className="btn-brand btn-md">Hire me</button>
               </li>
               <li className="z-50 inline-block ml-5 list-none lg:hidden">
-                {/* <button
-                  className="block text-xl leading-none text-white bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer focus:outline-none"
-                  type="button"
-                  onClick={() => setNavbarOpen(!navbarOpen)}
-                >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    ></path>
-                  </svg>
-                </button> */}
-
                 <button
                   className="relative w-10 h-10 text-white focus:outline-none"
                   onClick={() => setNavbarOpen(!navbarOpen)}
