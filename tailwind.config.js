@@ -5,6 +5,15 @@ module.exports = {
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    container: {
+      padding: {
+        DEFAULT: "1rem",
+        sm: "2rem",
+        lg: "4rem",
+        xl: "2rem",
+        "2xl": "2rem",
+      },
+    },
     extend: {
       fontFamily: {
         display: ['"acumin-pro-wide"', "sans-serif"],
@@ -28,6 +37,7 @@ module.exports = {
         width: "width",
       },
       colors: {
+        soft: "#f0f0f0",
         brand: "#7364d0",
         brandAlt: "#867dd8",
         light: "#a2a1a6",

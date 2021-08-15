@@ -1,29 +1,10 @@
 import React from "react";
-import Image from "next/image";
-
-import Icon from "../components/Icon";
-// Icons
-import Html from "../components/icons/Html";
-import Css from "../components/icons/Css";
-import Javascript from "../components/icons/Javascript";
-import Tailwind from "../components/icons/Tailwind";
-import Bootstrap from "../components/icons/Bootstrap";
-import Sass from "../components/icons/Sass";
-import ReactJs from "../components/icons/ReactJs";
-import NextJs from "../components/icons/NextJs";
-import NodeJs from "../components/icons/NodeJs";
-import Firebase from "../components/icons/Firebase";
-import Figma from "../components/icons/Figma";
-import Photoshop from "../components/icons/Photoshop";
-import Illustrator from "../components/icons/Illustrator";
-import AfterEffects from "../components/icons/AfterEffects";
-import AdobeXd from "../components/icons/AdobeXd";
 
 const ProjectCard = ({ project }) => {
   const { title, overview, stack, link, repo } = project;
 
   return (
-    <div className="w-32pc flex flex-col bg-mid py-7 px-7 mb-4">
+    <div className="flex flex-col w-full mb-4 lg:w-32pc bg-mid py-7 px-7">
       <svg
         className="w-10 h-10 mb-4"
         fill="none"
@@ -39,7 +20,7 @@ const ProjectCard = ({ project }) => {
           d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
         ></path>
       </svg>
-      <p className="text-xl font-bold inline-block flex-start pb-5 px-0 mb-4 border-b-4 border-brand">
+      <p className="inline-block px-0 pb-5 mb-4 text-xl font-bold border-b-4 flex-start border-brand">
         {title}
       </p>
       <p>{overview}</p>
@@ -47,11 +28,11 @@ const ProjectCard = ({ project }) => {
       <div className="flex flex-col flex-wrap mt-2">
         {/* Stack icons inner container */}
         <div className="flex flex-grow flex-shrink-0">
-          <ul className="list-none list-inside flex flex-wrap">
+          <ul className="flex flex-wrap list-none list-inside">
             {stack.map(function (stackItem, i) {
               return (
                 <li
-                  className="flex items-center text-brand opacity-50 mr-3"
+                  className="flex items-center mr-3 opacity-50 text-brand"
                   key={i}
                 >
                   <span className="small-text">{stackItem}</span>
@@ -62,9 +43,9 @@ const ProjectCard = ({ project }) => {
         </div>
         {/* Live and GitHub container */}
         <div className="flex mt-4">
-          <button className="inline-flex items-center h-12 w-12 bg-white rounded-sm group bg-opacity-5 hover:bg-opacity-20 transition duration-200 ease-in-out mr-2">
+          <button className="inline-flex items-center w-12 h-12 mr-2 transition-all duration-200 ease-in-out transform translate-y-0 bg-white rounded-sm group bg-opacity-5 hover:bg-opacity-10 hover:-translate-y-1">
             <svg
-              className="w-6 h-6 group-hover:opacity-100 opacity-50 mx-auto my-auto"
+              className="w-6 h-6 mx-auto my-auto opacity-50 group-hover:opacity-100"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -78,12 +59,12 @@ const ProjectCard = ({ project }) => {
               ></path>
             </svg>
           </button>
-          <button className="inline-flex items-center h-12 w-12 bg-white rounded-sm group bg-opacity-5 hover:bg-opacity-20 transition duration-200 ease-in-out">
+          <button className="inline-flex items-center w-12 h-12 mr-2 transition-all duration-200 ease-in-out transform translate-y-0 bg-white rounded-sm group bg-opacity-5 hover:bg-opacity-10 hover:-translate-y-1">
             <svg
               viewBox="0 0 128 128"
-              className="w-6 h-6 group-hover:opacity-100 opacity-50 text-white fill-current mx-auto"
+              className="w-6 h-6 mx-auto text-white opacity-50 fill-current group-hover:opacity-100"
             >
-              <g className="w-6 h-6 group-hover:opacity-100 opacity-50 text-white fill-current">
+              <g className="w-6 h-6 text-white fill-current">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"

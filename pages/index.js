@@ -24,7 +24,11 @@ import AdobeXd from "../components/icons/AdobeXd";
 // Project Card
 import ProjectCard from "../components/ProjectCard";
 import Live from "../components/Live";
-import GitHub from "../components/GitHub";
+import GitHub from "../components/Source";
+import MockupToolbar from "../components/MockupToolbar";
+import GitHubProfile from "../components/icons/GitHubProfile";
+import TwitterProfile from "../components/icons/TwitterProfile";
+import LinkedInProfile from "../components/icons/LinkedInProfile";
 
 const projects = [
   {
@@ -74,7 +78,20 @@ const scrollTo = (ele) => {
 
 export default function Home() {
   const [visibleSection, setVisibleSection] = useState();
-  const [small, setSmall] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = () => {
+    if (window.innerWidth < 768) {
+      console.log("LESS THAN 768!");
+      setIsMobile(true);
+    } else {
+      console.log("MORE THAN 768!");
+      setNavbarOpen(false);
+      setIsMobile(false);
+    }
+  };
 
   const headerRef = useRef(null);
   const homeRef = useRef(null);
@@ -108,7 +125,7 @@ export default function Home() {
 
       if (selected && selected.section !== visibleSection) {
         setVisibleSection(selected.section);
-        console.log(visibleSection);
+        // console.log(visibleSection);
       } else if (!selected && visibleSection) {
         setVisibleSection(undefined);
       }
@@ -124,15 +141,20 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", () =>
-        setSmall(window.pageYOffset > 300)
+        setScrolling(window.pageYOffset > 110)
       );
     }
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  });
+
   return (
     <div
-      className="relative w-full
-    min-h-screen bg-cover bg-right-bottom"
+      className={`relative w-full bg-right-bottom bg-cover bg-dark overflow-auto min-h-screen ${
+        navbarOpen ? "overflow-hidden" : "overflow-auto"
+      }`}
     >
       <Head>
         <title>Daniel Cranney | Frontend Developer & Designer</title>
@@ -140,17 +162,132 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Header */}
+      {/* Full-screen Menu */}
+      <div
+        className={`fixed w-full z-50 h-screen pt-24 bg-darker bg-opacity-100 transform delay-100 transition-all duration-300 ${
+          navbarOpen
+            ? "opacity-100 translate-x-0"
+            : "opacity-0 -translate-x-full"
+        }`}
+      >
+        <div className="container relative mx-auto">
+          <nav className="block ml-auto">
+            <ul className="z-50 flex flex-col items-start">
+              <li className="z-50 block py-2 list-none md:inline-block">
+                <button
+                  href="#"
+                  className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
+                    visibleSection === "home"
+                      ? "selected delay-300"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                  }`}
+                  onClick={() => {
+                    setNavbarOpen(false);
+                    scrollTo(homeRef.current);
+                  }}
+                >
+                  Home
+                </button>
+              </li>
+              <li className="z-50 block py-2 list-none md:inline-block">
+                <button
+                  href="#"
+                  className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
+                    visibleSection === "about"
+                      ? "selected delay-300"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                  }`}
+                  onClick={() => {
+                    setNavbarOpen(false);
+                    scrollTo(aboutRef.current);
+                  }}
+                >
+                  About
+                </button>
+              </li>
+              <li className="z-50 block py-2 list-none md:inline-block">
+                <button
+                  href="#"
+                  className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
+                    visibleSection === "skills"
+                      ? "selected delay-300"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                  }`}
+                  onClick={() => {
+                    setNavbarOpen(false);
+                    scrollTo(skillsRef.current);
+                  }}
+                >
+                  Skills
+                </button>
+              </li>
+              <li className="z-50 block py-2 list-none md:inline-block">
+                <button
+                  href="#"
+                  className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
+                    visibleSection === "my-work"
+                      ? "selected delay-300"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                  }`}
+                  onClick={() => {
+                    setNavbarOpen(false);
+                    scrollTo(myWorkRef.current);
+                  }}
+                >
+                  My Work
+                </button>
+              </li>
+              <li className="z-50 block py-2 list-none md:inline-block">
+                <button
+                  href="#"
+                  className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
+                    visibleSection === "blog"
+                      ? "selected delay-300"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                  }`}
+                  onClick={() => {
+                    setNavbarOpen(false);
+                    scrollTo(blogRef.current);
+                  }}
+                >
+                  Blog
+                </button>
+              </li>
+              <li className="z-50 block py-2 list-none md:inline-block">
+                <button
+                  href="#"
+                  className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
+                    visibleSection === "contact"
+                      ? "selected delay-300"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                  }`}
+                  onClick={() => {
+                    setNavbarOpen(false);
+                    scrollTo(contactRef.current);
+                  }}
+                >
+                  Contact
+                </button>
+              </li>
+              <li className="z-50 block py-2 list-none md:inline-block">
+                <button className="text-xl btn-brand btn-lg">Hire me</button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      {/* Header and Nav */}
       <header
         className={`header top-0 mx-auto flex items-center py-6 z-50 fixed w-full transition-all duration-500 h-24 ${
-          small ? "bg-dark" : "bg-transparent"
+          scrolling && !navbarOpen ? "bg-dark" : "bg-transparent"
         }`}
         ref={headerRef}
       >
         {/* Logo and Nav container */}
-        <div className="relative container mx-auto flex items-center">
+        <div className="container relative flex items-center mx-auto">
           {/* Logo */}
-          <div className="w-12 h-12">
+          <div className="z-50 w-12 h-12">
             <svg
               id="b613d120-e911-4f71-b7bc-d9b9e1bbdc6f"
               data-name="Layer 1"
@@ -205,12 +342,12 @@ export default function Home() {
             </svg>
           </div>
           {/* Nav */}
-          <nav className="ml-auto z-50">
-            <ul className="flex z-50 items-center">
-              <li className="list-none mx-5 z-50">
+          <nav className="block ml-auto">
+            <ul className="z-50 flex items-center">
+              <li className="z-50 hidden mx-5 list-none md:inline-block">
                 <button
                   href="#"
-                  className={`z-50 header_link font-semibold transition-all duration-300 ease-in-out ${
+                  className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "home"
                       ? "selected delay-300"
                       : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
@@ -222,10 +359,10 @@ export default function Home() {
                   Home
                 </button>
               </li>
-              <li className="list-none mx-5 z-50">
+              <li className="z-50 hidden mx-5 list-none md:inline-block">
                 <button
                   href="#"
-                  className={`z-50 header_link font-semibold transition-all duration-300 ease-in-out ${
+                  className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "about"
                       ? "selected delay-300"
                       : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
@@ -237,10 +374,10 @@ export default function Home() {
                   About
                 </button>
               </li>
-              <li className="list-none mx-5 z-50">
+              <li className="z-50 hidden mx-5 list-none md:inline-block">
                 <button
                   href="#"
-                  className={`z-50 header_link font-semibold transition-all duration-300 ease-in-out ${
+                  className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "skills"
                       ? "selected delay-300"
                       : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
@@ -252,10 +389,10 @@ export default function Home() {
                   Skills
                 </button>
               </li>
-              <li className="list-none mx-5 z-50">
+              <li className="z-50 hidden mx-5 list-none md:inline-block">
                 <button
                   href="#"
-                  className={`z-50 header_link font-semibold transition-all duration-300 ease-in-out ${
+                  className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "my-work"
                       ? "selected delay-300"
                       : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
@@ -267,10 +404,10 @@ export default function Home() {
                   My Work
                 </button>
               </li>
-              <li className="list-none mx-5 z-50">
+              <li className="z-50 hidden mx-5 list-none md:inline-block">
                 <button
                   href="#"
-                  className={`z-50 header_link font-semibold transition-all duration-300 ease-in-out ${
+                  className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "blog"
                       ? "selected delay-300"
                       : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
@@ -282,10 +419,10 @@ export default function Home() {
                   Blog
                 </button>
               </li>
-              <li className="list-none mx-5 z-50">
+              <li className="z-50 hidden mx-5 list-none md:inline-block">
                 <button
                   href="#"
-                  className={`z-50 header_link font-semibold transition-all duration-300 ease-in-out ${
+                  className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "contact"
                       ? "selected delay-300"
                       : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
@@ -297,8 +434,30 @@ export default function Home() {
                   Contact
                 </button>
               </li>
-              <li className="list-none mx-5 z-50">
+              <li className="z-50 hidden ml-5 list-none md:inline-block">
                 <button className="btn-brand btn-md">Hire me</button>
+              </li>
+              <li className="z-50 inline-block ml-5 list-none md:hidden">
+                <button
+                  className="block text-xl leading-none text-white bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer focus:outline-none"
+                  type="button"
+                  onClick={() => setNavbarOpen(!navbarOpen)}
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    ></path>
+                  </svg>
+                </button>
               </li>
             </ul>
           </nav>
@@ -306,8 +465,8 @@ export default function Home() {
       </header>
 
       {/* Video background */}
-      <div className="absolute z-10 w-auto max-w-full h-full overflow-hidden">
-        {/* <video
+      {/* <div className="absolute z-10 w-auto h-full max-w-full overflow-hidden">
+        <video
           autoPlay
           loop
           muted
@@ -315,300 +474,22 @@ export default function Home() {
           className="relative z-10 w-auto max-w-full min-h-full opacity-20"
         >
           Sorry, your browser doesn't support embedded videos.
-        </video> */}
-      </div>
+        </video>
+      </div> */}
 
-      {/* // Icons */}
-      <div className="fixed bottom-0 left-12 text-white items-center hidden md:flex md:flex-col z-30">
-        <div className="w-8 h-8 mb-4">
-          <svg
-            className="fill-current opacity-50 hover:opacity-100 transition-all duration-300 translate-y-0 hover:-translate-y-1 ease-in-out transform"
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm0-2C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 6a6 6 0 00-1.896 11.693c.3.056.396-.13.396-.289v-1.117c-1.669.363-2.017-.707-2.017-.707-.272-.693-.666-.878-.666-.878-.544-.373.041-.365.041-.365.603.042.92.619.92.619.535.917 1.403.652 1.746.499.054-.388.209-.652.381-.802-1.333-.152-2.733-.667-2.733-2.965 0-.655.234-1.19.618-1.61-.062-.153-.268-.764.058-1.59 0 0 .504-.161 1.65.615A5.782 5.782 0 0112 8.901c.51.002 1.023.069 1.503.202 1.146-.776 1.648-.615 1.648-.615.327.826.121 1.437.06 1.588.385.42.617.955.617 1.61 0 2.305-1.404 2.812-2.74 2.96.216.186.412.551.412 1.111v1.646c0 .16.096.347.4.288A6 6 0 0012 6z" />
-          </svg>
-        </div>
-        <div className="w-8 h-8 mb-4">
-          <svg
-            className="fill-current opacity-50 hover:opacity-100 transition-all duration-300 translate-y-0 hover:-translate-y-1 ease-in-out transform"
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm0-2C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.5 8.778a4.928 4.928 0 01-1.414.388 2.473 2.473 0 001.083-1.362 4.926 4.926 0 01-1.564.597 2.464 2.464 0 00-4.195 2.245 6.993 6.993 0 01-5.074-2.572 2.465 2.465 0 00.762 3.287 2.457 2.457 0 01-1.114-.308c-.027 1.14.791 2.207 1.975 2.445a2.467 2.467 0 01-1.112.042 2.465 2.465 0 002.3 1.709A4.955 4.955 0 016.5 16.27a6.963 6.963 0 003.773 1.106c4.572 0 7.154-3.861 6.998-7.324.482-.346.899-.78 1.229-1.274z" />
-          </svg>
-        </div>
-        <div className="w-8 h-8 mb-4">
-          <svg
-            className="fill-current opacity-50 hover:opacity-100 transition-all duration-300 translate-y-0 hover:-translate-y-1 ease-in-out transform"
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm0-2C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-2 8c0 .557-.447 1.008-1 1.008S8 8.558 8 8c0-.557.447-1.008 1-1.008S10 7.444 10 8zm0 2H8v6h2v-6zm3 0h-2v6h2v-2.861c0-1.722 2.002-1.881 2.002 0V16H17v-3.359c0-3.284-3.128-3.164-4-1.548V10z" />
-          </svg>
-        </div>
-        <div className="w-0.5 bg-white h-24 opacity-20 mt-2"></div>
-      </div>
-
-      {/* // Progress Icons */}
-      <div className="fixed bottom-0 right-12 text-white items-center hidden md:flex md:flex-col z-40">
-        {/* Hero - Diamond 1 */}
-        <button
-          className="w-5 h-5 mb-4 z-40"
-          onClick={() => {
-            scrollTo(homeRef.current);
-          }}
-        >
-          <svg
-            id="e5c888e5-3206-4553-8f53-60ee93248ad9"
-            className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
-              visibleSection === "home"
-                ? "rotate-45 scale-110"
-                : "rotate-0 scale-100"
-            }`}
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0
-              0 24 24"
-          >
-            {/* Fill */}
-            <path
-              className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
-                visibleSection === "home"
-                  ? "text-white rotate-90"
-                  : "text-dark rotate-0"
-              }`}
-              d="M5.64 5.64h12.73v12.73H5.64z"
-            />
-            {/* Border */}
-            <path
-              className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
-                visibleSection === "home"
-                  ? "text-white rotate-45 opacity-100"
-                  : "text-white rotate-45 opacity-40"
-              }`}
-              d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
-            />
-          </svg>
-        </button>
-        {/* About - Diamond 2 */}
-        <button
-          className="w-5 h-5 mb-4 z-40"
-          onClick={() => {
-            scrollTo(aboutRef.current);
-          }}
-        >
-          <svg
-            id="e5c888e5-3206-4553-8f53-60ee93248ad9"
-            className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
-              visibleSection === "about"
-                ? "rotate-45 scale-110"
-                : "rotate-0 scale-100"
-            }`}
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0
-              0 24 24"
-          >
-            {/* Fill */}
-            <path
-              className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
-                visibleSection === "about"
-                  ? "text-white rotate-90"
-                  : "text-dark rotate-0"
-              }`}
-              d="M5.64 5.64h12.73v12.73H5.64z"
-            />
-            {/* Border */}
-            <path
-              className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
-                visibleSection === "about"
-                  ? "text-white rotate-45 opacity-100"
-                  : "text-white rotate-45 opacity-40"
-              }`}
-              d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
-            />
-          </svg>
-        </button>
-        {/* Skills - Diamond 3 */}
-        <button
-          className="w-5 h-5 mb-4 z-40"
-          onClick={() => {
-            scrollTo(skillsRef.current);
-          }}
-        >
-          <svg
-            id="e5c888e5-3206-4553-8f53-60ee93248ad9"
-            className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
-              visibleSection === "skills"
-                ? "rotate-45 scale-110"
-                : "rotate-0 scale-100"
-            }`}
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0
-              0 24 24"
-          >
-            {/* Fill */}
-            <path
-              className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
-                visibleSection === "skills"
-                  ? "text-white rotate-90"
-                  : "text-dark rotate-0"
-              }`}
-              d="M5.64 5.64h12.73v12.73H5.64z"
-            />
-            {/* Border */}
-            <path
-              className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
-                visibleSection === "skills"
-                  ? "text-white rotate-45 opacity-100"
-                  : "text-white rotate-45 opacity-40"
-              }`}
-              d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
-            />
-          </svg>
-        </button>
-        {/* My Work - Diamond 4 */}
-        <button
-          className="w-5 h-5 mb-4 z-40"
-          onClick={() => {
-            scrollTo(myWorkRef.current);
-          }}
-        >
-          <svg
-            id="e5c888e5-3206-4553-8f53-60ee93248ad9"
-            className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
-              visibleSection === "my-work"
-                ? "rotate-45 scale-110"
-                : "rotate-0 scale-100"
-            }`}
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0
-              0 24 24"
-          >
-            {/* Fill */}
-            <path
-              className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
-                visibleSection === "my-work"
-                  ? "text-white rotate-90"
-                  : "text-dark rotate-0"
-              }`}
-              d="M5.64 5.64h12.73v12.73H5.64z"
-            />
-            {/* Border */}
-            <path
-              className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
-                visibleSection === "my-work"
-                  ? "text-white rotate-45 opacity-100"
-                  : "text-white rotate-45 opacity-40"
-              }`}
-              d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
-            />
-          </svg>
-        </button>
-        {/* Blog - Diamond 5 */}
-        <button
-          className="w-5 h-5 mb-4 z-40"
-          onClick={() => {
-            scrollTo(blogRef.current);
-          }}
-        >
-          <svg
-            id="e5c888e5-3206-4553-8f53-60ee93248ad9"
-            className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
-              visibleSection === "blog"
-                ? "rotate-45 scale-110"
-                : "rotate-0 scale-100"
-            }`}
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0
-              0 24 24"
-          >
-            {/* Fill */}
-            <path
-              className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
-                visibleSection === "blog"
-                  ? "text-white rotate-90"
-                  : "text-dark rotate-0"
-              }`}
-              d="M5.64 5.64h12.73v12.73H5.64z"
-            />
-            {/* Border */}
-            <path
-              className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
-                visibleSection === "blog"
-                  ? "text-white rotate-45 opacity-100"
-                  : "text-white rotate-45 opacity-40"
-              }`}
-              d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
-            />
-          </svg>
-        </button>
-        {/* Contact - Diamond 6 */}
-        <button
-          className="w-5 h-5 mb-4 z-40"
-          onClick={() => {
-            scrollTo(contactRef.current);
-          }}
-        >
-          <svg
-            id="e5c888e5-3206-4553-8f53-60ee93248ad9"
-            className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
-              visibleSection === "contact"
-                ? "rotate-45 scale-110"
-                : "rotate-0 scale-100"
-            }`}
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0
-              0 24 24"
-          >
-            {/* Fill */}
-            <path
-              className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
-                visibleSection === "contact"
-                  ? "text-white rotate-90"
-                  : "text-dark rotate-0"
-              }`}
-              d="M5.64 5.64h12.73v12.73H5.64z"
-            />
-            {/* Border */}
-            <path
-              className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
-                visibleSection === "contact"
-                  ? "text-white rotate-45 opacity-100"
-                  : "text-white rotate-45 opacity-40"
-              }`}
-              d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
-            />
-          </svg>
-        </button>
-
-        {/* Line */}
-        <div className="w-0.5 bg-white h-24 opacity-20 mt-2 z-30"></div>
-      </div>
-
-      <div className="h-screen container mx-auto z-30">
+      {/* Content Container */}
+      <div className="container relative z-30 mx-auto">
         {/* Hero Content */}
-        <main className={`flex-col flex h-screen z-50`} id="home" ref={homeRef}>
+        <main className={`flex-col flex h-screen`} id="home" ref={homeRef}>
           {/* Main */}
-          <div className="container relative flex-grow mx-auto flex flex-col justify-center items-start px-28 section">
+          <div className="container relative flex flex-col items-start justify-center flex-grow px-0 mx-auto md:px-20 lg:px-24 section">
             <div className="w-3/5">
-              <span className="text-2xl text-brand font-semibold">
+              <span className="text-2xl font-semibold text-brand">
                 Hello! My name is
               </span>
 
-              <h1 className="text-7xl mb-4">Daniel Cranney</h1>
-              <h2 className="text-4xl text-light mb-4">
+              <h1 className="mb-4 text-7xl">Daniel Cranney</h1>
+              <h2 className="mb-4 text-4xl text-light">
                 <ReactTypingEffect
                   speed={50}
                   eraseSpeed={30}
@@ -619,23 +500,23 @@ export default function Home() {
               <p className="text-xl">
                 Brief introduction and description of my skills.
               </p>
-              <button className="btn-brand btn-lg mt-4">Button</button>
+              <button className="mt-4 btn-brand btn-lg">Button</button>
             </div>
           </div>
         </main>
 
         {/* About */}
         <section
-          className="px-28 w-full flex flex-col py-28 z-40 section"
+          className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
           id="about"
           ref={aboutRef}
         >
           <div className="flex flex-col">
-            <h2 className="text-5xl z-40">About</h2>
+            <h2 className="text-5xl">About</h2>
             <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
 
-            <div className="flex w-full items-start">
-              <div className="w-3/5 pr-8 flex flex-col">
+            <div className="flex flex-col-reverse items-start w-full md:flex-row">
+              <div className="flex flex-col w-full md:pr-8 md:w-3/5">
                 <p className="text-lg">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Quisque est urna, dignissim et mauris id, ultrices finibus
@@ -654,11 +535,11 @@ export default function Home() {
                   nunc pulvinar. Suspendisse odio justo, rutrum nec risus vel,
                   ornare ultricies diam. Vestibulum nec convallis justo.
                 </p>
-                <button className="self-start inline-block btn-outline btn-lg mt-8">
+                <button className="self-start inline-block mt-8 btn-outline btn-lg">
                   See my CV
                 </button>
               </div>
-              <div className="w-2/5 pl-8 h-full flex">
+              <div className="flex w-full h-full md:pl-8 md:w-2/5">
                 <Image
                   src="/headshot-with-frame.png"
                   width={1624}
@@ -671,209 +552,215 @@ export default function Home() {
 
         {/* Skills */}
         <section
-          className="px-28 w-full flex flex-col py-28 z-40 section"
+          className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
           id="skills"
           ref={skillsRef}
         >
-          <h2 className="text-5xl z-40">Skills</h2>
+          <h2 className="text-5xl">Skills</h2>
           <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
 
           {/* Skills icons */}
-          <div className="flex w-full mt-8 flex-wrap pr-4">
+          <div className="flex flex-wrap w-full pr-4 mt-8">
             {/* HTML icon */}
             <Icon
               IconType={Html}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="HTML"
+              marginBottom={"mb-4"}
             />
 
             {/* CSS */}
             <Icon
               IconType={Css}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="CSS"
+              marginBottom={"mb-4"}
             />
 
             {/* Sass */}
             <Icon
               IconType={Sass}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="Sass"
+              marginBottom={"mb-4"}
             />
 
             {/* Bootstrap */}
             <Icon
               IconType={Bootstrap}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="Bootstrap"
+              marginBottom={"mb-4"}
             />
 
             {/* Tailwind */}
             <Icon
               IconType={Tailwind}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="Tailwind"
+              marginBottom={"mb-4"}
             />
 
             {/* Javascript */}
             <Icon
               IconType={Javascript}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="Javascript"
+              marginBottom={"mb-4"}
             />
 
             {/* React */}
             <Icon
               IconType={ReactJs}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="React"
+              marginBottom={"mb-4"}
             />
 
             {/* Next */}
 
             <Icon
               IconType={NextJs}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="Next"
+              marginBottom={"mb-4"}
             />
 
             {/* Node */}
 
             <Icon
               IconType={NodeJs}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="Node"
+              marginBottom={"mb-4"}
             />
 
             {/* Firebase */}
 
             <Icon
               IconType={Firebase}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="Firebase"
+              marginBottom={"mb-4"}
             />
 
             {/* Photoshop */}
 
             <Icon
               IconType={Photoshop}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="Photoshop"
+              marginBottom={"mb-4"}
             />
 
             {/* Illustrator */}
 
             <Icon
               IconType={Illustrator}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="Illustrator"
+              marginBottom={"mb-4"}
             />
 
             {/* After Effects */}
 
             <Icon
               IconType={AfterEffects}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="After Effects"
+              marginBottom={"mb-4"}
             />
 
             {/* Adobe XD */}
 
             <Icon
               IconType={AdobeXd}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="Adobe XD"
+              marginBottom={"mb-4"}
             />
 
             {/* Figma */}
 
             <Icon
               IconType={Figma}
-              columnSizing={"w-1/6"}
+              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
               width={"w-24"}
               height={"h-24"}
               padding={"p-0"}
               title="Figma"
+              marginBottom={"mb-4"}
             />
           </div>
         </section>
 
         {/* My Work */}
         <section
-          className="px-28 w-full flex flex-col py-28 z-40 section"
+          className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
           id="my-work"
           ref={myWorkRef}
         >
           {/* My Work header */}
-          <h2 className="text-5xl z-40">My Work</h2>
+          <h2 className="text-5xl">My Work</h2>
           <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
 
           {/* Featured Projects Container */}
-          <div className="w-full flex flex-col mb-12">
+          <div className="flex flex-col w-full mb-12">
             {/* Project one */}
-            <article className="w-full relative flex items-end my-4">
+            <article className="relative flex flex-col items-end w-full my-4 lg:flex-row">
+              {/* Empty Column */}
+              <div className="hidden w-1/6 lg:flex"></div>
               {/* Project image */}
-              <div className="flex w-1/6"></div>
-              <div className="flex w-5/6 flex-col mt-8 pr-4 bg-dark hover:bg-dark">
-                <Link
-                  href="/"
-                  className="rounded-sm filter blur-0 mix-blend-screen opacity-100 transition-all duration-300"
-                >
-                  <a>
-                    <Image
-                      src="/projects/culors.png"
-                      width={1366}
-                      height={666}
-                    />
-                  </a>
-                </Link>
+              <div className="flex flex-col w-full p-3 rounded-md lg:w-5/6 bg-mid">
+                <MockupToolbar />
+                <Image src="/projects/culors.png" width={1366} height={666} />
               </div>
 
               {/* Project info */}
-              <div className="w-2/5 absolute left-0 bg-dark top-16 rounded-tl-none rounded-tr-none rounded-bl-md rounded-br-md py-8 px-8 border-t-4 border-brand">
-                <p className="small-text tracking-wider mb-2">
+              <div className="relative w-full px-8 py-8 border-t-4 rounded-tl-none rounded-tr-none lg:transform lg:-translate-y-1/2 lg:w-1/2 lg:left-0 lg:absolute lg:-translate-x-0 lg:top-1/2 bg-mid rounded-bl-md rounded-br-md border-brand">
+                <p className="mb-2 tracking-wider small-text">
                   Currently working on
                 </p>
                 <h3>Culors</h3>
@@ -888,7 +775,7 @@ export default function Home() {
                       padding={"p-0"}
                       title={null}
                     />
-                    <span className="small-text ml-1">React</span>
+                    <span className="ml-1 small-text">React</span>
                   </div>
                   {/* NextJS */}
                   <div className="flex items-center mr-5">
@@ -901,7 +788,7 @@ export default function Home() {
                       title={null}
                     />
 
-                    <span className="small-text ml-1">Next</span>
+                    <span className="ml-1 small-text">Next</span>
                   </div>
                   {/* Tailwind */}
                   <div className="flex items-center mr-5">
@@ -913,7 +800,7 @@ export default function Home() {
                       padding={"p-0"}
                       title={null}
                     />
-                    <span className="small-text ml-1">Tailwind</span>
+                    <span className="ml-1 small-text">Tailwind</span>
                   </div>
                 </div>
                 <p>
@@ -928,27 +815,23 @@ export default function Home() {
             </article>
 
             {/* Project two */}
-            <article className="w-full relative flex items-end my-4">
+            <article className="relative flex flex-col items-end w-full my-4 lg:flex-row">
               {/* Project image */}
-              <div className="flex w-5/6 flex-col mt-8 pr-4 bg-dark">
-                <Link
-                  href="/"
-                  className="rounded-sm filter blur-0 mix-blend-screen opacity-50 hover:opacity-100 transition-all duration-300"
-                >
-                  <a>
-                    <Image
-                      src="/projects/quotr.png"
-                      width={1366}
-                      height={666}
-                    />
-                  </a>
-                </Link>
+              <div className="flex flex-col w-full p-3 rounded-md lg:w-5/6 bg-mid">
+                <MockupToolbar />
+                <Image
+                  src="/projects/quotr.png"
+                  width={1366}
+                  height={806}
+                  className="rounded-bl-md rounded-br-md"
+                />
               </div>
-              <div className="flex w-1/6"></div>
+              {/* Empty Column */}
+              <div className="hidden w-1/6 lg:flex"></div>
 
               {/* Project info */}
-              <div className="w-2/5 absolute right-0 bg-dark top-16 rounded-tl-none rounded-tr-none rounded-bl-md rounded-br-md py-8 px-8 border-t-4 border-brand">
-                <p className="small-text tracking-wider mb-2">
+              <div className="relative w-full px-8 py-8 border-t-4 rounded-tl-none rounded-tr-none lg:transform lg:-translate-y-1/2 lg:w-1/2 lg:right-0 lg:absolute lg:-translate-x-0 lg:top-1/2 bg-mid rounded-bl-md rounded-br-md border-brand">
+                <p className="mb-2 tracking-wider small-text">
                   Featured Project
                 </p>
                 <h3>Quotr</h3>
@@ -964,7 +847,7 @@ export default function Home() {
                       title={null}
                     />
 
-                    <span className="small-text ml-1">Next</span>
+                    <span className="ml-1 small-text">Next</span>
                   </div>
                   {/* React */}
                   <div className="flex items-center mr-5">
@@ -976,7 +859,7 @@ export default function Home() {
                       padding={"p-0"}
                       title={null}
                     />
-                    <span className="small-text ml-1">React</span>
+                    <span className="ml-1 small-text">React</span>
                   </div>
                   {/* Tailwind */}
                   <div className="flex items-center mr-5">
@@ -988,7 +871,7 @@ export default function Home() {
                       padding={"p-0"}
                       title={null}
                     />
-                    <span className="small-text ml-1">Tailwind</span>
+                    <span className="ml-1 small-text">Tailwind</span>
                   </div>
                 </div>
                 <p>
@@ -1004,14 +887,14 @@ export default function Home() {
           </div>
 
           {/* Other Projects header */}
-          <h2 className="text-4xl z-40 text-center">Other Projects</h2>
+          <h2 className="text-4xl text-center">Other Projects</h2>
           <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 mx-auto border-0"></hr>
-          <p className="text-lg text-center mb-16">
+          <p className="mb-16 text-lg text-center">
             Here's some of the other things I've built or worked on
           </p>
 
           {/* Other Projects Container */}
-          <div className="w-full flex justify-between flex-wrap">
+          <div className="flex flex-col flex-wrap justify-between w-full lg:flex-row">
             {projects.map(function (project, i) {
               return <ProjectCard project={project} key={i} />;
             })}
@@ -1020,43 +903,43 @@ export default function Home() {
 
         {/* My Blog */}
         <section
-          className="px-28 w-full flex flex-col py-28 z-40 section"
+          className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
           id="blog"
           ref={blogRef}
         >
-          <h2 className="text-5xl z-40">Blog</h2>
+          <h2 className="text-5xl">Blog</h2>
           <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
 
           {/* Blog */}
-          <div className="flex w-full mt-8 flex-wrap justify-between">
-            <article className="w-32pc flex flex-col">
-              <div className="bg-mid h-60 rounded-sm"></div>
+          <div className="flex flex-col flex-wrap justify-between w-full mt-8 md:flex-row">
+            <article className="flex flex-col w-full md:w-32pc">
+              <div className="rounded-sm bg-mid h-60"></div>
             </article>
-            <article className="w-32pc flex flex-col">
-              <div className="bg-mid h-60 rounded-sm"></div>
+            <article className="flex flex-col w-full md:w-32pc">
+              <div className="rounded-sm bg-mid h-60"></div>
             </article>
-            <article className="w-32pc flex flex-col">
-              <div className="bg-mid h-60 rounded-sm"></div>
+            <article className="flex flex-col w-full md:w-32pc">
+              <div className="rounded-sm bg-mid h-60"></div>
             </article>
           </div>
         </section>
 
         {/* Contact */}
         <section
-          className="px-28 w-full flex flex-col py-28 z-40 section"
+          className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
           id="contact"
           ref={contactRef}
         >
-          <h2 className="text-5xl z-40">Contact</h2>
+          <h2 className="text-5xl">Contact</h2>
           <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
 
           {/* Contact */}
 
-          <div className="flex w-full">
+          <div className="flex flex-col-reverse w-full md:flex-row">
             <form
               method="post"
               // onSubmit={handleOnSubmit}
-              className="w-3/5 pr-6"
+              className="w-full md:pr-6 md:w-3/5"
             >
               <label htmlFor="name" className="flex mb-2">
                 <div className="mr-2">
@@ -1150,9 +1033,9 @@ export default function Home() {
                 required
               />
 
-              <button className="btn-brand btn-lg mt-8">Button</button>
+              <button className="mt-8 btn-brand btn-lg">Button</button>
             </form>
-            <div className="w-2/5 pl-6">
+            <div className="w-full mb-4 md:pl-6 md:w-2/5 md:mb-0">
               <p>
                 If you'd like to work with me on a project, then I'd love to
                 discuss it with you!
@@ -1169,8 +1052,9 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="px-28 w-full flex flex-col py-16 z-40 section">
-          <hr className="bg-white opacity-10 w-full h-1 border-0 mb-16"></hr>
+        {/* Footer */}
+        <footer className="flex flex-col w-full px-0 py-16 md:px-20 lg:px-24 section">
+          <hr className="w-full h-1 mb-16 bg-white border-0 opacity-10"></hr>
           <div className="w-8 mb-6">
             <svg
               id="abbe8588-8b21-44fd-a605-eb7de7f82941"
@@ -1179,15 +1063,15 @@ export default function Home() {
               viewBox="0 0 93.13 75.2"
             >
               <path
-                className="fill-current text-light opacity-50"
+                className="opacity-50 fill-current text-light"
                 d="M24.05,38.51,7.5,55.06a4.39,4.39,0,1,1-6.21-6.21L14.74,35.41,1.29,22A4.39,4.39,0,0,1,7.5,15.75L24.05,32.3A4.4,4.4,0,0,1,24.05,38.51Z"
               />
               <path
-                className="fill-current text-light opacity-50"
+                className="opacity-50 fill-current text-light"
                 d="M91.85,55.06a4.38,4.38,0,0,1-6.21,0L69.09,38.51a4.4,4.4,0,0,1,0-6.21L85.64,15.75A4.39,4.39,0,0,1,91.85,22L78.41,35.41,91.85,48.85A4.4,4.4,0,0,1,91.85,55.06Z"
               />
               <rect
-                className="fill-current text-light opacity-50"
+                className="opacity-50 fill-current text-light"
                 x="41.93"
                 y="-1.17"
                 width="8.78"
@@ -1200,6 +1084,260 @@ export default function Home() {
 
           <p className="mb-0">Designed and built by Daniel Cranney 2021</p>
         </footer>
+      </div>
+
+      {/* Fixed Container */}
+      <div className="fixed bottom-0 z-30 w-full">
+        <div className="container relative flex h-full mx-auto">
+          {/* Profile Icons */}
+          <div className="absolute bottom-0 items-center hidden mt-auto mr-auto text-white left-8 md:flex md:flex-col">
+            <GitHubProfile />
+            <TwitterProfile />
+            <LinkedInProfile />
+            <div className="w-0.5 bg-white h-24 opacity-20 mt-2"></div>
+          </div>
+
+          {/* Pagination */}
+          <div className="absolute bottom-0 items-center hidden mt-auto ml-auto text-white right-8 md:flex md:flex-col">
+            {/* Hero - Diamond 1 */}
+            <button
+              className="w-5 h-5 mb-4"
+              onClick={() => {
+                scrollTo(homeRef.current);
+              }}
+            >
+              <svg
+                id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                  visibleSection === "home"
+                    ? "rotate-45 scale-110"
+                    : "rotate-0 scale-100"
+                }`}
+                data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0
+              0 24 24"
+              >
+                {/* Fill */}
+                <path
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                    visibleSection === "home"
+                      ? "text-white rotate-90"
+                      : "text-dark rotate-0"
+                  }`}
+                  d="M5.64 5.64h12.73v12.73H5.64z"
+                />
+                {/* Border */}
+                <path
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                    visibleSection === "home"
+                      ? "text-white rotate-45 opacity-100"
+                      : "text-white rotate-45 opacity-40"
+                  }`}
+                  d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                />
+              </svg>
+            </button>
+            {/* About - Diamond 2 */}
+            <button
+              className="w-5 h-5 mb-4"
+              onClick={() => {
+                scrollTo(aboutRef.current);
+              }}
+            >
+              <svg
+                id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                  visibleSection === "about"
+                    ? "rotate-45 scale-110"
+                    : "rotate-0 scale-100"
+                }`}
+                data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0
+              0 24 24"
+              >
+                {/* Fill */}
+                <path
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                    visibleSection === "about"
+                      ? "text-white rotate-90"
+                      : "text-dark rotate-0"
+                  }`}
+                  d="M5.64 5.64h12.73v12.73H5.64z"
+                />
+                {/* Border */}
+                <path
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                    visibleSection === "about"
+                      ? "text-white rotate-45 opacity-100"
+                      : "text-white rotate-45 opacity-40"
+                  }`}
+                  d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                />
+              </svg>
+            </button>
+            {/* Skills - Diamond 3 */}
+            <button
+              className="w-5 h-5 mb-4"
+              onClick={() => {
+                scrollTo(skillsRef.current);
+              }}
+            >
+              <svg
+                id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                  visibleSection === "skills"
+                    ? "rotate-45 scale-110"
+                    : "rotate-0 scale-100"
+                }`}
+                data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0
+              0 24 24"
+              >
+                {/* Fill */}
+                <path
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                    visibleSection === "skills"
+                      ? "text-white rotate-90"
+                      : "text-dark rotate-0"
+                  }`}
+                  d="M5.64 5.64h12.73v12.73H5.64z"
+                />
+                {/* Border */}
+                <path
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                    visibleSection === "skills"
+                      ? "text-white rotate-45 opacity-100"
+                      : "text-white rotate-45 opacity-40"
+                  }`}
+                  d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                />
+              </svg>
+            </button>
+            {/* My Work - Diamond 4 */}
+            <button
+              className="w-5 h-5 mb-4"
+              onClick={() => {
+                scrollTo(myWorkRef.current);
+              }}
+            >
+              <svg
+                id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                className={`group rounded-sm transform transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                  visibleSection === "my-work"
+                    ? "rotate-45 scale-110"
+                    : "rotate-0 scale-100"
+                }`}
+                data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0
+              0 24 24"
+              >
+                {/* Fill */}
+                <path
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                    visibleSection === "my-work"
+                      ? "text-white rotate-90"
+                      : "text-dark rotate-0"
+                  }`}
+                  d="M5.64 5.64h12.73v12.73H5.64z"
+                />
+                {/* Border */}
+                <path
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                    visibleSection === "my-work"
+                      ? "text-white rotate-45 opacity-100"
+                      : "text-white rotate-45 opacity-40"
+                  }`}
+                  d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                />
+              </svg>
+            </button>
+            {/* Blog - Diamond 5 */}
+            <button
+              className="w-5 h-5 mb-4"
+              onClick={() => {
+                scrollTo(blogRef.current);
+              }}
+            >
+              <svg
+                id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                  visibleSection === "blog"
+                    ? "rotate-45 scale-110"
+                    : "rotate-0 scale-100"
+                }`}
+                data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0
+              0 24 24"
+              >
+                {/* Fill */}
+                <path
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                    visibleSection === "blog"
+                      ? "text-white rotate-90"
+                      : "text-dark rotate-0"
+                  }`}
+                  d="M5.64 5.64h12.73v12.73H5.64z"
+                />
+                {/* Border */}
+                <path
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                    visibleSection === "blog"
+                      ? "text-white rotate-45 opacity-100"
+                      : "text-white rotate-45 opacity-40"
+                  }`}
+                  d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                />
+              </svg>
+            </button>
+            {/* Contact - Diamond 6 */}
+            <button
+              className="w-5 h-5 mb-4"
+              onClick={() => {
+                scrollTo(contactRef.current);
+              }}
+            >
+              <svg
+                id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                  visibleSection === "contact"
+                    ? "rotate-45 scale-110"
+                    : "rotate-0 scale-100"
+                }`}
+                data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0
+              0 24 24"
+              >
+                {/* Fill */}
+                <path
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                    visibleSection === "contact"
+                      ? "text-white rotate-90"
+                      : "text-dark rotate-0"
+                  }`}
+                  d="M5.64 5.64h12.73v12.73H5.64z"
+                />
+                {/* Border */}
+                <path
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                    visibleSection === "contact"
+                      ? "text-white rotate-45 opacity-100"
+                      : "text-white rotate-45 opacity-40"
+                  }`}
+                  d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                />
+              </svg>
+            </button>
+
+            {/* Line */}
+            <div className="w-0.5 bg-white h-24 opacity-20 mt-2 z-30"></div>
+          </div>
+        </div>
       </div>
     </div>
   );
