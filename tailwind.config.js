@@ -55,6 +55,7 @@ module.exports = {
       rotate: ["active", "group-hover"],
       fill: ["group-hover"],
       blur: ["hover", "focus"],
+      margin: ["last"],
     },
   },
   plugins: [],

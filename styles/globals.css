@@ -61,7 +61,7 @@
     text-center
     font-semibold rounded-sm
     shadow-none
-   self-start transition-all duration-300 ease-in-out transform translate-y-0 group hover:-translate-y-1;
+   self-start transition-all duration-150 ease-in-out transform translate-y-0 group hover:-translate-y-1;
   }
 }
 
@@ -86,7 +86,18 @@
     font-semibold rounded-sm
     shadow-none
     text-sm
-    transition-all duration-300 ease-in-out transform translate-y-0 group hover:-translate-y-1;
+    transition-all duration-150 ease-in-out transform translate-y-0 group hover:-translate-y-1;
+  }
+}
+@layer components {
+  .btn-sm-no-text {
+    @apply inline-flex h-12 items-center justify-center
+   flex-grow-0
+    text-center
+    font-semibold rounded-sm
+    shadow-none
+    text-sm
+    transition-all duration-150 ease-in-out transform translate-y-0 group hover:-translate-y-1;
   }
 }
 /* Standard Buttons */
