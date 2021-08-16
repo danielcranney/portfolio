@@ -39,7 +39,7 @@ const FeaturedProjectCard = ({
 
       {/* Project info */}
       <div
-        className={`relative w-full px-8 py-8 border-t-4 rounded-tl-none rounded-tr-none lg:transform lg:-translate-y-1/2 lg:w-1/2 lg:${float} lg:absolute lg:-translate-x-0 lg:top-1/2 bg-mid rounded-bl-sm rounded-br-sm border-brand`}
+        className={`relative w-full p-4 lg:p-8 border-t-4 rounded-tl-none rounded-tr-none lg:transform lg:-translate-y-1/2 lg:w-1/2 lg:${float} lg:absolute lg:-translate-x-0 lg:top-1/2 bg-mid rounded-bl-sm rounded-br-sm border-brand`}
       >
         <p className="mb-2 tracking-wider small-text">{status}</p>
         <h3>{title}</h3>
