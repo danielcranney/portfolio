@@ -153,7 +153,7 @@ export default function Home() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [visibleSection, sectionRefs]);
+  }, [visibleSection]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
