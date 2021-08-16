@@ -29,7 +29,12 @@ const FeaturedProjectCard = ({
       {/* Project image */}
       <div className="flex flex-col w-full p-0 rounded-tl-sm rounded-tr-sm rounded-bl-none rounded-br-none lg:rounded-sm lg:p-3 lg:w-5/6 bg-mid">
         <MockupToolbar />
-        <Image src={imgSrc} width={imgWidth} height={imgHeight} />
+        <Image
+          src={imgSrc}
+          width={imgWidth}
+          height={imgHeight}
+          alt={`${title} user interface`}
+        />
       </div>
 
       {/* Project info */}

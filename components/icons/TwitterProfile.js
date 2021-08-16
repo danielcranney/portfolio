@@ -1,10 +1,13 @@
 import React from "react";
-import Link from "next/link";
 
 const TwitterProfile = () => {
   return (
     <div className="w-8 h-8 mb-4">
-      <a href="https://twitter.com/danielcranney" target="_blank">
+      <a
+        href="https://twitter.com/danielcranney"
+        target="_blank"
+        rel="noreferrer"
+      >
         <svg
           className="text-white transition-all duration-300 ease-in-out transform translate-y-0 opacity-50 fill-current hover:opacity-100 hover:-translate-y-1"
           xmlns="http://www.w3.org/2000/svg"

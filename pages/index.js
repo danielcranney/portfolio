@@ -153,7 +153,7 @@ export default function Home() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [visibleSection]);
+  }, [visibleSection, sectionRefs]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -191,7 +191,7 @@ export default function Home() {
           src="/videos/landing-page-video.mp4"
           className="relative z-50 w-auto max-w-full min-h-full opacity-10"
         >
-          Sorry, your browser doesn't support embedded videos.
+          {" Sorry, your browser doesn't support embedded videos. "}
         </video>
       </div>
 
@@ -543,11 +543,11 @@ export default function Home() {
             <div className="flex flex-col-reverse items-start w-full md:flex-row">
               <div className="flex flex-col w-full md:pr-8 md:w-3/5">
                 <p className="text-lg">
-                  Hi! I'm Dan and I'm a frontend developer and designer from
-                  Bristol, England.
+                  Hi! I&apos;m Dan and I&apos;m a frontend developer and
+                  designer from Bristol, England.
                 </p>
                 <p className="text-lg">
-                  I've always worked with computers and technology. After
+                  I&apos;ve always worked with computers and technology. After
                   building my first website aged thirteen...
                 </p>
                 <p className="text-lg">
@@ -566,6 +566,7 @@ export default function Home() {
                   src="/headshot-with-frame.png"
                   width={1624}
                   height={1624}
+                  alt={"Daniel Cranney headshot"}
                 />
               </div>
             </div>
@@ -981,7 +982,7 @@ export default function Home() {
           <h2 className="text-4xl text-center">Other Projects</h2>
           <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 mx-auto border-0"></hr>
           <p className="mb-16 text-lg text-center">
-            Here's some of the other things I've built or worked on
+            Here&apos;s some of the projects I&apos;ve built or worked on
           </p>
 
           {/* Other Projects Container */}
@@ -1128,8 +1129,8 @@ export default function Home() {
             </form> */}
             <div className="w-full mb-4 md:pl-6 md:w-2/5 md:mb-0">
               <p>
-                If you'd like to work with me on a project, then I'd love to
-                discuss it with you!
+                If you&apos;d like to work with me on a project, then I&apos;d
+                love to discuss it with you!
               </p>
               <p>
                 Either send me a message using the form, or send one straight to

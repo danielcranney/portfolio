@@ -2,7 +2,7 @@ import React from "react";
 
 const Button = ({ link, text, icon, square }) => {
   return (
-    <a href={link} className="text-white" target="_blank">
+    <a href={link} className="text-white" target="_blank" rel="noreferrer">
       <button
         className={`inline-flex items-center self-start mt-2 mr-2 transition-all duration-200 ease-in-out transform translate-y-0 bg-white rounded-md no-text group bg-opacity-5 hover:bg-opacity-10 hover:-translate-y-1 ${
           square ? "w-12 btn-sm-no-text" : "btn-sm"
