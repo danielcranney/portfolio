@@ -118,16 +118,16 @@ export default function Home() {
   const blogRef = useRef(null);
   const contactRef = useRef(null);
 
-  const sectionRefs = [
-    { section: "home", ref: homeRef, id: 1 },
-    { section: "about", ref: aboutRef, id: 2 },
-    { section: "skills", ref: skillsRef, id: 3 },
-    { section: "my-work", ref: myWorkRef, id: 4 },
-    { section: "blog", ref: blogRef, id: 5 },
-    { section: "contact", ref: contactRef, id: 6 },
-  ];
-
   useEffect(() => {
+    const sectionRefs = [
+      { section: "home", ref: homeRef, id: 1 },
+      { section: "about", ref: aboutRef, id: 2 },
+      { section: "skills", ref: skillsRef, id: 3 },
+      { section: "my-work", ref: myWorkRef, id: 4 },
+      { section: "blog", ref: blogRef, id: 5 },
+      { section: "contact", ref: contactRef, id: 6 },
+    ];
+
     const handleScroll = () => {
       const { height: headerHeight } = getDimensions(headerRef.current);
       const scrollPosition = window.scrollY + headerHeight;
