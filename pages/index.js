@@ -23,9 +23,6 @@ import AfterEffects from "../components/icons/AfterEffects";
 import AdobeXd from "../components/icons/AdobeXd";
 // Project Card
 import ProjectCard from "../components/ProjectCard";
-import Live from "../components/Button";
-import Source from "../components/SourceButton";
-import MockupToolbar from "../components/MockupToolbar";
 import GitHubProfile from "../components/icons/GitHubProfile";
 import TwitterProfile from "../components/icons/TwitterProfile";
 import LinkedInProfile from "../components/icons/LinkedInProfile";
@@ -33,12 +30,13 @@ import FeaturedProjectCard from "../components/FeaturedProjectCard";
 
 const projects = [
   {
-    title: "Rapid Reports",
+    title: "Rate My Film",
     overview:
-      "Created for teachers to generate a student report in 60-seconds or less. This project uses a Supabase database.",
-    stack: ["Html", "Tailwind", "React", "Next"],
-    link: "http://www.gps-embroidery.com",
-    repo: null,
+      "A single-page application that helps filmmakers learn more about who their film might be suitable for.",
+    stack: ["Html", "React", "Sass"],
+    link: "http://www.ratemyfilm.co.uk",
+    repo: "https://github.com/danielcranney/Rate-My-Film",
+    isSiteLive: true,
   },
   {
     title: "Spotlight Media",
@@ -46,15 +44,17 @@ const projects = [
       "The website for my corporate videography company. This features a contact form powered by NodeJs and SendGrid.",
     stack: ["Html", "ReactJs", "Next", "Node"],
     link: "http://www.wearespotlight.co.uk",
-    repo: null,
+    repo: "https://github.com/danielcranney/Spotlight-Media",
+    isSiteLive: true,
   },
   {
-    title: "Rate My Film",
+    title: "Quotr",
     overview:
-      "A single-page application that helps filmmakers learn more about who their film might be suitable for.",
-    stack: ["Html", "React", "Sass"],
-    link: "http://www.ratemyfilm.co.uk",
-    repo: "https://github.com/danielcranney/Rate-My-Film",
+      "A simple application built to help tradespeople automate the quotation process.",
+    stack: ["Html", "React", "Next"],
+    link: "https://quote-calculator.vercel.app",
+    repo: null,
+    isSiteLive: true,
   },
   {
     title: "GPS Embroidery",
@@ -63,14 +63,24 @@ const projects = [
     stack: ["Html", "React", "Next"],
     link: "http://www.gps-embroidery.com",
     repo: "https://github.com/danielcranney/GPS-Embroidery",
+    isSiteLive: true,
   },
   {
-    title: "Quotr",
+    title: "Rapid Reports",
     overview:
-      "A solid foundation for a flexible application that lets businesses automate delivering quotes to customers.",
-    stack: ["Html", "React", "Next"],
-    link: "http://www.gps-embroidery.com",
+      "Rapid Reports lets teachers generate student reports in 60-seconds or less.",
+    stack: ["Html", "Tailwind", "React", "Next"],
+    link: null,
     repo: null,
+    isSiteLive: false,
+  },
+  {
+    title: "Butlr",
+    overview: "Butlr automates reminders for life admin and important events.",
+    stack: ["Html", "Css", "Javascript"],
+    link: null,
+    repo: null,
+    isSiteLive: false,
   },
 ];
 
@@ -101,12 +111,8 @@ export default function Home() {
 
   const handleResize = () => {
     if (window.innerWidth < 1024) {
-      console.log("LESS THAN 1024!");
-      setIsMobile(true);
     } else {
-      console.log("MORE THAN 1024!");
       setNavbarOpen(false);
-      setIsMobile(false);
     }
   };
 
@@ -183,7 +189,7 @@ export default function Home() {
       </Head>
 
       {/* Video background */}
-      <div className="absolute top-0 z-20 w-auto h-screen max-w-full overflow-hidden bg-dark">
+      {/* <div className="absolute top-0 z-20 w-auto h-screen max-w-full overflow-hidden bg-dark">
         <video
           autoPlay
           loop
@@ -193,7 +199,7 @@ export default function Home() {
         >
           {" Sorry, your browser doesn't support embedded videos. "}
         </video>
-      </div>
+      </div> */}
 
       {/* Full-screen Menu */}
       <div
@@ -274,22 +280,6 @@ export default function Home() {
                 <button
                   href="#"
                   className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
-                    visibleSection === "blog"
-                      ? "selected delay-300"
-                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
-                  }`}
-                  onClick={() => {
-                    setNavbarOpen(false);
-                    scrollTo(blogRef.current);
-                  }}
-                >
-                  Blog
-                </button>
-              </li>
-              <li className="z-50 block py-2 list-none lg:inline-block">
-                <button
-                  href="#"
-                  className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "contact"
                       ? "selected delay-300"
                       : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
@@ -302,8 +292,13 @@ export default function Home() {
                   Contact
                 </button>
               </li>
-              <li className="z-50 block py-2 list-none lg:inline-block">
-                <button className="text-xl btn-brand btn-lg">Hire me</button>
+              <li className="z-50 block py-2 mt-6 list-none lg:inline-block">
+                <a
+                  href={`mailto:danielcranney@gmail.com`}
+                  className="text-lg btn-brand btn-lg"
+                >
+                  Hire me
+                </a>
               </li>
             </ul>
           </nav>
@@ -441,21 +436,6 @@ export default function Home() {
                 <button
                   href="#"
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
-                    visibleSection === "blog"
-                      ? "selected delay-300"
-                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
-                  }`}
-                  onClick={() => {
-                    scrollTo(blogRef.current);
-                  }}
-                >
-                  Blog
-                </button>
-              </li>
-              <li className="z-50 hidden mx-5 list-none lg:inline-block">
-                <button
-                  href="#"
-                  className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "contact"
                       ? "selected delay-300"
                       : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
@@ -468,7 +448,12 @@ export default function Home() {
                 </button>
               </li>
               <li className="z-50 hidden ml-5 list-none lg:inline-block">
-                <button className="btn-brand btn-md">Hire me</button>
+                <a
+                  href={`mailto:danielcranney@gmail.com`}
+                  className="btn-brand btn-md"
+                >
+                  Hire me
+                </a>
               </li>
               <li className="z-50 inline-block ml-5 list-none lg:hidden">
                 <button
@@ -508,7 +493,7 @@ export default function Home() {
         <main className={`flex-col flex h-screen`} id="home" ref={homeRef}>
           {/* Main */}
           <div className="container relative flex flex-col items-start justify-center flex-grow px-0 mx-auto md:px-20 lg:px-24 section">
-            <div className="w-3/5">
+            <div className="w-full">
               <span className="text-2xl font-semibold text-brand">
                 Hello! My name is
               </span>
@@ -516,16 +501,29 @@ export default function Home() {
               <h1 className="mb-4 text-7xl">Daniel Cranney</h1>
               <h2 className="mb-4 text-4xl text-light">
                 <ReactTypingEffect
-                  speed={50}
+                  typingDelay={200}
+                  speed={30}
                   eraseSpeed={30}
                   eraseDelay={1500}
-                  text={[`Frontend Developer`, "Designer"]}
+                  text={[
+                    `Frontend Developer`,
+                    `Designer`,
+                    `Teacher`,
+                    `Cat Dad`,
+                  ]}
                 />
               </h2>
-              <p className="text-xl">
-                Brief introduction and description of my skills.
+              <p className="w-4/5 text-xl md:w-full">
+                I build accessible websites that look good, and work well.
               </p>
-              <button className="mt-4 btn-brand btn-lg">See my Work</button>
+              <button
+                className="mt-4 btn-brand btn-lg"
+                onClick={() => {
+                  scrollTo(myWorkRef.current);
+                }}
+              >
+                See my Work
+              </button>
             </div>
           </div>
         </main>
@@ -543,29 +541,52 @@ export default function Home() {
             <div className="flex flex-col-reverse items-start w-full md:flex-row">
               <div className="flex flex-col w-full md:pr-8 md:w-3/5">
                 <p className="text-lg">
-                  Hi! I&apos;m Dan and I&apos;m a frontend developer and
-                  designer from Bristol, England.
+                  Hello! I&apos;m Dan and I&apos;m a frontend developer,
+                  designer and teacher from Bristol, England.
                 </p>
                 <p className="text-lg">
-                  I&apos;ve always worked with computers and technology. After
-                  building my first website aged thirteen...
+                  After building my first website aged thirteen, I knew I wanted
+                  to work with computers and technology, and I've never looked
+                  back.
                 </p>
                 <p className="text-lg">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Quisque est urna, dignissim et mauris id, ultrices finibus
-                  ligula. Nulla accumsan mauris eu neque dapibus, ac ullamcorper
-                  nunc pulvinar. Suspendisse odio justo, rutrum nec risus vel,
-                  ornare ultricies diam. Vestibulum nec convallis justo.
+                  After graduating University with a Media degree, I began
+                  freelancing as a designer, creating graphics, video content
+                  and websites for small businesses, using content management
+                  systems like Wordpress, Joomla and Squarespace.
                 </p>
-                <button className="self-start inline-block mt-8 btn-outline btn-lg">
+                <p className="text-lg">
+                  In recent years, I've been focused on programming, building a
+                  solid frontend stack and creating exciting projects that solve
+                  real-world problems.
+                </p>
+                <p className="text-lg">
+                  Alongside my design and development work, I run a BA Media
+                  Production degree and run a corporate video production company
+                  called{" "}
+                  <a
+                    href="http://www.wearespotlight.co.uk"
+                    target="_blank"
+                    className="underline-link"
+                  >
+                    Spotlight Media
+                  </a>
+                  , so I like to keep busy!
+                </p>
+                <p className="text-lg">
+                  Take a look at my work below to see what I'm working on, and
+                  get in touch if you'd like to work together!
+                </p>
+                {/* <button className="self-start inline-block mt-8 btn-outline btn-lg">
                   See my CV
-                </button>
+                </button> */}
               </div>
-              <div className="flex w-full h-full md:pl-8 md:w-2/5">
+              <div className="flex w-full h-full mb-4 md:pl-8 md:w-2/5 md:mb-0">
                 <Image
-                  src="/headshot-with-frame.png"
-                  width={1624}
-                  height={1624}
+                  src="/headshot-with-frame.jpg"
+                  className="overflow-hidden rounded-md"
+                  width={880}
+                  height={880}
                   alt={"Daniel Cranney headshot"}
                 />
               </div>
@@ -588,9 +609,9 @@ export default function Home() {
             <Icon
               IconType={Html}
               title="HTML"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -604,9 +625,9 @@ export default function Home() {
             <Icon
               IconType={Css}
               title="CSS"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -620,9 +641,9 @@ export default function Home() {
             <Icon
               IconType={Sass}
               title="Sass"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -636,9 +657,9 @@ export default function Home() {
             <Icon
               IconType={Bootstrap}
               title="Bootstrap"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -652,9 +673,9 @@ export default function Home() {
             <Icon
               IconType={Tailwind}
               title="Tailwind"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -668,9 +689,9 @@ export default function Home() {
             <Icon
               IconType={Javascript}
               title="Javascript"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -684,9 +705,9 @@ export default function Home() {
             <Icon
               IconType={ReactJs}
               title="React"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -700,9 +721,9 @@ export default function Home() {
             <Icon
               IconType={NextJs}
               title="Next"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -716,9 +737,9 @@ export default function Home() {
             <Icon
               IconType={NodeJs}
               title="Node"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -732,9 +753,9 @@ export default function Home() {
             <Icon
               IconType={Firebase}
               title="Firebase"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -748,9 +769,9 @@ export default function Home() {
             <Icon
               IconType={Photoshop}
               title="Photoshop"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -764,9 +785,9 @@ export default function Home() {
             <Icon
               IconType={Illustrator}
               title="Illustrator"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -780,9 +801,9 @@ export default function Home() {
             <Icon
               IconType={AfterEffects}
               title="After Effects"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -796,9 +817,9 @@ export default function Home() {
             <Icon
               IconType={AdobeXd}
               title="Adobe XD"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -812,9 +833,9 @@ export default function Home() {
             <Icon
               IconType={Figma}
               title="Figma"
-              columnSizing={"w-1/2 sm:w-1/3 lg:w-1/6"}
-              width={"w-24"}
-              height={"h-24"}
+              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              width={"w-16 sm:w-24"}
+              height={"h-16 sm:h-24"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
@@ -839,7 +860,7 @@ export default function Home() {
           {/* Featured Projects Container */}
           <div className="flex flex-col w-full mb-12">
             {/* Project one */}
-            <FeaturedProjectCard
+            {/* <FeaturedProjectCard
               title={"Butlr"}
               status={"Featured Project"}
               description={`Butlr automates reminders for life admin and important events.`}
@@ -898,20 +919,20 @@ export default function Home() {
                   />
                 </>
               }
-            />
+            /> */}
 
             {/* Project one */}
             <FeaturedProjectCard
-              title={"Culors"}
+              title={"ColorHub"}
               status={"Currently working on"}
               description={`Create custom colour palettes for your next project. Preview your palette on different layouts and then export the CSS, SCSS or Tailwind code.`}
               float={`right-0`}
               flexDirection={`flex-row-reverse`}
               imgWidth={"1366"}
               imgHeight={"666"}
-              imgSrc={"/projects/culors.png"}
-              liveLink={"https://culors.vercel.app/"}
-              repoLink={"https://github.com/danielcranney/Culors"}
+              imgSrc={"/projects/colorhub.png"}
+              liveLink={"https://www.colorhub.vercel.app/"}
+              repoLink={null}
               stack={
                 <>
                   <Icon
@@ -982,11 +1003,11 @@ export default function Home() {
           <h2 className="text-4xl text-center">Other Projects</h2>
           <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 mx-auto border-0"></hr>
           <p className="mb-16 text-lg text-center">
-            Here&apos;s some of the projects I&apos;ve built or worked on
+            Check out some of the projects I've been a part of...
           </p>
 
           {/* Other Projects Container */}
-          <div className="grid grid-flow-row grid-rows-3 gap-4 grid-col-1 lg:grid-cols-3">
+          <div className="grid grid-flow-row grid-rows-2 gap-4 grid-col-1 lg:grid-cols-3">
             {projects.map(function (project, i) {
               return <ProjectCard project={project} key={i} />;
             })}
@@ -994,7 +1015,7 @@ export default function Home() {
         </section>
 
         {/* My Blog */}
-        <section
+        {/* <section
           className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
           id="blog"
           ref={blogRef}
@@ -1002,7 +1023,6 @@ export default function Home() {
           <h2 className="text-5xl">Blog</h2>
           <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
 
-          {/* Blog */}
           <div className="flex flex-col flex-wrap justify-between w-full mt-8 md:flex-row">
             <article className="flex flex-col w-full md:w-32pc">
               <div className="rounded-sm bg-mid h-60"></div>
@@ -1014,7 +1034,7 @@ export default function Home() {
               <div className="rounded-sm bg-mid h-60"></div>
             </article>
           </div>
-        </section>
+        </section> */}
 
         {/* Contact */}
         <section
@@ -1127,18 +1147,17 @@ export default function Home() {
 
               <button className="mt-8 btn-brand btn-lg">Send</button>
             </form> */}
-            <div className="w-full mb-4 md:pl-6 md:w-2/5 md:mb-0">
-              <p>
-                If you&apos;d like to work with me on a project, then I&apos;d
-                love to discuss it with you!
+            <div className="w-full mb-4 md:pl-0 md:mb-0">
+              <p className="text-lg">
+                I'm currently available to get involved in new projects, so get
+                in touch if you'd like to work together.
               </p>
-              <p>
-                Either send me a message using the form, or send one straight to
-                my inbox at{" "}
-                <Link href="mailto:me@danielcranney.com">
-                  <a>me@danielcranney.com</a>
-                </Link>
-                .
+              <p className="text-lg">
+                Simply email me at{" "}
+                <Link href="mailto:danielcranney@gmail.com">
+                  <a className="underline-link">danielcranney@gmail.com</a>
+                </Link>{" "}
+                and let&apos;s talk about your project!
               </p>
             </div>
           </div>
@@ -1347,46 +1366,7 @@ export default function Home() {
                 />
               </svg>
             </button>
-            {/* Blog - Diamond 5 */}
-            <button
-              className="w-5 h-5 mb-4"
-              onClick={() => {
-                scrollTo(blogRef.current);
-              }}
-            >
-              <svg
-                id="e5c888e5-3206-4553-8f53-60ee93248ad9"
-                className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
-                  visibleSection === "blog"
-                    ? "rotate-45 scale-110"
-                    : "rotate-0 scale-100"
-                }`}
-                data-name="Layer 1"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0
-              0 24 24"
-              >
-                {/* Fill */}
-                <path
-                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
-                    visibleSection === "blog"
-                      ? "text-white rotate-90"
-                      : "text-dark rotate-0"
-                  }`}
-                  d="M5.64 5.64h12.73v12.73H5.64z"
-                />
-                {/* Border */}
-                <path
-                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
-                    visibleSection === "blog"
-                      ? "text-white rotate-45 opacity-100"
-                      : "text-white rotate-45 opacity-40"
-                  }`}
-                  d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
-                />
-              </svg>
-            </button>
-            {/* Contact - Diamond 6 */}
+            {/* Contact - Diamond 5 */}
             <button
               className="w-5 h-5 mb-4"
               onClick={() => {
