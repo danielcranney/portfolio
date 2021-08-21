@@ -546,8 +546,8 @@ export default function Home() {
                 </p>
                 <p className="text-lg">
                   After building my first website aged thirteen, I knew I wanted
-                  to work with computers and technology, and I've never looked
-                  back.
+                  to work with computers and technology, and I&apos;ve never
+                  looked back.
                 </p>
                 <p className="text-lg">
                   After graduating University with a Media degree, I began
@@ -556,9 +556,9 @@ export default function Home() {
                   systems like Wordpress, Joomla and Squarespace.
                 </p>
                 <p className="text-lg">
-                  In recent years, I've been focused on programming, building a
-                  solid frontend stack and creating exciting projects that solve
-                  real-world problems.
+                  In recent years, I&apos;ve been focused on programming,
+                  building a solid frontend stack and creating exciting projects
+                  that solve real-world problems.
                 </p>
                 <p className="text-lg">
                   Alongside my design and development work, I run a BA Media
@@ -574,8 +574,8 @@ export default function Home() {
                   , so I like to keep busy!
                 </p>
                 <p className="text-lg">
-                  Take a look at my work below to see what I'm working on, and
-                  get in touch if you'd like to work together!
+                  Take a look at my work below to see what I&apos;m working on,
+                  and get in touch if you'd like to work together!
                 </p>
                 {/* <button className="self-start inline-block mt-8 btn-outline btn-lg">
                   See my CV
@@ -1003,7 +1003,7 @@ export default function Home() {
           <h2 className="text-4xl text-center">Other Projects</h2>
           <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 mx-auto border-0"></hr>
           <p className="mb-16 text-lg text-center">
-            Check out some of the projects I've been a part of...
+            Check out some of the projects I&apos;ve been a part of...
           </p>
 
           {/* Other Projects Container */}
@@ -1149,8 +1149,8 @@ export default function Home() {
             </form> */}
             <div className="w-full mb-4 md:pl-0 md:mb-0">
               <p className="text-lg">
-                I'm currently available to get involved in new projects, so get
-                in touch if you'd like to work together.
+                I&apos;m currently available to get involved in new projects, so
+                get in touch if you&apos;d like to work together.
               </p>
               <p className="text-lg">
                 Simply email me at{" "}
