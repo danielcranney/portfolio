@@ -568,6 +568,7 @@ export default function Home() {
                     href="http://www.wearespotlight.co.uk"
                     target="_blank"
                     className="underline-link"
+                    rel="noreferrer"
                   >
                     Spotlight Media
                   </a>
@@ -575,7 +576,7 @@ export default function Home() {
                 </p>
                 <p className="text-lg">
                   Take a look at my work below to see what I&apos;m working on,
-                  and get in touch if you'd like to work together!
+                  and get in touch if you&apos;d like to work together!
                 </p>
                 {/* <button className="self-start inline-block mt-8 btn-outline btn-lg">
                   See my CV
