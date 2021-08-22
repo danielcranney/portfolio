@@ -1,8 +1,8 @@
 import React from "react";
 
-const GitHubProfile = () => {
+const GitHubProfile = ({ marginBottom }) => {
   return (
-    <div className="w-8 h-8 mb-4">
+    <div className={`w-8 h-8 ${marginBottom}`}>
       <a
         href="https://github.com/danielcranney"
         target="_blank"

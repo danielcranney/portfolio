@@ -1,8 +1,8 @@
 import React from "react";
 
-const LinkedInProfile = () => {
+const LinkedInProfile = ({ marginBottom }) => {
   return (
-    <div className="w-8 h-8 mb-4">
+    <div className={`w-8 h-8 ${marginBottom}`}>
       <a
         href="http://www.linkedin.com/in/dan-cranney"
         target="_blank"

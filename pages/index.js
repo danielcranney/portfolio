@@ -1220,13 +1220,13 @@ export default function Home() {
 
             <div className="flex ml-auto md:hidden">
               <span className="mr-2">
-                <GitHubProfile />
+                <GitHubProfile marginBottom={"mb-0"} />
               </span>
               <span className="mr-2">
-                <TwitterProfile />
+                <TwitterProfile marginBottom={"mb-0"} />
               </span>
               <span className="mr-2">
-                <LinkedInProfile />
+                <LinkedInProfile marginBottom={"mb-0"} />
               </span>
             </div>
           </div>
@@ -1238,9 +1238,9 @@ export default function Home() {
         <div className="container relative flex h-full mx-auto">
           {/* Profile Icons */}
           <div className="absolute bottom-0 items-center hidden mt-auto mr-auto text-white left-8 md:flex md:flex-col">
-            <GitHubProfile />
-            <TwitterProfile />
-            <LinkedInProfile />
+            <GitHubProfile marginBottom={"mb-4"} />
+            <TwitterProfile marginBottom={"mb-4"} />
+            <LinkedInProfile marginBottom={"mb-4"} />
             <div className="w-0.5 bg-white h-24 opacity-20 mt-2"></div>
           </div>
 
