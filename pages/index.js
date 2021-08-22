@@ -926,7 +926,7 @@ export default function Home() {
             <FeaturedProjectCard
               title={"ColorHub"}
               status={"Currently working on"}
-              description={`Create custom colour palettes for your next project. Preview your palette on different layouts and then export the CSS, SCSS or Tailwind code.`}
+              description={`Create a custom colour palette for your next project. Preview your palette on different layouts and then export the CSS, SCSS or Tailwind code.`}
               float={`right-0`}
               flexDirection={`flex-row-reverse`}
               imgWidth={"1366"}
