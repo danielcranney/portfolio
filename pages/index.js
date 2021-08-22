@@ -928,7 +928,7 @@ export default function Home() {
               status={"Currently working on"}
               description={`Create a custom colour palette for your next project. Preview your palette on different layouts and then export the CSS, SCSS or Tailwind code.`}
               float={`right-0`}
-              flexDirection={`flex-row-reverse`}
+              flexDirection={`flex-col lg:flex-row-reverse`}
               imgWidth={"1366"}
               imgHeight={"666"}
               imgSrc={"/projects/colorhub.png"}

@@ -21,9 +21,7 @@ const FeaturedProjectCard = ({
   repoLink,
 }) => {
   return (
-    <article
-      className={`relative flex flex-col items-end w-full my-4 lg:${flexDirection}`}
-    >
+    <article className={`relative flex items-end w-full my-4 ${flexDirection}`}>
       {/* Empty Column */}
       <div className="hidden w-1/6 lg:flex"></div>
       {/* Project image */}
