@@ -13,10 +13,11 @@ const Icon = ({
   marginBottom,
   marginRight,
   textTransform,
+  fixedHeight
 }) => {
   return (
     <div
-      className={`${columnSizing} items-center flex justify-start ${padding} ${flexDirection} ${marginBottom} ${marginRight} h-28 sm:h-auto`}
+      className={`${columnSizing} items-center flex justify-start ${padding} ${flexDirection} ${marginBottom} ${marginRight} ${fixedHeight} sm:h-auto`}
     >
       <div
         className={`${width} ${height} group transition-all duration-200 ease-in-out transform translate-y-0 group hover:-translate-y-1 translate-x-0`}

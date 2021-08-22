@@ -620,6 +620,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* CSS */}
@@ -636,6 +637,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* Sass */}
@@ -652,6 +654,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* Bootstrap */}
@@ -668,6 +671,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* Tailwind */}
@@ -684,6 +688,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* Javascript */}
@@ -700,6 +705,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* React */}
@@ -716,6 +722,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* Next */}
@@ -732,6 +739,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* Node */}
@@ -748,6 +756,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* Firebase */}
@@ -764,6 +773,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* Photoshop */}
@@ -780,6 +790,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* Illustrator */}
@@ -796,6 +807,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* After Effects */}
@@ -812,6 +824,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* Adobe XD */}
@@ -828,6 +841,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
 
             {/* Figma */}
@@ -844,6 +858,7 @@ export default function Home() {
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
+              fixedHeight={"h-28"}
             />
           </div>
         </section>
@@ -949,6 +964,7 @@ export default function Home() {
                     marginBottom={"mb-4"}
                     marginRight={"mr-3"}
                     textTransform={"uppercase"}
+                    fixedHeight={"h-auto"}
                   />
 
                   <Icon
@@ -964,6 +980,7 @@ export default function Home() {
                     marginBottom={"mb-4"}
                     marginRight={"mr-3"}
                     textTransform={"uppercase"}
+                    fixedHeight={"h-auto"}
                   />
 
                   <Icon
@@ -979,6 +996,7 @@ export default function Home() {
                     marginBottom={"mb-4"}
                     marginRight={"mr-3"}
                     textTransform={"uppercase"}
+                    fixedHeight={"h-auto"}
                   />
 
                   <Icon
@@ -994,6 +1012,7 @@ export default function Home() {
                     marginBottom={"mb-4"}
                     marginRight={"mr-3"}
                     textTransform={"uppercase"}
+                    fixedHeight={"h-auto"}
                   />
                 </>
               }
