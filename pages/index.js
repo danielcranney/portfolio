@@ -1214,7 +1214,9 @@ export default function Home() {
           </div>
 
           <div className="flex items-center">
-            <p className="mb-0">Designed and built by Daniel Cranney 2021</p>
+            <p className="w-3/4 mb-0 sm:w-auto">
+              Designed and built by Daniel Cranney 2021
+            </p>
 
             <div className="flex ml-auto md:hidden">
               <span className="mr-2">
