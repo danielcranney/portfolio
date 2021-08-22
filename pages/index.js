@@ -52,7 +52,7 @@ const projects = [
     overview:
       "A simple application built to help tradespeople automate the quotation process.",
     stack: ["Html", "React", "Next"],
-    link: "https://quote-calculator.vercel.app",
+    link: "https://quotr.vercel.app",
     repo: null,
     isSiteLive: true,
   },
