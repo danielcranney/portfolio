@@ -16,7 +16,7 @@ const Icon = ({
 }) => {
   return (
     <div
-      className={`${columnSizing} items-center flex justify-center ${padding} ${flexDirection} ${marginBottom} ${marginRight}`}
+      className={`${columnSizing} items-center flex justify-start ${padding} ${flexDirection} ${marginBottom} ${marginRight} h-28 sm:h-auto`}
     >
       <div
         className={`${width} ${height} group transition-all duration-200 ease-in-out transform translate-y-0 group hover:-translate-y-1 translate-x-0`}
@@ -25,7 +25,7 @@ const Icon = ({
       </div>
       {title ? (
         <p
-          className={`${titleMargins} ${titleSize} font-semibold tracking-wide opacity-100 ${textTransform}`}
+          className={`${titleMargins} ${titleSize} font-semibold tracking-wide opacity-100 ${textTransform} text-center`}
         >
           {title}
         </p>

@@ -498,8 +498,8 @@ export default function Home() {
                 Hello! My name is
               </span>
 
-              <h1 className="mb-4 text-7xl">Daniel Cranney</h1>
-              <h2 className="mb-4 text-4xl text-light">
+              <h1 className="mb-4 text-5xl md:text-7xl">Daniel Cranney</h1>
+              <h2 className="mb-4 text-3xl md:text-4xl text-light">
                 <ReactTypingEffect
                   typingDelay={200}
                   speed={30}
@@ -562,8 +562,8 @@ export default function Home() {
                 </p>
                 <p className="text-lg">
                   Alongside my design and development work, I run a BA Media
-                  Production degree and run a corporate video production company
-                  called{" "}
+                  Production degree course and a corporate video production
+                  company called{" "}
                   <a
                     href="http://www.wearespotlight.co.uk"
                     target="_blank"
@@ -616,7 +616,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -632,7 +632,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -648,7 +648,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -664,7 +664,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -680,7 +680,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -696,7 +696,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -712,7 +712,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -728,7 +728,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -744,7 +744,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -760,7 +760,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -776,7 +776,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -792,7 +792,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -808,7 +808,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -824,7 +824,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -840,7 +840,7 @@ export default function Home() {
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-base"}
+              titleSize={"text-sm sm:text-base"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -932,7 +932,7 @@ export default function Home() {
               imgWidth={"1366"}
               imgHeight={"666"}
               imgSrc={"/projects/colorhub.png"}
-              liveLink={"https://www.colorhub.vercel.app/"}
+              liveLink={"https://colorhub.vercel.app/"}
               repoLink={null}
               stack={
                 <>
@@ -1167,7 +1167,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="flex flex-col w-full px-0 py-16 md:px-20 lg:px-24 section">
           <hr className="w-full h-1 mb-16 bg-white border-0 opacity-10"></hr>
-          <div className="w-8 mb-6">
+          <div className="w-8 mb-4">
             <svg
               id="abbe8588-8b21-44fd-a605-eb7de7f82941"
               data-name="Layer 1"
@@ -1194,7 +1194,21 @@ export default function Home() {
             </svg>
           </div>
 
-          <p className="mb-0">Designed and built by Daniel Cranney 2021</p>
+          <div className="flex items-center">
+            <p className="mb-0">Designed and built by Daniel Cranney 2021</p>
+
+            <div className="flex ml-auto md:hidden">
+              <span className="mr-2">
+                <GitHubProfile />
+              </span>
+              <span className="mr-2">
+                <TwitterProfile />
+              </span>
+              <span className="mr-2">
+                <LinkedInProfile />
+              </span>
+            </div>
+          </div>
         </footer>
       </div>
 
