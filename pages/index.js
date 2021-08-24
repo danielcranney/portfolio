@@ -1213,12 +1213,12 @@ export default function Home() {
             </svg>
           </div>
 
-          <div className="flex items-center">
-            <p className="w-3/4 mb-0 sm:w-auto">
+          <div className="flex flex-col items-start md:flex-row">
+            <p className="w-auto mb-4 md:mb-0">
               Designed and built by Daniel Cranney 2021
             </p>
 
-            <div className="flex ml-auto md:hidden">
+            <div className="flex md:hidden">
               <span className="mr-2">
                 <GitHubProfile marginBottom={"mb-0"} />
               </span>
