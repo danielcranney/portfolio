@@ -74,14 +74,6 @@ const projects = [
     repo: null,
     isSiteLive: false,
   },
-  {
-    title: "Butlr",
-    overview: "Butlr automates reminders for life admin and important events.",
-    stack: ["Html", "Css", "Javascript"],
-    link: null,
-    repo: null,
-    isSiteLive: false,
-  },
 ];
 
 const getDimensions = (ele) => {
@@ -876,68 +868,6 @@ export default function Home() {
           {/* Featured Projects Container */}
           <div className="flex flex-col w-full mb-12">
             {/* Project one */}
-            {/* <FeaturedProjectCard
-              title={"Butlr"}
-              status={"Featured Project"}
-              description={`Butlr automates reminders for life admin and important events.`}
-              float={`left-0`}
-              flexDirection={`flex-row`}
-              imgWidth={"1366"}
-              imgHeight={"666"}
-              imgSrc={"/projects/butlr.png"}
-              liveLink={"https://quotr.vercel.app/"}
-              repoLink={"https://github.com/danielcranney/Quotr"}
-              stack={
-                <>
-                  <Icon
-                    IconType={Html}
-                    title="HTML"
-                    columnSizing={"w-auto"}
-                    width={"w-6"}
-                    height={"h-6"}
-                    flexDirection={"flex-row"}
-                    padding={"p-0"}
-                    titleMargins={"my-0 ml-1"}
-                    titleSize={"text-sm"}
-                    marginBottom={"mb-4"}
-                    marginRight={"mr-3"}
-                    textTransform={"uppercase"}
-                  />
-
-                  <Icon
-                    IconType={Tailwind}
-                    title="Tailwind"
-                    columnSizing={"w-auto"}
-                    width={"w-6"}
-                    height={"h-6"}
-                    flexDirection={"flex-row"}
-                    padding={"p-0"}
-                    titleMargins={"my-0 ml-1"}
-                    titleSize={"text-sm"}
-                    marginBottom={"mb-4"}
-                    marginRight={"mr-3"}
-                    textTransform={"uppercase"}
-                  />
-
-                  <Icon
-                    IconType={Javascript}
-                    title="Javascript"
-                    columnSizing={"w-auto"}
-                    width={"w-6"}
-                    height={"h-6"}
-                    flexDirection={"flex-row"}
-                    padding={"p-0"}
-                    titleMargins={"my-0 ml-1"}
-                    titleSize={"text-sm"}
-                    marginBottom={"mb-4"}
-                    marginRight={"mr-3"}
-                    textTransform={"uppercase"}
-                  />
-                </>
-              }
-            /> */}
-
-            {/* Project one */}
             <FeaturedProjectCard
               title={"ColorHub"}
               status={"Currently working on"}
@@ -1034,28 +964,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* My Blog */}
-        {/* <section
-          className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
-          id="blog"
-          ref={blogRef}
-        >
-          <h2 className="text-5xl">Blog</h2>
-          <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
-
-          <div className="flex flex-col flex-wrap justify-between w-full mt-8 md:flex-row">
-            <article className="flex flex-col w-full md:w-32pc">
-              <div className="rounded-sm bg-mid h-60"></div>
-            </article>
-            <article className="flex flex-col w-full md:w-32pc">
-              <div className="rounded-sm bg-mid h-60"></div>
-            </article>
-            <article className="flex flex-col w-full md:w-32pc">
-              <div className="rounded-sm bg-mid h-60"></div>
-            </article>
-          </div>
-        </section> */}
-
         {/* Contact */}
         <section
           className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
@@ -1065,108 +973,7 @@ export default function Home() {
           <h2 className="text-5xl">Contact</h2>
           <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
 
-          {/* Contact */}
-
           <div className="flex flex-col-reverse w-full md:flex-row">
-            {/* <form
-              method="post"
-              // onSubmit={handleOnSubmit}
-              className="w-full md:pr-6 md:w-3/5"
-            >
-              <label htmlFor="name" className="flex mb-2">
-                <div className="mr-2">
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
-                </div>
-                <div className="flex-grow">
-                  <label htmlFor="name">Name:</label>
-                </div>
-              </label>
-
-              <input
-                type="text"
-                placeholder="John Smith"
-                // ref={nameElement}
-                className="mt-2 mb-8"
-                required
-                name="name"
-              />
-
-              <label className="flex mb-2">
-                <div className="mr-2">
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                    />
-                  </svg>
-                </div>
-                <div className="flex-grow">
-                  <label htmlFor="email">Email:</label>
-                </div>
-              </label>
-
-              <input
-                type="email"
-                name="email"
-                placeholder="john@smith.com"
-                // ref={emailElement}
-                className="mt-2 mb-8"
-                required
-              />
-
-              <label className="flex mb-2">
-                <div className="mr-2">
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                    />
-                  </svg>
-                </div>
-                <div className="flex-grow">
-                  <label htmlFor="message">Message:</label>
-                </div>
-              </label>
-
-              <textarea
-                type="text"
-                name="message"
-                className="mt-2 h-36"
-                // ref={messageElement}
-                required
-              />
-
-              <button className="mt-8 btn-brand btn-lg">Send</button>
-            </form> */}
             <div className="w-full mb-4 md:pl-0 md:mb-0">
               <p className="text-lg">
                 I&apos;m currently available to get involved in new projects, so
