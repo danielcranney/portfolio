@@ -269,6 +269,19 @@ export default function Home() {
                 </button>
               </li>
               <li className="z-50 block py-2 list-none lg:inline-block">
+                <a
+                  href="https://blog.danielcranney.com/"
+                  target="_blank"
+                  className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out text-white ${
+                    visibleSection === "blog"
+                      ? "selected delay-300"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                  }`}
+                >
+                  Blog
+                </a>
+              </li>
+              <li className="z-50 block py-2 list-none lg:inline-block">
                 <button
                   href="#"
                   className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out ${
@@ -423,6 +436,19 @@ export default function Home() {
                 >
                   My Work
                 </button>
+              </li>
+              <li className="z-50 hidden mx-5 list-none lg:inline-block">
+                <a
+                  href="https://blog.danielcranney.com/"
+                  target="_blank"
+                  className={`header_link font-semibold transition-all duration-300 ease-in-out text-white ${
+                    visibleSection === "blog"
+                      ? "selected delay-300"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                  }`}
+                >
+                  Blog
+                </a>
               </li>
               <li className="z-50 hidden mx-5 list-none lg:inline-block">
                 <button
