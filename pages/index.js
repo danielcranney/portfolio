@@ -272,6 +272,7 @@ export default function Home() {
                 <a
                   href="https://blog.danielcranney.com/"
                   target="_blank"
+                  rel="noreferrer"
                   className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out text-white ${
                     visibleSection === "blog"
                       ? "selected delay-300"
@@ -441,6 +442,7 @@ export default function Home() {
                 <a
                   href="https://blog.danielcranney.com/"
                   target="_blank"
+                  rel="noreferrer"
                   className={`header_link font-semibold transition-all duration-300 ease-in-out text-white ${
                     visibleSection === "blog"
                       ? "selected delay-300"
