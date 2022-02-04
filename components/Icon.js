@@ -13,7 +13,7 @@ const Icon = ({
   marginBottom,
   marginRight,
   textTransform,
-  fixedHeight
+  fixedHeight,
 }) => {
   return (
     <div

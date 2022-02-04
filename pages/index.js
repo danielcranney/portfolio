@@ -30,6 +30,24 @@ import FeaturedProjectCard from "../components/FeaturedProjectCard";
 
 const projects = [
   {
+    title: "Yodlr",
+    overview:
+      "Shoutout a Twitter user, and generate a profile card in under a minute. Simply find the user, select the style, edit the colors and download the card.",
+    stack: ["Html", "Tailwind", "React", "Next"],
+    link: "http://yodlr.vercel.app",
+    repo: "https://github.com/danielcranney/yodlr",
+    isSiteLive: true,
+  },
+  {
+    title: "Rapid Reports",
+    overview:
+      "Rapid Reports lets teachers generate student reports in 60-seconds or less.",
+    stack: ["Html", "Tailwind", "React", "Next"],
+    link: null,
+    repo: null,
+    isSiteLive: false,
+  },
+  {
     title: "Rate My Film",
     overview:
       "A single-page application that helps filmmakers learn more about who their film might be suitable for.",
@@ -64,15 +82,6 @@ const projects = [
     link: "http://www.gps-embroidery.com",
     repo: "https://github.com/danielcranney/GPS-Embroidery",
     isSiteLive: true,
-  },
-  {
-    title: "Rapid Reports",
-    overview:
-      "Rapid Reports lets teachers generate student reports in 60-seconds or less.",
-    stack: ["Html", "Tailwind", "React", "Next"],
-    link: null,
-    repo: null,
-    isSiteLive: false,
   },
 ];
 
@@ -179,19 +188,6 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      {/* Video background */}
-      {/* <div className="absolute top-0 z-20 w-auto h-screen max-w-full overflow-hidden bg-dark">
-        <video
-          autoPlay
-          loop
-          muted
-          src="/videos/landing-page-video.mp4"
-          className="relative z-50 w-auto max-w-full min-h-full opacity-10"
-        >
-          {" Sorry, your browser doesn't support embedded videos. "}
-        </video>
-      </div> */}
 
       {/* Full-screen Menu */}
       <div
