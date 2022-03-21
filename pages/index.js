@@ -511,7 +511,7 @@ export default function Home() {
           <div className="container relative flex flex-col items-start justify-center flex-grow px-0 mx-auto md:px-20 lg:px-24 section">
             <div className="w-full">
               <span className="text-2xl font-semibold text-brand">
-                Hello! My name is
+                Hello! 👋 My name is
               </span>
 
               <h1 className="mb-4 text-5xl md:text-7xl">Daniel Cranney</h1>
@@ -530,7 +530,7 @@ export default function Home() {
                 />
               </h2>
               <p className="w-4/5 text-xl md:w-full">
-                I build accessible websites that look good, and work well.
+                I design and build websites that look good, and work well.
               </p>
               <button
                 className="mt-4 btn-brand btn-lg"
@@ -891,7 +891,7 @@ export default function Home() {
 
           {/* Featured Projects Container */}
           <div className="flex flex-col w-full mb-12">
-            {/* Project one */}
+            {/* Project One */}
             <FeaturedProjectCard
               title={"ColorHub"}
               status={"Currently working on"}
@@ -901,7 +901,87 @@ export default function Home() {
               imgWidth={"1366"}
               imgHeight={"666"}
               imgSrc={"/projects/colorhub.png"}
-              liveLink={"https://colorhub.vercel.app/"}
+              liveLink={"https://colorhub.app/"}
+              repoLink={null}
+              stack={
+                <>
+                  <Icon
+                    IconType={Html}
+                    title="HTML"
+                    columnSizing={"w-auto"}
+                    width={"w-6"}
+                    height={"h-6"}
+                    flexDirection={"flex-row"}
+                    padding={"p-0"}
+                    titleMargins={"my-0 ml-1"}
+                    titleSize={"text-sm"}
+                    marginBottom={"mb-4"}
+                    marginRight={"mr-3"}
+                    textTransform={"uppercase"}
+                    fixedHeight={"h-auto"}
+                  />
+
+                  <Icon
+                    IconType={Tailwind}
+                    title="Tailwind"
+                    columnSizing={"w-auto"}
+                    width={"w-6"}
+                    height={"h-6"}
+                    flexDirection={"flex-row"}
+                    padding={"p-0"}
+                    titleMargins={"my-0 ml-1"}
+                    titleSize={"text-sm"}
+                    marginBottom={"mb-4"}
+                    marginRight={"mr-3"}
+                    textTransform={"uppercase"}
+                    fixedHeight={"h-auto"}
+                  />
+
+                  <Icon
+                    IconType={ReactJs}
+                    title="React"
+                    columnSizing={"w-auto"}
+                    width={"w-6"}
+                    height={"h-6"}
+                    flexDirection={"flex-row"}
+                    padding={"p-0"}
+                    titleMargins={"my-0 ml-1"}
+                    titleSize={"text-sm"}
+                    marginBottom={"mb-4"}
+                    marginRight={"mr-3"}
+                    textTransform={"uppercase"}
+                    fixedHeight={"h-auto"}
+                  />
+
+                  <Icon
+                    IconType={NextJs}
+                    title="Next"
+                    columnSizing={"w-auto"}
+                    width={"w-6"}
+                    height={"h-6"}
+                    flexDirection={"flex-row"}
+                    padding={"p-0"}
+                    titleMargins={"my-0 ml-1"}
+                    titleSize={"text-sm"}
+                    marginBottom={"mb-4"}
+                    marginRight={"mr-3"}
+                    textTransform={"uppercase"}
+                    fixedHeight={"h-auto"}
+                  />
+                </>
+              }
+            />
+            {/* Project Two */}
+            <FeaturedProjectCard
+              title={"ProfileMe.dev"}
+              status={"Just launched"}
+              description={`Create an awesome GitHub profile in minutes`}
+              float={`right-0`}
+              flexDirection={`flex-col lg:flex-row-reverse`}
+              imgWidth={"1366"}
+              imgHeight={"666"}
+              imgSrc={"/projects/profileme.png"}
+              liveLink={"https://profileme.dev"}
               repoLink={null}
               stack={
                 <>
@@ -1046,7 +1126,7 @@ export default function Home() {
 
           <div className="flex flex-col items-start md:flex-row">
             <p className="w-auto mb-4 md:mb-0">
-              Designed and built by Daniel Cranney 2021
+              &copy; Designed and built by Daniel Cranney 2022
             </p>
 
             <div className="flex md:hidden">
