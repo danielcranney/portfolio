@@ -53,7 +53,7 @@ const projects = [
       "A single-page application that helps filmmakers learn more about who their film might be suitable for.",
     stack: ["Html", "React", "Sass"],
     link: "http://www.ratemyfilm.co.uk",
-    repo: "https://github.com/danielcranney/Rate-My-Film",
+    repo: "https://github.com/danielcranney/rate-my-film",
     isSiteLive: true,
   },
   {
@@ -62,7 +62,7 @@ const projects = [
       "The website for my corporate videography company. This features a contact form powered by NodeJs and SendGrid.",
     stack: ["Html", "ReactJs", "Next", "Node"],
     link: "http://www.wearespotlight.co.uk",
-    repo: "https://github.com/danielcranney/Spotlight-Media",
+    repo: "https://github.com/danielcranney/spotlight-media",
     isSiteLive: true,
   },
   {
@@ -975,14 +975,14 @@ export default function Home() {
             <FeaturedProjectCard
               title={"ProfileMe.dev"}
               status={"Just launched"}
-              description={`Create an awesome GitHub profile in minutes`}
+              description={`Create an awesome GitHub profile in minutes.`}
               float={`right-0`}
               flexDirection={`flex-col lg:flex-row-reverse`}
               imgWidth={"1366"}
               imgHeight={"666"}
               imgSrc={"/projects/profileme.png"}
               liveLink={"https://profileme.dev"}
-              repoLink={null}
+              repoLink={"https://github.com/danielcranney/profileme.dev"}
               stack={
                 <>
                   <Icon
