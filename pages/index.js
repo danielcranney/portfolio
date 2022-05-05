@@ -897,7 +897,7 @@ export default function Home() {
               status={"Just launched"}
               description={`Write reports for your students in 60 seconds or less`}
               float={`right-0`}
-              flexDirection={`flex-col lg:flex-row-reverse`}
+              flexDirection={`flex-col lg:flex-row`}
               imgWidth={"1366"}
               imgHeight={"666"}
               imgSrc={"/projects/reportr.png"}
@@ -971,7 +971,7 @@ export default function Home() {
                 </>
               }
             />
-            {/* Project One */}
+            {/* Project Two */}
             <FeaturedProjectCard
               title={"ColorHub"}
               status={"Currently working on"}
@@ -1051,13 +1051,13 @@ export default function Home() {
                 </>
               }
             />
-            {/* Project Two */}
+            {/* Project Three */}
             <FeaturedProjectCard
               title={"ProfileMe.dev"}
               status={"Just launched"}
               description={`Create an awesome GitHub profile in minutes.`}
               float={`right-0`}
-              flexDirection={`flex-col lg:flex-row-reverse`}
+              flexDirection={`flex-col lg:flex-row`}
               imgWidth={"1366"}
               imgHeight={"666"}
               imgSrc={"/projects/profileme.png"}

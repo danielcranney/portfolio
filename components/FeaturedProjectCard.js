@@ -21,11 +21,11 @@ const FeaturedProjectCard = ({
   repoLink,
 }) => {
   return (
-    <article className={`relative flex items-end w-full my-4 ${flexDirection}`}>
-      {/* Empty Column */}
-      <div className="hidden w-1/6 lg:flex"></div>
+    <article
+      className={`relative flex items-stretch w-full bg-mid p-3.5 my-4 ${flexDirection} rounded-md overflow-hidden gap-x-3.5`}
+    >
       {/* Project image */}
-      <div className="flex flex-col w-full p-0 rounded-tl-sm rounded-tr-sm rounded-bl-none rounded-br-none lg:rounded-sm lg:p-3 lg:w-5/6 bg-mid">
+      <div className="flex flex-col w-full lg:w-5/6 my-auto">
         <MockupToolbar />
         <Image
           src={imgSrc}
@@ -37,12 +37,13 @@ const FeaturedProjectCard = ({
 
       {/* Project info */}
       <div
-        className={`relative w-full p-7 border-t-4 rounded-tl-none rounded-tr-none lg:transform lg:-translate-y-1/2 lg:w-1/2 lg:${float} lg:absolute lg:-translate-x-0 lg:top-1/2 bg-mid rounded-bl-sm rounded-br-sm border-brand`}
+        className={`grow flex flex-col relative w-full p-3.5 lg:w-1/2 lg:${float} lg:-translate-x-0 gap-y-2`}
       >
-        <p className="mb-2 tracking-wider small-text">{status}</p>
+        <p className="mb-0 tracking-wider small-text">{status}</p>
         <h3>{title}</h3>
+        <div className="w-1/4 h-1 bg-brand mb-2">&nbsp;</div>
         <div className="flex flex-wrap mb-2">{stack}</div>
-        <p>{description}</p>
+        <p className="text-sm tracking-wide leading-normal">{description}</p>
         <div className="flex">
           {liveLink !== null ? (
             <Button
