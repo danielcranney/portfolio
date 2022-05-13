@@ -22,10 +22,10 @@ const FeaturedProjectCard = ({
 }) => {
   return (
     <article
-      className={`relative flex items-stretch w-full bg-mid p-3.5 my-4 ${flexDirection} rounded-md overflow-hidden gap-x-3.5`}
+      className={`relative flex items-stretch w-full bg-mid p-3.5 my-4 ${flexDirection} gap-x-3.5 rounded-md`}
     >
       {/* Project image */}
-      <div className="flex flex-col w-full lg:w-5/6 my-auto">
+      <div className="flex flex-col w-full lg:w-7/12 my-auto rounded-md overflow-hidden">
         <MockupToolbar />
         <Image
           src={imgSrc}
@@ -37,7 +37,7 @@ const FeaturedProjectCard = ({
 
       {/* Project info */}
       <div
-        className={`grow flex flex-col relative w-full p-3.5 lg:w-1/2 lg:${float} lg:-translate-x-0 gap-y-2`}
+        className={`grow flex flex-col relative w-full p-3.5 lg:w-5/12 lg:${float} lg:-translate-x-0 gap-y-2`}
       >
         <p className="mb-0 tracking-wider small-text">{status}</p>
         <h3>{title}</h3>

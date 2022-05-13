@@ -4,7 +4,7 @@ const LinkedInProfile = ({ marginBottom }) => {
   return (
     <div className={`w-8 h-8 ${marginBottom}`}>
       <a
-        href="http://www.linkedin.com/in/dan-cranney"
+        href="http://www.linkedin.com/in/daniel-cranney"
         target="_blank"
         rel="noreferrer"
       >

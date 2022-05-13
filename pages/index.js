@@ -39,15 +39,6 @@ const projects = [
     isSiteLive: true,
   },
   {
-    title: "Rapid Reports",
-    overview:
-      "Rapid Reports lets teachers generate student reports in 60-seconds or less.",
-    stack: ["Html", "Tailwind", "React", "Next"],
-    link: null,
-    repo: null,
-    isSiteLive: false,
-  },
-  {
     title: "Rate My Film",
     overview:
       "A single-page application that helps filmmakers learn more about who their film might be suitable for.",
@@ -1206,7 +1197,7 @@ export default function Home() {
 
           <div className="flex flex-col items-start md:flex-row">
             <p className="w-auto mb-4 md:mb-0">
-              &copy; Designed and built by Daniel Cranney 2022
+              &copy; 2022 - Designed and built by Daniel Cranney
             </p>
 
             <div className="flex md:hidden">
