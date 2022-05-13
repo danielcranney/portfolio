@@ -2,8 +2,10 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     container: {
       padding: {
@@ -48,14 +50,6 @@ module.exports = {
       backgroundImage: (theme) => ({
         "header-img": "url('/bg.svg')",
       }),
-    },
-  },
-  variants: {
-    extend: {
-      rotate: ["active", "group-hover"],
-      fill: ["group-hover"],
-      blur: ["hover", "focus"],
-      margin: ["last"],
     },
   },
   plugins: [],

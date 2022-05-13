@@ -288,7 +288,7 @@ export default function Home() {
               <li className="z-50 block py-2 mt-6 list-none lg:inline-block">
                 <a
                   href={`mailto:danielcranney@gmail.com`}
-                  className="text-lg btn-brand btn-lg"
+                  className="text-lg btn-brand btn-lg group"
                 >
                   Hire me
                 </a>
@@ -371,7 +371,7 @@ export default function Home() {
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "home"
                       ? "selected delay-300"
-                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                      : "opacity-50 hover:opacity-100"
                   }`}
                   onClick={() => {
                     scrollTo(homeRef.current);
@@ -457,7 +457,7 @@ export default function Home() {
               <li className="z-50 hidden ml-5 list-none lg:inline-block">
                 <a
                   href={`mailto:danielcranney@gmail.com`}
-                  className="btn-brand btn-md"
+                  className="btn-brand btn-md group"
                 >
                   Hire me
                 </a>
@@ -524,7 +524,7 @@ export default function Home() {
                 I design and build websites that look good, and work well.
               </p>
               <button
-                className="mt-4 btn-brand btn-lg"
+                className="mt-4 btn-brand btn-lg group"
                 onClick={() => {
                   scrollTo(myWorkRef.current);
                 }}
@@ -585,9 +585,6 @@ export default function Home() {
                   Take a look at my work below to see what I&apos;m working on,
                   and get in touch if you&apos;d like to work together!
                 </p>
-                {/* <button className="self-start inline-block mt-8 btn-outline btn-lg">
-                  See my CV
-                </button> */}
               </div>
               <div className="flex w-full h-full mb-4 md:pl-8 md:w-2/5 md:mb-0">
                 <Image
