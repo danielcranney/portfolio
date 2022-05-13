@@ -626,7 +626,7 @@ export default function Home() {
             <Icon
               IconType={Html}
               title="HTML"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -643,7 +643,7 @@ export default function Home() {
             <Icon
               IconType={Css}
               title="CSS"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -660,7 +660,7 @@ export default function Home() {
             <Icon
               IconType={Sass}
               title="Sass"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -677,7 +677,7 @@ export default function Home() {
             <Icon
               IconType={Bootstrap}
               title="Bootstrap"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -694,7 +694,7 @@ export default function Home() {
             <Icon
               IconType={Tailwind}
               title="Tailwind"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -711,7 +711,7 @@ export default function Home() {
             <Icon
               IconType={Javascript}
               title="Javascript"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -728,7 +728,7 @@ export default function Home() {
             <Icon
               IconType={ReactJs}
               title="React"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -745,7 +745,7 @@ export default function Home() {
             <Icon
               IconType={NextJs}
               title="Next"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -762,7 +762,7 @@ export default function Home() {
             <Icon
               IconType={NodeJs}
               title="Node"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -779,7 +779,7 @@ export default function Home() {
             <Icon
               IconType={Firebase}
               title="Firebase"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -796,7 +796,7 @@ export default function Home() {
             <Icon
               IconType={Photoshop}
               title="Photoshop"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -813,7 +813,7 @@ export default function Home() {
             <Icon
               IconType={Illustrator}
               title="Illustrator"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -830,7 +830,7 @@ export default function Home() {
             <Icon
               IconType={AfterEffects}
               title="After Effects"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -847,7 +847,7 @@ export default function Home() {
             <Icon
               IconType={AdobeXd}
               title="Adobe XD"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
@@ -864,7 +864,7 @@ export default function Home() {
             <Icon
               IconType={Figma}
               title="Figma"
-              columnSizing={"w-1/4 sm:w-1/3 lg:w-1/6"}
+              columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
               width={"w-16 sm:w-24"}
               height={"h-16 sm:h-24"}
               padding={"p-0"}
