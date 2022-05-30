@@ -383,7 +383,7 @@ export default function Home() {
               <li className="z-50 hidden mx-5 list-none lg:inline-block">
                 <button
                   href="#"
-                  className={`header_link font-semibold transition-all duration-300 ease-in-out ${
+                  className={`font-semibold transform transition-[width] duration-300 ease-in-out after:block after:w-1 after:h-0.5 after:bg-brand hover:after:w-full ${
                     visibleSection === "about"
                       ? "selected delay-300"
                       : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
