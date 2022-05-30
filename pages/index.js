@@ -383,7 +383,7 @@ export default function Home() {
               <li className="z-50 hidden mx-5 list-none lg:inline-block">
                 <button
                   href="#"
-                  className={`font-semibold transform transition-[width] duration-300 ease-in-out after:block after:w-1 after:h-0.5 after:bg-brand hover:after:w-full ${
+                  className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "about"
                       ? "selected delay-300"
                       : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
@@ -615,12 +615,12 @@ export default function Home() {
               IconType={Html}
               title="HTML"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -632,12 +632,12 @@ export default function Home() {
               IconType={Css}
               title="CSS"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -649,12 +649,12 @@ export default function Home() {
               IconType={Sass}
               title="Sass"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -666,12 +666,12 @@ export default function Home() {
               IconType={Bootstrap}
               title="Bootstrap"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -683,12 +683,12 @@ export default function Home() {
               IconType={Tailwind}
               title="Tailwind"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -700,12 +700,12 @@ export default function Home() {
               IconType={Javascript}
               title="Javascript"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -717,12 +717,12 @@ export default function Home() {
               IconType={ReactJs}
               title="React"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -734,12 +734,12 @@ export default function Home() {
               IconType={NextJs}
               title="Next"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -751,12 +751,12 @@ export default function Home() {
               IconType={NodeJs}
               title="Node"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -768,12 +768,12 @@ export default function Home() {
               IconType={Firebase}
               title="Firebase"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -785,12 +785,12 @@ export default function Home() {
               IconType={Photoshop}
               title="Photoshop"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -802,12 +802,12 @@ export default function Home() {
               IconType={Illustrator}
               title="Illustrator"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -819,12 +819,12 @@ export default function Home() {
               IconType={AfterEffects}
               title="After Effects"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -836,12 +836,12 @@ export default function Home() {
               IconType={AdobeXd}
               title="Adobe XD"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -853,12 +853,12 @@ export default function Home() {
               IconType={Figma}
               title="Figma"
               columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
-              width={"w-16 sm:w-24"}
-              height={"h-16 sm:h-24"}
+              width={"w-16 sm:w-20"}
+              height={"h-16 sm:h-20"}
               padding={"p-0"}
               flexDirection={"flex-col"}
               titleMargins={"mt-4"}
-              titleSize={"text-sm sm:text-base"}
+              titleSize={"text-sm sm:text-sm"}
               marginBottom={"mb-4"}
               marginRight={"mr-0"}
               textTransform={"normal-case"}
@@ -1152,7 +1152,7 @@ export default function Home() {
                 get in touch if you&apos;d like to work together.
               </p>
               <p className="text-lg">
-                Simply email me at{" "}
+                Email me at{" "}
                 <Link href="mailto:danielcranney@gmail.com">
                   <a className="underline-link">danielcranney@gmail.com</a>
                 </Link>{" "}
