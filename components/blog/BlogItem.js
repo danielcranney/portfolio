@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function BlogItem({ post }) {
   const redirectToHashnode = () => {
     window.open("https://blog.danielcranney.com/" + post.slug, "_blank");
@@ -18,7 +19,7 @@ export default function BlogItem({ post }) {
       className="flex flex-col rounded-sm bg-mid p-4 gap-y-3 group border-2 border-mid hover:border-brand cursor-pointer transition-all duration-150 ease-in-out relative"
       onClick={redirectToHashnode}
     >
-      <img src={post.coverImage} className="img-fluid" />
+      <Image src={post.coverImage} layout="fill" className="object-fit" />
       <div className="flex flex-col px-2 gap-y-1.5">
         <h3 className="mb-0 text-lg">{post.title}</h3>
         <h6 className="mb-0 text-sm font-semibold font-body">
