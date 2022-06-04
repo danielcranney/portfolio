@@ -28,6 +28,10 @@ import TwitterProfile from "../components/icons/TwitterProfile";
 import LinkedInProfile from "../components/icons/LinkedInProfile";
 import FeaturedProjectCard from "../components/FeaturedProjectCard";
 
+// Blog Components
+import BlogList from "../components/blog/BlogList";
+import BlogItem from "../components/blog/BlogItem";
+
 const projects = [
   {
     title: "Yodlr",
@@ -95,7 +99,7 @@ const scrollTo = (ele) => {
   });
 };
 
-export default function Home() {
+export default function Home({ publications }) {
   const [visibleSection, setVisibleSection] = useState();
   const [scrolling, setScrolling] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -256,8 +260,8 @@ export default function Home() {
                 </button>
               </li>
               <li className="z-50 block py-2 list-none lg:inline-block">
-                <a
-                  href="https://blog.danielcranney.com/"
+                <button
+                  href="#"
                   target="_blank"
                   rel="noreferrer"
                   className={`header_link text-xl font-semibold transition-all duration-300 ease-in-out text-white ${
@@ -265,9 +269,13 @@ export default function Home() {
                       ? "selected delay-300"
                       : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
                   }`}
+                  onClick={() => {
+                    setNavbarOpen(false);
+                    scrollTo(blogRef.current);
+                  }}
                 >
                   Blog
-                </a>
+                </button>
               </li>
               <li className="z-50 block py-2 list-none lg:inline-block">
                 <button
@@ -426,8 +434,8 @@ export default function Home() {
                 </button>
               </li>
               <li className="z-50 hidden mx-5 list-none lg:inline-block">
-                <a
-                  href="https://blog.danielcranney.com/"
+                <button
+                  href="#"
                   target="_blank"
                   rel="noreferrer"
                   className={`header_link font-semibold transition-all duration-300 ease-in-out text-white ${
@@ -435,9 +443,12 @@ export default function Home() {
                       ? "selected delay-300"
                       : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
                   }`}
+                  onClick={() => {
+                    scrollTo(blogRef.current);
+                  }}
                 >
                   Blog
-                </a>
+                </button>
               </li>
               <li className="z-50 hidden mx-5 list-none lg:inline-block">
                 <button
@@ -1136,6 +1147,19 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Blog */}
+        <section
+          className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
+          id="my-work"
+          ref={blogRef}
+        >
+          {/* My Blog header */}
+          <h2 className="text-5xl">My Blog</h2>
+          <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
+
+          <BlogList publications={publications} />
+        </section>
+
         {/* Contact */}
         <section
           className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
@@ -1381,7 +1405,46 @@ export default function Home() {
                 />
               </svg>
             </button>
-            {/* Contact - Diamond 5 */}
+            {/* Blog - Diamond 5 */}
+            <button
+              className="w-5 h-5 mb-4"
+              onClick={() => {
+                scrollTo(blogRef.current);
+              }}
+            >
+              <svg
+                id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                className={`group rounded-sm transform transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                  visibleSection === "blog"
+                    ? "rotate-45 scale-110"
+                    : "rotate-0 scale-100"
+                }`}
+                data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0
+              0 24 24"
+              >
+                {/* Fill */}
+                <path
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                    visibleSection === "blog"
+                      ? "text-white rotate-90"
+                      : "text-dark rotate-0"
+                  }`}
+                  d="M5.64 5.64h12.73v12.73H5.64z"
+                />
+                {/* Border */}
+                <path
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                    visibleSection === "blog"
+                      ? "text-white rotate-45 opacity-100"
+                      : "text-white rotate-45 opacity-40"
+                  }`}
+                  d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                />
+              </svg>
+            </button>
+            {/* Contact - Diamond 6 */}
             <button
               className="w-5 h-5 mb-4"
               onClick={() => {
@@ -1428,4 +1491,36 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+/**
+ * Method used to fetch data from Hashnode.
+ * @param {Object} context
+ * @returns props
+ */
+export async function getServerSideProps(context) {
+  const res = await fetch("https://api.hashnode.com/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "32ab9fe7-0331-4efc-bdb8-5a3e0bfdd9b9",
+    },
+    body: JSON.stringify({
+      query:
+        'query {user(username: "danielcranney") {publication {posts(page: 0) {title brief slug coverImage dateAdded}}}}',
+    }),
+  });
+  const publications = await res.json();
+
+  if (!publications) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      publications,
+    },
+  };
 }
