@@ -5,7 +5,7 @@ const MockupToolbar = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1376 80"
-      className="text-white border-b fill-current border-soft rounded-tl-md rounded-tr-md"
+      className="w-full text-white border-b fill-current border-soft rounded-tl-md rounded-tr-md"
     >
       <g data-name="TOP BAR">
         <rect className="text-white fill-current" width="1376" height="80" />
