@@ -16,16 +16,24 @@ export default function BlogItem({ post }) {
 
   return (
     <div
-      className="flex flex-col rounded-sm bg-mid p-4 gap-y-3 group border-2 border-mid hover:border-brand cursor-pointer transition-all duration-150 ease-in-out relative"
+      className="flex flex-col rounded-sm bg-mid p-3.5 gap-y-3.5 group border-2 border-mid hover:border-brand cursor-pointer transition-all duration-150 ease-in-out relative"
       onClick={redirectToHashnode}
     >
-      <Image src={post.coverImage} layout="fill" className="object-fit" />
+      <div className="w-auto">
+        <Image
+          src={post.coverImage}
+          layout="responsive"
+          width={1080}
+          height={567}
+        />
+      </div>
       <div className="flex flex-col px-2 gap-y-1.5">
         <h3 className="mb-0 text-lg">{post.title}</h3>
         <h6 className="mb-0 text-sm font-semibold font-body">
           {formattedDate}
         </h6>
         <p className="mb-0">{post.brief.substr(0, 150)}...</p>
+        <p className="btn-xs btn-brand self-start mt-3">Read more</p>
       </div>
       <div className="w-full h-full absolute bg-dark/80 opacity-0 group-hover:opacity-100 top-0 left-0 z-50 transition-all duration-150 ease-in-out">
         <div className="flex w-full h-full items-center justify-center">

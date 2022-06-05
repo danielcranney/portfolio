@@ -83,6 +83,19 @@
   }
 }
 
+/* XS Button */
+@layer components {
+  .btn-xs {
+    @apply inline-flex h-10 items-center justify-center
+    px-3.5 flex-grow-0
+    text-center
+    font-semibold rounded-sm
+    shadow-none
+    text-sm
+    transition-all duration-150 ease-in-out;
+  }
+}
+
 /* Small Button */
 @layer components {
   .btn-sm {
