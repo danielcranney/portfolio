@@ -6,7 +6,7 @@ const GitHub = ({ square }) => {
       viewBox="0 0 128 128"
       className={`w-6 h-6 ${
         !square ? "mr-2" : "mr-0"
-      }  text-white opacity-50 fill-current group-hover:opacity-100`}
+      }  dark:opacity-50 opacity-70 group-hover:opacity-100`}
     >
       <g
         className={`w-6 h-6 ${

@@ -32,6 +32,9 @@ import FeaturedProjectCard from "../components/FeaturedProjectCard";
 import BlogList from "../components/blog/BlogList";
 import BlogItem from "../components/blog/BlogItem";
 
+// Dark Mode
+import { useTheme } from "next-themes";
+
 const projects = [
   {
     title: "Yodlr",
@@ -104,6 +107,8 @@ export default function Home({ publications }) {
   const [scrolling, setScrolling] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { systemTheme, theme, setTheme } = useTheme();
 
   const handleResize = () => {
     if (window.innerWidth < 1024) {
@@ -169,9 +174,57 @@ export default function Home({ publications }) {
     window.addEventListener("resize", handleResize);
   });
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
+
+  useEffect(() => {
+    console.log(currentTheme);
+  }, [currentTheme]);
+
+  const renderThemeChanger = () => {
+    if (!mounted) return null;
+
+    if (currentTheme === "dark") {
+      return (
+        <svg
+          className="w-6 h-6 transition-all duration-150 ease-in-out dark:flex dark:opacity-50 dark:group-hover:opacity-100 dark:text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          />
+        </svg>
+      );
+    } else {
+      return (
+        <svg
+          className="w-6 h-6 transition-all duration-150 ease-in-out flex text-mid/50 group-hover:text-dark"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          />
+        </svg>
+      );
+    }
+  };
+
   return (
     <div
-      className={`relative w-full bg-right-bottom bg-cover bg-dark overflow-auto min-h-screen ${
+      className={`relative w-full dark:bg-dark bg-white overflow-auto min-h-screen transition-all duration-150 ease-in-out ${
         navbarOpen ? "overflow-hidden" : "overflow-auto"
       }`}
     >
@@ -308,15 +361,15 @@ export default function Home({ publications }) {
 
       {/* Header and Nav */}
       <header
-        className={`header top-0 mx-auto flex items-center py-6 z-50 fixed w-full transition-all duration-500 h-24 ${
-          scrolling && !navbarOpen ? "bg-dark" : "bg-transparent"
+        className={`header top-0 mx-auto flex items-center py-6 z-50 fixed w-full transition-all duration-150 h-24 ${
+          scrolling && !navbarOpen ? "dark:bg-dark bg-white" : "bg-transparent"
         }`}
         ref={headerRef}
       >
         {/* Logo and Nav container */}
         <div className="container relative flex items-center mx-auto">
           {/* Logo */}
-          <div className="z-50 w-12 h-12">
+          <div className="z-50 w-12 h-12 flex items-center">
             <svg
               id="b613d120-e911-4f71-b7bc-d9b9e1bbdc6f"
               data-name="Layer 1"
@@ -370,8 +423,14 @@ export default function Home({ publications }) {
               />
             </svg>
           </div>
+          {/* Text */}
+          <div className="flex items-center ml-4">
+            <p className="text-lg font-semibold font-display tracking-tight dark:text-white text-darker mb-0">
+              Daniel Cranney
+            </p>
+          </div>
           {/* Nav */}
-          <nav className="block ml-auto">
+          <nav className="block ml-auto h-full">
             <ul className="z-50 flex items-center">
               <li className="z-50 hidden mx-5 list-none lg:inline-block">
                 <button
@@ -379,7 +438,7 @@ export default function Home({ publications }) {
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "home"
                       ? "selected delay-300"
-                      : "opacity-50 hover:opacity-100"
+                      : "opacity-50 hover:opacity-100 dark:text-white text-dark"
                   }`}
                   onClick={() => {
                     scrollTo(homeRef.current);
@@ -394,7 +453,7 @@ export default function Home({ publications }) {
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "about"
                       ? "selected delay-300"
-                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent  dark:text-white text-dark"
                   }`}
                   onClick={() => {
                     scrollTo(aboutRef.current);
@@ -409,7 +468,7 @@ export default function Home({ publications }) {
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "skills"
                       ? "selected delay-300"
-                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent dark:text-white text-dark"
                   }`}
                   onClick={() => {
                     scrollTo(skillsRef.current);
@@ -424,7 +483,7 @@ export default function Home({ publications }) {
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "my-work"
                       ? "selected delay-300"
-                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent dark:text-white text-dark"
                   }`}
                   onClick={() => {
                     scrollTo(myWorkRef.current);
@@ -438,10 +497,10 @@ export default function Home({ publications }) {
                   href="#"
                   target="_blank"
                   rel="noreferrer"
-                  className={`header_link font-semibold transition-all duration-300 ease-in-out text-white ${
+                  className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "blog"
                       ? "selected delay-300"
-                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent dark:text-white text-dark"
                   }`}
                   onClick={() => {
                     scrollTo(blogRef.current);
@@ -456,7 +515,7 @@ export default function Home({ publications }) {
                   className={`header_link font-semibold transition-all duration-300 ease-in-out ${
                     visibleSection === "contact"
                       ? "selected delay-300"
-                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent"
+                      : "opacity-50 hover:opacity-100 border-b-2 border-transparent dark:text-white text-dark"
                   }`}
                   onClick={() => {
                     scrollTo(contactRef.current);
@@ -502,6 +561,17 @@ export default function Home({ publications }) {
               </li>
             </ul>
           </nav>
+          <div className="flex mt-auto ml-1.5">
+            {/* Dark mode */}
+            <button
+              className="flex items-center justify-center w-12 h-12 transition-all duration-150 ease-in rounded-sm focus:outline-none group bg-transparent outline-none"
+              onClick={() => {
+                setTheme(theme === "dark" ? "light" : "dark");
+              }}
+            >
+              {renderThemeChanger()}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -516,8 +586,10 @@ export default function Home({ publications }) {
                 Hello! 👋 My name is
               </span>
 
-              <h1 className="mb-4 text-5xl md:text-7xl">Daniel Cranney</h1>
-              <h2 className="mb-4 text-3xl md:text-4xl text-light">
+              <h1 className="mb-4 text-5xl md:text-7xl dark:text-white text-dark">
+                Daniel Cranney
+              </h1>
+              <h2 className="mb-4 text-3xl md:text-4xl dark:text-light text-mid">
                 <ReactTypingEffect
                   typingDelay={200}
                   speed={30}
@@ -1188,7 +1260,7 @@ export default function Home({ publications }) {
 
         {/* Footer */}
         <footer className="flex flex-col w-full px-0 py-16 md:px-20 lg:px-24 section">
-          <hr className="w-full h-1 mb-16 bg-white border-0 opacity-10"></hr>
+          <hr className="w-full h-1 mb-16 dark:bg-white bg-dark border-0 opacity-10"></hr>
           <div className="w-8 mb-4">
             <svg
               id="abbe8588-8b21-44fd-a605-eb7de7f82941"
@@ -1197,15 +1269,15 @@ export default function Home({ publications }) {
               viewBox="0 0 93.13 75.2"
             >
               <path
-                className="opacity-50 fill-current text-light"
+                className="dark:opacity-50 dark:fill-current dark:text-light fill-brand"
                 d="M24.05,38.51,7.5,55.06a4.39,4.39,0,1,1-6.21-6.21L14.74,35.41,1.29,22A4.39,4.39,0,0,1,7.5,15.75L24.05,32.3A4.4,4.4,0,0,1,24.05,38.51Z"
               />
               <path
-                className="opacity-50 fill-current text-light"
+                className="dark:opacity-50 dark:fill-current dark:text-light fill-brand"
                 d="M91.85,55.06a4.38,4.38,0,0,1-6.21,0L69.09,38.51a4.4,4.4,0,0,1,0-6.21L85.64,15.75A4.39,4.39,0,0,1,91.85,22L78.41,35.41,91.85,48.85A4.4,4.4,0,0,1,91.85,55.06Z"
               />
               <rect
-                className="opacity-50 fill-current text-light"
+                className="dark:opacity-50 dark:fill-current dark:text-light fill-brand"
                 x="41.93"
                 y="-1.17"
                 width="8.78"
@@ -1244,7 +1316,7 @@ export default function Home({ publications }) {
             <GitHubProfile marginBottom={"mb-4"} />
             <TwitterProfile marginBottom={"mb-4"} />
             <LinkedInProfile marginBottom={"mb-4"} />
-            <div className="w-0.5 bg-white h-24 opacity-20 mt-2"></div>
+            <div className="w-0.5 dark:bg-white bg-dark h-24 opacity-20 mt-2"></div>
           </div>
 
           {/* Pagination */}
@@ -1270,19 +1342,19 @@ export default function Home({ publications }) {
               >
                 {/* Fill */}
                 <path
-                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark dark:group-hover:text-white group-hover:rotate-90 ${
                     visibleSection === "home"
-                      ? "text-white rotate-90"
-                      : "text-dark rotate-0"
+                      ? "dark:text-white text-mid rotate-90"
+                      : "dark:text-dark text-light rotate-0"
                   }`}
                   d="M5.64 5.64h12.73v12.73H5.64z"
                 />
                 {/* Border */}
                 <path
-                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out dark:group-hover:text-white group-hover:text-dark group-hover:rotate-45 group-hover:opacity-100 ${
                     visibleSection === "home"
-                      ? "text-white rotate-45 opacity-100"
-                      : "text-white rotate-45 opacity-40"
+                      ? "dark:text-white text-dark rotate-45 opacity-100"
+                      : "dark:text-white text-light rotate-45"
                   }`}
                   d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
                 />
@@ -1309,19 +1381,19 @@ export default function Home({ publications }) {
               >
                 {/* Fill */}
                 <path
-                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark dark:group-hover:text-white group-hover:rotate-90 ${
                     visibleSection === "about"
-                      ? "text-white rotate-90"
-                      : "text-dark rotate-0"
+                      ? "dark:text-white text-mid rotate-90"
+                      : "dark:text-dark text-light rotate-0"
                   }`}
                   d="M5.64 5.64h12.73v12.73H5.64z"
                 />
                 {/* Border */}
                 <path
-                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out dark:group-hover:text-white group-hover:text-dark group-hover:rotate-45 group-hover:opacity-100 ${
                     visibleSection === "about"
-                      ? "text-white rotate-45 opacity-100"
-                      : "text-white rotate-45 opacity-40"
+                      ? "dark:text-white text-dark rotate-45 opacity-100"
+                      : "dark:text-white text-light rotate-45"
                   }`}
                   d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
                 />
@@ -1348,19 +1420,19 @@ export default function Home({ publications }) {
               >
                 {/* Fill */}
                 <path
-                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark dark:group-hover:text-white group-hover:rotate-90 ${
                     visibleSection === "skills"
-                      ? "text-white rotate-90"
-                      : "text-dark rotate-0"
+                      ? "dark:text-white text-mid rotate-90"
+                      : "dark:text-dark text-light rotate-0"
                   }`}
                   d="M5.64 5.64h12.73v12.73H5.64z"
                 />
                 {/* Border */}
                 <path
-                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out dark:group-hover:text-white group-hover:text-dark group-hover:rotate-45 group-hover:opacity-100 ${
                     visibleSection === "skills"
-                      ? "text-white rotate-45 opacity-100"
-                      : "text-white rotate-45 opacity-40"
+                      ? "dark:text-white text-dark rotate-45 opacity-100"
+                      : "dark:text-white text-light rotate-45"
                   }`}
                   d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
                 />
@@ -1387,19 +1459,19 @@ export default function Home({ publications }) {
               >
                 {/* Fill */}
                 <path
-                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark dark:group-hover:text-white group-hover:rotate-90 ${
                     visibleSection === "my-work"
-                      ? "text-white rotate-90"
-                      : "text-dark rotate-0"
+                      ? "dark:text-white text-mid rotate-90"
+                      : "dark:text-dark text-light rotate-0"
                   }`}
                   d="M5.64 5.64h12.73v12.73H5.64z"
                 />
                 {/* Border */}
                 <path
-                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out dark:group-hover:text-white group-hover:text-dark group-hover:rotate-45 group-hover:opacity-100 ${
                     visibleSection === "my-work"
-                      ? "text-white rotate-45 opacity-100"
-                      : "text-white rotate-45 opacity-40"
+                      ? "dark:text-white text-dark rotate-45 opacity-100"
+                      : "dark:text-white text-light rotate-45"
                   }`}
                   d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
                 />
@@ -1426,19 +1498,19 @@ export default function Home({ publications }) {
               >
                 {/* Fill */}
                 <path
-                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark dark:group-hover:text-white group-hover:rotate-90 ${
                     visibleSection === "blog"
-                      ? "text-white rotate-90"
-                      : "text-dark rotate-0"
+                      ? "dark:text-white text-mid rotate-90"
+                      : "dark:text-dark text-light rotate-0"
                   }`}
                   d="M5.64 5.64h12.73v12.73H5.64z"
                 />
                 {/* Border */}
                 <path
-                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out dark:group-hover:text-white group-hover:text-dark group-hover:rotate-45 group-hover:opacity-100 ${
                     visibleSection === "blog"
-                      ? "text-white rotate-45 opacity-100"
-                      : "text-white rotate-45 opacity-40"
+                      ? "dark:text-white text-dark rotate-45 opacity-100"
+                      : "dark:text-white text-light rotate-45"
                   }`}
                   d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
                 />
@@ -1465,19 +1537,19 @@ export default function Home({ publications }) {
               >
                 {/* Fill */}
                 <path
-                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark group-hover:rotate-90 ${
+                  className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark dark:group-hover:text-white group-hover:rotate-90 ${
                     visibleSection === "contact"
-                      ? "text-white rotate-90"
-                      : "text-dark rotate-0"
+                      ? "dark:text-white text-mid rotate-90"
+                      : "dark:text-dark text-light rotate-0"
                   }`}
                   d="M5.64 5.64h12.73v12.73H5.64z"
                 />
                 {/* Border */}
                 <path
-                  className={`fill-current origin-center transform transition duration-500 ease-in-out group-hover:text-white group-hover:rotate-45 group-hover:opacity-100 ${
+                  className={`fill-current origin-center transform transition duration-500 ease-in-out dark:group-hover:text-white group-hover:text-dark group-hover:rotate-45 group-hover:opacity-100 ${
                     visibleSection === "contact"
-                      ? "text-white rotate-45 opacity-100"
-                      : "text-white rotate-45 opacity-40"
+                      ? "dark:text-white text-dark rotate-45 opacity-100"
+                      : "dark:text-white text-light rotate-45"
                   }`}
                   d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
                 />
@@ -1485,7 +1557,7 @@ export default function Home({ publications }) {
             </button>
 
             {/* Line */}
-            <div className="w-0.5 bg-white h-24 opacity-20 mt-2 z-30"></div>
+            <div className="w-0.5 dark:bg-white bg-dark h-24 opacity-20 mt-2 z-30"></div>
           </div>
         </div>
       </div>

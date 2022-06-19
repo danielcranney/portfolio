@@ -5,7 +5,7 @@ const ExternalLink = ({ square }) => {
     <svg
       className={`w-6 h-6 ${
         !square ? "mr-2" : "mr-0"
-      } opacity-50 group-hover:opacity-100`}
+      } dark:opacity-50 opacity-70 group-hover:opacity-100`}
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"

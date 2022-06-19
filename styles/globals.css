@@ -22,7 +22,7 @@
   h4,
   h5,
   h6 {
-    @apply font-bold mb-2 tracking-tight;
+    @apply font-bold mb-2 tracking-tight text-darker dark:text-white;
   }
   h1 {
     @apply font-display text-4xl md:text-5xl;
@@ -43,11 +43,11 @@
     @apply font-display text-sm md:text-base;
   }
   .small-text {
-    @apply text-sm font-semibold uppercase text-light;
+    @apply text-sm font-semibold uppercase dark:text-light text-dark;
   }
   p {
     @apply font-body text-base mb-4 leading-relaxed
-    text-light;
+    dark:text-light text-mid;
   }
   a {
     @apply font-semibold text-brand opacity-100 transition-all duration-200 hover:text-white;
@@ -127,7 +127,7 @@
     border-brand
     hover:bg-brandAlt
     hover:border-brandAlt
-    text-white
+    dark:text-white text-white
     focus:outline-none
     focus:ring-0
     transition-all duration-150 ease-in-out;
@@ -151,7 +151,7 @@
 
 @layer base {
   .selected {
-    @apply border-brand text-white border-b-2 opacity-100 hover:border-white;
+    @apply border-brand dark:text-white text-dark group-hover:text-darker border-b-2 opacity-100 dark:hover:border-white hover:border-darker;
   }
 }
 

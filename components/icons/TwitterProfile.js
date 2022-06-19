@@ -9,7 +9,7 @@ const TwitterProfile = ({ marginBottom }) => {
         rel="noreferrer"
       >
         <svg
-          className="text-white transition-all duration-300 ease-in-out transform translate-y-0 opacity-50 fill-current hover:opacity-100 hover:-translate-y-1"
+          className="dark:text-white text-dark transition-all duration-300 ease-in-out transform translate-y-0 dark:opacity-50 fill-current dark:hover:opacity-100 hover:-translate-y-1"
           xmlns="http://www.w3.org/2000/svg"
           width="32"
           height="32"
