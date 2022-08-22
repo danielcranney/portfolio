@@ -1,40 +1,11 @@
-/* Description: Global CSS file */
+@import url("https://use.typekit.net/zpy2zmz.css");
 
-/*****************************************
-Table Of Contents:
-- Core Setup
-- General Styles
-- Typography
-- Section Styles
-- Components
-- Header
-- Navigation
-- Hamburger Icon
-- Hero Section
-- About
-- Pricing Table
-- Services
-- Testimonials
-- Footer
-- Animations
-- Overlay Menu
-******************************************/
-
-/**********************/
-/*     Core Setup     */
-/**********************/
-@import url("https://use.typekit.net/tzt8ndt.css");
+/* ./styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/**************************/
-/*     General Styles     */
-/**************************/
 @layer base {
-  html {
-    @apply scroll-smooth;
-  }
   * {
     @apply antialiased;
   }
@@ -43,13 +14,7 @@ Table Of Contents:
   }
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-/**********************/
-/*     Typography     */
-/**********************/
+/* Typography Styles */
 @layer base {
   h1,
   h2,
@@ -57,160 +22,147 @@ html {
   h4,
   h5,
   h6 {
-    @apply font-bold mb-2 text-darker dark:text-white;
+    @apply font-bold mb-2 tracking-tight text-darker dark:text-white;
   }
   h1 {
-    @apply font-display text-5xl md:text-6xl;
-  }
-  h2 {
     @apply font-display text-4xl md:text-5xl;
   }
-  h3 {
+  h2 {
     @apply font-display text-3xl md:text-4xl;
   }
-  h4 {
+  h3 {
     @apply font-display text-2xl md:text-3xl;
   }
-  h5 {
+  h4 {
     @apply font-display text-xl md:text-2xl;
   }
-  h6 {
+  h5 {
     @apply font-display text-lg md:text-xl;
   }
+  h6 {
+    @apply font-display text-sm md:text-base;
+  }
+  .small-text {
+    @apply text-sm font-semibold uppercase dark:text-light text-dark;
+  }
   p {
-    @apply font-body text-base font-medium dark:text-white text-mid
-    mb-4 leading-relaxed;
+    @apply font-body text-base mb-4 leading-relaxed
+    dark:text-light text-mid;
   }
   a {
-    @apply text-brandAlt hover:text-darker dark:hover:text-white
-    font-semibold
-    opacity-100 transition-all duration-150 ease-in-out;
-  }
-}
-/*******************/
-/*     Headers     */
-/*******************/
-@layer base {
-  .section-header {
-    @apply text-3xl sm:text-4xl md:text-5xl font-light font-display dark:text-white text-darker transition-all duration-150 ease-in-out mb-3;
-  }
-  .section-header-emphasis {
-    @apply text-brand font-extrabold;
-  }
-  .section-subheader {
-    @apply tracking-widest uppercase text-lg font-condensed mb-6 text-mid dark:text-light font-medium;
-  }
-  .hero-header {
-    @apply font-display text-5xl sm:text-6xl md:text-8xl mb-4 dark:text-white text-dark text-center font-light;
-  }
-  .hero-header-emphasis {
-    @apply font-display text-5xl sm:text-6xl md:text-8xl mb-4 text-brand font-bold;
-  }
-  .hero-subheader {
-    @apply tracking-widest uppercase text-base sm:text-lg md:text-xl font-condensed mb-4 dark:text-light text-mid text-center font-medium;
+    @apply font-semibold text-brand opacity-100 transition-all duration-200 hover:text-white;
   }
 }
 
-/**********************/
-/*     Components     */
-/**********************/
-/* Inputs and Textarea */
-@layer components {
-  input,
-  textarea {
-    @apply w-full bg-darker text-white appearance-none border-0 p-4
-    focus:outline-none focus:ring-2 focus:ring-brand;
+@layer base {
+  .underline-link {
+    @apply hover:border-brand border-b-2 border-transparent;
   }
 }
-/* LG Button */
+
+/* Large Button */
 @layer components {
   .btn-lg {
-    @apply inline-flex h-12 md:h-14 px-6 md:px-8 
-    self-start items-center justify-center
-    font-condensed tracking-widest uppercase font-semibold text-center
-    rounded-sm
-    transition-all duration-150 ease-in-out;
+    @apply inline-flex h-14 items-center px-8 justify-center
+    text-center
+    font-semibold rounded-sm
+    shadow-none
+   self-start transition-all duration-150 ease-in-out;
   }
 }
-/* MD Button */
+
+/* Medium Button */
 @layer components {
   .btn-md {
-    @apply inline-flex h-12 px-5 md:px-6
-    self-start items-center justify-center
-    font-condensed tracking-widest uppercase font-semibold text-center
-    rounded-sm
+    @apply inline-flex h-12 py-1 items-center justify-center px-6 flex-grow-0
+    text-center
+    font-semibold rounded-sm
+    shadow-none
+    text-base
     transition-all duration-300 ease-in-out;
   }
 }
-/* SM Button */
-@layer components {
-  .btn-sm {
-    @apply inline-flex h-10 px-4 md:px-5
-    self-start items-center justify-center
-    text-sm font-condensed tracking-widest uppercase font-semibold text-center
-    rounded-sm
-    transition-all duration-150 ease-in-out;
-  }
-}
+
 /* XS Button */
 @layer components {
   .btn-xs {
-    @apply inline-flex h-9 px-3
-    self-start items-center justify-center
-    text-xs font-condensed tracking-widest uppercase font-semibold text-center
-    rounded-sm
+    @apply inline-flex h-10 items-center justify-center
+    px-3.5 flex-grow-0
+    text-center
+    font-semibold rounded-sm
+    shadow-none
+    text-sm
+    transition-all duration-150 ease-in-out;
+  }
+}
+
+/* Small Button */
+@layer components {
+  .btn-sm {
+    @apply inline-flex h-12 items-center justify-center
+    px-5 flex-grow-0
+    text-center
+    font-semibold rounded-sm
+    shadow-none
+    text-sm
+    transition-all duration-150 ease-in-out;
+  }
+}
+@layer components {
+  .btn-sm-no-text {
+    @apply inline-flex h-12 items-center justify-center
+   flex-grow-0
+    text-center
+    font-semibold rounded-sm
+    shadow-none
+    text-sm
     transition-all duration-150 ease-in-out;
   }
 }
 /* Standard Buttons */
 @layer components {
   .btn-brand {
-    @apply bg-brand
-    border-2 border-brand hover:bg-brandAlt hover:border-brandAlt
+    @apply border-2
+    bg-brand
+    border-brand
+    hover:bg-brandAlt
+    hover:border-brandAlt
     dark:text-white text-white
-    focus:outline-none focus:ring-0;
+    focus:outline-none
+    focus:ring-0
+    transition-all duration-150 ease-in-out;
   }
 }
-/* Outline Button */
+
+/* Outline buttons */
 @layer components {
   .btn-outline {
-    @apply bg-transparent hover:bg-dark dark:hover:bg-mid
-    text-mid dark:text-white dark:hover:text-white hover:text-white
-    border-2 border-mid hover:border-dark dark:hover:border-mid
-    focus:outline-none focus:ring-0;
+    @apply border-2
+    bg-transparent
+    border-white
+    hover:border-brand
+    hover:bg-brand
+    text-white
+    focus:outline-none
+    focus:ring-0
+    transition-all duration-150 ease-in-out;
   }
 }
 
-/**********************/
-/*     Navigation     */
-/**********************/
 @layer base {
-  .nav-base {
-    @apply font-condensed tracking-wider uppercase font-medium transition-all duration-150 ease-in-out;
-  }
-  .nav-selected {
-    @apply text-dark dark:text-white
-    border-b-2
-    border-t-2
-  border-b-brand hover:border-b-darker dark:hover:border-b-white
-    border-t-transparent;
-  }
-  .nav-unselected {
-    @apply text-mid hover:text-dark dark:hover:text-white border-b-2 border-b-transparent border-t-2 border-t-transparent;
+  .selected {
+    @apply border-brand dark:text-white text-dark group-hover:text-darker border-b-2 opacity-100 dark:hover:border-white hover:border-darker;
   }
 }
 
-/**********************/
-/*     Experience     */
-/**********************/
-@layer base {
-  .connector-container {
-    @apply w-12 flex justify-center relative self-stretch;
+@layer components {
+  input,
+  textarea {
+    @apply w-full bg-darker rounded-sm appearance-none border-0 p-4 text-white focus:outline-none
+    focus:ring-2 focus:ring-brand;
   }
-  .connector-line {
-    @apply flex flex-col justify-center h-full border-l border-r border-zinc-200 dark:border-mid rounded-t-md rounded-b-md;
-  }
-  .connector-bullet {
-    @apply absolute w-3 h-3 -ml-1.5 border-2 border-mid dark:border-light bg-white dark:bg-darker rounded-full top-2.5;
-  }
+}
+
+html {
+  scroll-behavior: smooth;
 }

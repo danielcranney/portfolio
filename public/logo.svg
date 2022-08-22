@@ -1,0 +1,7 @@
+<svg id="a8f0407b-1a9f-4560-8ad3-fb87f0edad56" className="fill-current text-brand" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <path className="fill-current text-brand" d="M44 3a1 1 0 011 1v40a1 1 0 01-1 1H4a1 1 0 01-1-1V4a1 1 0 011-1h40m0-3H4a4 4 0 00-4 4v40a4 4 0 004 4h40a4 4 0 004-4V4a4 4 0 00-4-4z"/>
+  <rect className="fill-current text-brand" x="12" y="7.76" width="3" height="12" rx="1.5" transform="rotate(-45 13.508 13.755)"/>
+  <rect className="fill-current text-brand" x="7.5" y="18.62" width="12" height="3" rx="1.5" transform="rotate(-45 13.503 20.117)"/>
+  <rect className="fill-current text-brand" x="24.5" y="14.24" width="3" height="12" rx="1.5" transform="rotate(-45 25.995 20.243)"/>
+  <rect className="fill-current text-brand" x="20" y="12.38" width="12" height="3" rx="1.5" transform="rotate(-45 26 13.88)"/>
+</svg>
