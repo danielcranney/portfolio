@@ -1,18 +1,115 @@
 import React, { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { useTheme } from "next-themes";
-import { CourseItem } from "../components/CourseItem";
+import Link from "next/link";
+import ReactTypingEffect from "react-typing-effect";
 
-export default function Home() {
-  const { systemTheme, theme, setTheme } = useTheme();
+import Icon from "../components/Icon";
+// Icons
+import Html from "../components/icons/Html";
+import Css from "../components/icons/Css";
+import Javascript from "../components/icons/Javascript";
+import Tailwind from "../components/icons/Tailwind";
+import Bootstrap from "../components/icons/Bootstrap";
+import Sass from "../components/icons/Sass";
+import ReactJs from "../components/icons/ReactJs";
+import NextJs from "../components/icons/NextJs";
+import NodeJs from "../components/icons/NodeJs";
+import Firebase from "../components/icons/Firebase";
+import Figma from "../components/icons/Figma";
+import Photoshop from "../components/icons/Photoshop";
+import Illustrator from "../components/icons/Illustrator";
+import AfterEffects from "../components/icons/AfterEffects";
+import AdobeXd from "../components/icons/AdobeXd";
+// Project Card
+import ProjectCard from "../components/ProjectCard";
+import GitHubProfile from "../components/icons/GitHubProfile";
+import TwitterProfile from "../components/icons/TwitterProfile";
+import LinkedInProfile from "../components/icons/LinkedInProfile";
+import FeaturedProjectCard from "../components/FeaturedProjectCard";
+
+// Blog Components
+import BlogList from "../components/blog/BlogList";
+import BlogItem from "../components/blog/BlogItem";
+
+// Dark Mode
+import { useTheme } from "next-themes";
+
+const projects = [
+  {
+    title: "Yodlr",
+    overview:
+      "Shoutout a Twitter user, and generate a profile card in under a minute. Simply find the user, select the style, edit the colors and download the card.",
+    stack: ["Html", "Tailwind", "React", "Next"],
+    link: "http://yodlr.vercel.app",
+    repo: "https://github.com/danielcranney/yodlr",
+    isSiteLive: true,
+  },
+  {
+    title: "Rate My Film",
+    overview:
+      "A single-page application that helps filmmakers learn more about who their film might be suitable for.",
+    stack: ["Html", "React", "Sass"],
+    link: "http://www.ratemyfilm.co.uk",
+    repo: "https://github.com/danielcranney/rate-my-film",
+    isSiteLive: true,
+  },
+  {
+    title: "Spotlight Media",
+    overview:
+      "The website for my corporate videography company. This features a contact form powered by NodeJs and SendGrid.",
+    stack: ["Html", "ReactJs", "Next", "Node"],
+    link: "http://www.wearespotlight.co.uk",
+    repo: "https://github.com/danielcranney/spotlight-media",
+    isSiteLive: true,
+  },
+  {
+    title: "Quotr",
+    overview:
+      "A simple application built to help tradespeople automate the quotation process.",
+    stack: ["Html", "React", "Next"],
+    link: "https://quotr.vercel.app",
+    repo: null,
+    isSiteLive: true,
+  },
+  {
+    title: "GPS Embroidery",
+    overview:
+      "A fully-responsive and quick-rendering image-based website for an ongoing academic project.",
+    stack: ["Html", "React", "Next"],
+    link: "http://www.gps-embroidery.com",
+    repo: "https://github.com/danielcranney/GPS-Embroidery",
+    isSiteLive: true,
+  },
+];
+
+const getDimensions = (ele) => {
+  const { height } = ele.getBoundingClientRect();
+  const offsetTop = ele.offsetTop;
+  const offsetBottom = offsetTop + height;
+
+  return {
+    height,
+    offsetTop,
+    offsetBottom,
+  };
+};
+
+const scrollTo = (ele) => {
+  ele.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+};
+
+export default function Home({ publications }) {
   const [visibleSection, setVisibleSection] = useState();
   const [scrolling, setScrolling] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [formResult, setFormResult] = useState(null);
+  const { systemTheme, theme, setTheme } = useTheme();
 
-  // Handle Scroll Functions
   const handleResize = () => {
     if (window.innerWidth < 1024) {
     } else {
@@ -20,43 +117,21 @@ export default function Home() {
     }
   };
 
-  const getDimensions = (ele) => {
-    const { height } = ele.getBoundingClientRect();
-    const offsetTop = ele.offsetTop;
-    const offsetBottom = offsetTop + height;
-
-    return {
-      height,
-      offsetTop,
-      offsetBottom,
-    };
-  };
-
-  const scrollTo = (ele) => {
-    ele.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
-  // Creation Section Refs
   const headerRef = useRef(null);
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
-  const certificationsRef = useRef(null);
-  const myExperienceRef = useRef(null);
-  const coursesRef = useRef(null);
+  const skillsRef = useRef(null);
+  const myWorkRef = useRef(null);
+  const blogRef = useRef(null);
   const contactRef = useRef(null);
-
-  const formRef = useRef(null);
 
   useEffect(() => {
     const sectionRefs = [
       { section: "home", ref: homeRef, id: 1 },
       { section: "about", ref: aboutRef, id: 2 },
-      { section: "certifications", ref: certificationsRef, id: 3 },
-      { section: "my-experience", ref: myExperienceRef, id: 4 },
-      { section: "courses", ref: coursesRef, id: 5 },
+      { section: "skills", ref: skillsRef, id: 3 },
+      { section: "my-work", ref: myWorkRef, id: 4 },
+      { section: "blog", ref: blogRef, id: 5 },
       { section: "contact", ref: contactRef, id: 6 },
     ];
 
@@ -105,13 +180,17 @@ export default function Home() {
 
   const currentTheme = theme === "system" ? systemTheme : theme;
 
+  useEffect(() => {
+    console.log(currentTheme);
+  }, [currentTheme]);
+
   const renderThemeChanger = () => {
     if (!mounted) return null;
 
     if (currentTheme === "dark") {
       return (
         <svg
-          className="w-6 h-6 transition-all duration-150 ease-in-out dark:flex dark:text-mid dark:group-hover:text-white"
+          className="w-6 h-6 transition-all duration-150 ease-in-out dark:flex dark:opacity-50 dark:group-hover:opacity-100 dark:text-white"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -127,7 +206,7 @@ export default function Home() {
     } else {
       return (
         <svg
-          className="w-6 h-6 transition-all duration-150 ease-in-out flex text-mid group-hover:text-darker"
+          className="w-6 h-6 transition-all duration-150 ease-in-out flex text-mid/50 group-hover:text-dark"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -145,19 +224,20 @@ export default function Home() {
 
   return (
     <div className="bg-white dark:bg-darker transition-all duration-150 ease-in-out">
-      <Head>
-        <title>Ben Weston | AWS Cloud Certified SysOps Administrator</title>
-        <meta
-          name="description"
-          content="The portfolio of AWS Cloud Certified SysOps Administrator, Ben Weston"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <div
-        className={`relative w-full bg-opacity-0 min-h-screen transition-all duration-150 ease-in-out ${
+        className={`relative w-full dark:bg-dark/20 bg-light bg-opacity-10 overflow-auto min-h-screen transition-all duration-150 ease-in-out ${
           navbarOpen ? "overflow-hidden" : "overflow-auto"
         }`}
       >
+        <Head>
+          <title>Daniel Cranney | Frontend Developer & Designer</title>
+          <meta
+            name="description"
+            content="The portfolio of frontend developer and designer, Daniel Cranney"
+          />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
         {/* Full-screen Menu */}
         <div
           className={`fixed w-full z-50 h-screen pt-24 bg-white dark:bg-darker bg-opacity-100 transform delay-100 transition-all duration-150 ${
@@ -166,16 +246,16 @@ export default function Home() {
               : "opacity-0 -translate-x-full"
           }`}
         >
-          <div className="container relative mx-auto w-full">
-            <nav className="block ml-auto w-full">
-              <ul className="z-50 flex flex-col items-start gap-y-2 w-full">
-                <li className="z-50 block list-none lg:inline-block">
+          <div className="container relative mx-auto">
+            <nav className="block ml-auto">
+              <ul className="z-50 flex flex-col items-start">
+                <li className="z-50 block py-2 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`mobile-link nav-base w-full py-1 ${
+                    className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "home"
-                        ? "nav-selected"
-                        : "nav-unselected"
+                        ? "selected delay-200"
+                        : "text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -185,13 +265,13 @@ export default function Home() {
                     Home
                   </button>
                 </li>
-                <li className="z-50 block list-none lg:inline-block">
+                <li className="z-50 block py-2 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`mobile-link nav-base w-full py-1 ${
+                    className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "about"
-                        ? "nav-selected"
-                        : "nav-unselected"
+                        ? "selected delay-150"
+                        : "text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -201,45 +281,63 @@ export default function Home() {
                     About
                   </button>
                 </li>
-                <li className="z-50 block list-none lg:inline-block">
+                <li className="z-50 block py-2 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`mobile-link nav-base w-full py-1 ${
-                      visibleSection === "certifications"
-                        ? "nav-selected"
-                        : "nav-unselected"
+                    className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
+                      visibleSection === "skills"
+                        ? "selected delay-150"
+                        : "text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
-                      scrollTo(certificationsRef.current);
+                      scrollTo(skillsRef.current);
                     }}
                   >
-                    Certifications
+                    Skills
                   </button>
                 </li>
-                <li className="z-50 block list-none lg:inline-block">
+                <li className="z-50 block py-2 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`mobile-link nav-base w-full py-1 ${
-                      visibleSection === "my-experience"
-                        ? "nav-selected"
-                        : "nav-unselected"
+                    className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
+                      visibleSection === "my-work"
+                        ? "selected delay-150"
+                        : "text-mid/50  hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
-                      scrollTo(myExperienceRef.current);
+                      scrollTo(myWorkRef.current);
                     }}
                   >
-                    Experience
+                    My Work
                   </button>
                 </li>
-                <li className="z-50 block list-none lg:inline-block">
+                <li className="z-50 block py-2 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`mobile-link nav-base w-full py-1 ${
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
+                      visibleSection === "blog"
+                        ? "selected delay-150"
+                        : "text-mid/50 hover:text-mid border-b-2 border-transparent"
+                    }`}
+                    onClick={() => {
+                      setNavbarOpen(false);
+                      scrollTo(blogRef.current);
+                    }}
+                  >
+                    Blog
+                  </button>
+                </li>
+                <li className="z-50 block py-2 list-none lg:inline-block">
+                  <button
+                    href="#"
+                    className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "contact"
-                        ? "nav-selected"
-                        : "nav-unselected"
+                        ? "selected delay-150"
+                        : "text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -248,6 +346,14 @@ export default function Home() {
                   >
                     Contact
                   </button>
+                </li>
+                <li className="z-40 block py-2 mt-6 list-none lg:inline-block">
+                  <a
+                    href={`mailto:danielcranney@gmail.com`}
+                    className="text-lg btn-brand btn-lg group"
+                  >
+                    Hire me
+                  </a>
                 </li>
               </ul>
             </nav>
@@ -256,31 +362,86 @@ export default function Home() {
 
         {/* Header and Nav */}
         <header
-          className={`header top-0 mx-auto flex items-center z-50 fixed w-full transition-all duration-150 h-20 ${
+          className={`header top-0 mx-auto flex items-center py-6 z-50 fixed w-full transition-all duration-150 h-20 ${
             scrolling && !navbarOpen
-              ? "dark:bg-darker bg-white bg-opacity-95"
+              ? "dark:bg-dark bg-white"
               : "bg-transparent"
           }`}
           ref={headerRef}
         >
           {/* Logo and Nav container */}
-          <div className="container relative flex items-center h-full mx-auto gap-x-2 sm:gap-x-4 md:gap-x-6">
+          <div className="container relative flex items-center mx-auto">
             {/* Logo */}
-            <div className="flex items-center">
-              <p className="text-2.5xl font-light font-display dark:text-white text-darker mb-0 transition-all duration-150 ease-in-out">
-                ben<span className="text-brandAlt font-extrabold">weston</span>
+            <div className="z-50 w-9 sm:w-12 h-9 sm:h-12 flex items-center">
+              <svg
+                id="b613d120-e911-4f71-b7bc-d9b9e1bbdc6f"
+                data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 93.13 75.2"
+              >
+                <rect
+                  className="fill-current text-brand"
+                  x="-3.43"
+                  y="39.29"
+                  width="32.19"
+                  height="8.78"
+                  rx="4.39"
+                  transform="translate(-27.18 21.75) rotate(-45)"
+                />
+                <rect
+                  className="fill-current text-brand"
+                  x="-3.43"
+                  y="22.74"
+                  width="32.19"
+                  height="8.78"
+                  rx="4.39"
+                  transform="translate(22.89 -1.01) rotate(45)"
+                />
+                <rect
+                  className="fill-current text-brand"
+                  x="64.37"
+                  y="22.74"
+                  width="32.19"
+                  height="8.78"
+                  rx="4.39"
+                  transform="translate(156.55 -10.59) rotate(135)"
+                />
+                <rect
+                  className="fill-current text-brand"
+                  x="64.37"
+                  y="39.29"
+                  width="32.19"
+                  height="8.78"
+                  rx="4.39"
+                  transform="translate(106.48 131.47) rotate(-135)"
+                />
+                <rect
+                  className="fill-current text-brand"
+                  x="41.93"
+                  y="-1.17"
+                  width="8.78"
+                  height="77.54"
+                  rx="4.39"
+                  transform="translate(11.31 -10.71) rotate(15)"
+                />
+              </svg>
+            </div>
+            {/* Text */}
+            <div className="flex items-center ml-4">
+              <p className="text-lg font-semibold font-display tracking-tight dark:text-white text-darker mb-0 transition-all duration-150 ease-in-out">
+                Daniel Cranney
               </p>
             </div>
-            {/* Navigation */}
-            <nav className="block ml-auto h-20">
-              <ul className="z-50 flex items-center h-full gap-x-2">
-                <li className="h-full z-50 hidden list-none lg:flex">
+            {/* Nav */}
+            <nav className="block ml-auto h-full">
+              <ul className="z-50 flex items-center">
+                <li className="z-50 hidden mx-5 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`nav-base px-3 ${
+                    className={`header_link font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "home"
-                        ? "nav-selected"
-                        : "nav-unselected"
+                        ? "selected delay-150"
+                        : "opacity-50 hover:opacity-100 dark:text-white text-dark"
                     }`}
                     onClick={() => {
                       scrollTo(homeRef.current);
@@ -289,13 +450,13 @@ export default function Home() {
                     Home
                   </button>
                 </li>
-                <li className="h-full z-50 hidden list-none lg:flex">
+                <li className="z-50 hidden mx-5 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`nav-base px-3 ${
+                    className={`header_link font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "about"
-                        ? "nav-selected"
-                        : "nav-unselected"
+                        ? "selected delay-150"
+                        : "opacity-50 hover:opacity-100 border-b-2 border-transparent  dark:text-white text-dark"
                     }`}
                     onClick={() => {
                       scrollTo(aboutRef.current);
@@ -304,58 +465,60 @@ export default function Home() {
                     About
                   </button>
                 </li>
-                <li className="h-full z-50 hidden list-none lg:flex">
+                <li className="z-50 hidden mx-5 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`nav-base px-3 ${
-                      visibleSection === "certifications"
-                        ? "nav-selected"
-                        : "nav-unselected"
+                    className={`header_link font-semibold transition-all duration-150 ease-in-out ${
+                      visibleSection === "skills"
+                        ? "selected delay-150"
+                        : "opacity-50 hover:opacity-100 border-b-2 border-transparent dark:text-white text-dark"
                     }`}
                     onClick={() => {
-                      scrollTo(certificationsRef.current);
+                      scrollTo(skillsRef.current);
                     }}
                   >
-                    Certifications
+                    Skills
                   </button>
                 </li>
-                <li className="h-full z-50 hidden list-none lg:flex">
+                <li className="z-50 hidden mx-5 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`nav-base px-3 ${
-                      visibleSection === "my-experience"
-                        ? "nav-selected"
-                        : "nav-unselected"
+                    className={`header_link font-semibold transition-all duration-150 ease-in-out ${
+                      visibleSection === "my-work"
+                        ? "selected delay-150"
+                        : "opacity-50 hover:opacity-100 border-b-2 border-transparent dark:text-white text-dark"
                     }`}
                     onClick={() => {
-                      scrollTo(myExperienceRef.current);
+                      scrollTo(myWorkRef.current);
                     }}
                   >
-                    Experience
+                    My Work
                   </button>
                 </li>
-                <li className="h-full z-50 hidden list-none lg:flex">
+                <li className="z-50 hidden mx-5 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`nav-base px-3 ${
-                      visibleSection === "courses"
-                        ? "nav-selected"
-                        : "nav-unselected"
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`header_link font-semibold transition-all duration-150 ease-in-out ${
+                      visibleSection === "blog"
+                        ? "selected delay-150"
+                        : "opacity-50 hover:opacity-100 border-b-2 border-transparent dark:text-white text-dark"
                     }`}
                     onClick={() => {
-                      scrollTo(coursesRef.current);
+                      scrollTo(blogRef.current);
                     }}
                   >
-                    Courses
+                    Blog
                   </button>
                 </li>
-                <li className="h-full z-50 hidden list-none lg:flex">
+                <li className="z-50 hidden mx-5 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`nav-base px-3 ${
+                    className={`header_link font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "contact"
-                        ? "nav-selected"
-                        : "nav-unselected"
+                        ? "selected delay-150"
+                        : "opacity-50 hover:opacity-100 border-b-2 border-transparent dark:text-white text-dark"
                     }`}
                     onClick={() => {
                       scrollTo(contactRef.current);
@@ -364,13 +527,20 @@ export default function Home() {
                     Contact
                   </button>
                 </li>
-
-                <li className="h-full z-50 flex items-center list-none lg:hidden group">
+                <li className="z-50 hidden ml-5 list-none lg:inline-block">
+                  <a
+                    href={`mailto:danielcranney@gmail.com`}
+                    className="btn-brand btn-md group"
+                  >
+                    Hire me
+                  </a>
+                </li>
+                <li className="z-50 inline-block ml-5 list-none lg:hidden">
                   <button
-                    className={`relative w-6 h-10 flex items-center ${
+                    className={`relative w-10 h-10 text-dark/50 dark:text-white ${
                       navbarOpen
-                        ? "text-dark dark:text-white"
-                        : "text-mid group-hover:text-dark dark:group-hover:text-white"
+                        ? ""
+                        : "dark:opacity-50 dark:group-hover:opacity-100 text-mid/50 group-hover:text-dark"
                     } focus:outline-none`}
                     onClick={() => setNavbarOpen(!navbarOpen)}
                   >
@@ -398,10 +568,10 @@ export default function Home() {
                 </li>
               </ul>
             </nav>
-            {/* Theme Switch */}
-            <div className="flex h-full items-center">
+            <div className="flex mt-auto ml-1.5">
+              {/* Dark mode */}
               <button
-                className="flex items-center justify-center w-6 h-10 transition-all duration-150 ease-in rounded-sm focus:outline-none group bg-transparent outline-none"
+                className="flex items-center justify-center w-12 h-12 transition-all duration-150 ease-in rounded-sm focus:outline-none group bg-transparent outline-none"
                 onClick={() => {
                   setTheme(theme === "dark" ? "light" : "dark");
                 }}
@@ -412,750 +582,1025 @@ export default function Home() {
           </div>
         </header>
 
-        {/* Hero Content */}
-        <main
-          className={`flex-col flex h-screen relative w-full overflow-hidden`}
-          id="home"
-          ref={homeRef}
-        >
-          {/* Main */}
-          <div className="container relative flex flex-col items-start justify-center flex-grow mx-auto md:px-20 section z-20 overflow-hidden">
-            <div className="w-full flex flex-col">
-              <h1 className="hero-header">
-                ben
-                <span className="hero-header-emphasis">weston</span>
-              </h1>
-              <h2 className="hero-subheader">
-                Cloud &nbsp;·&nbsp; Container &nbsp;·&nbsp; Linux Enthusiast
-              </h2>
+        {/* Content Container */}
+        <div className="container relative z-30 mx-auto">
+          {/* Hero Content */}
+          <main className={`flex-col flex h-screen`} id="home" ref={homeRef}>
+            {/* Main */}
+            <div className="container relative flex flex-col items-start justify-center flex-grow px-0 mx-auto md:px-20 lg:px-24 section">
+              <div className="w-full">
+                <span className="text-2xl font-semibold text-brand">
+                  Hello! 👋 My name is
+                </span>
 
-              <div className="flex flex-row gap-y-3 md:gap-y-0 gap-x-4 md:gap-x-8 items-center mx-auto mt-4">
+                <h1 className="mb-4 text-5xl md:text-7xl dark:text-white text-dark">
+                  Daniel Cranney
+                </h1>
+                <h2 className="mb-4 text-3xl md:text-4xl dark:text-light text-mid">
+                  <ReactTypingEffect
+                    typingDelay={200}
+                    speed={30}
+                    eraseSpeed={30}
+                    eraseDelay={1500}
+                    text={[
+                      `Frontend Developer`,
+                      `Designer`,
+                      `Teacher`,
+                      `Cat Dad`,
+                    ]}
+                  />
+                </h2>
+                <p className="w-4/5 text-xl md:w-full">
+                  I design and build websites that look good, and work well.
+                </p>
                 <button
-                  className="btn-sm sm:btn-lg btn-brand group"
+                  className="mt-4 btn-brand btn-lg group"
                   onClick={() => {
-                    scrollTo(myExperienceRef.current);
+                    scrollTo(myWorkRef.current);
                   }}
                 >
-                  See my experience
-                </button>
-
-                <button
-                  className="btn-sm sm:btn-lg btn-outline group"
-                  onClick={() => {
-                    scrollTo(contactRef.current);
-                  }}
-                >
-                  Get in touch
+                  See my Work
                 </button>
               </div>
             </div>
-          </div>
+          </main>
 
-          {/* Fade */}
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-mid/20 to-transparent z-10"></div>
+          {/* About */}
+          <section
+            className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
+            id="about"
+            ref={aboutRef}
+          >
+            <div className="flex flex-col">
+              <h2 className="text-5xl">About</h2>
+              <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
 
-          {/* Bottom Left Rectangle */}
-          <div className="absolute top-1/2 -left-48 transform -translate-y-1/2 w-96 h-96">
-            <img
-              src="/rectangle-ornament.svg"
-              alt="An SVG of an eye"
-              className="animate-spin-19s"
-            />
-          </div>
-
-          {/* Top Right Rectangle */}
-          <div className="absolute -top-72 -right-48 transform w-144 h-144">
-            <img
-              src="/rectangle-ornament.svg"
-              alt="An SVG of an eye"
-              className="animate-spin-19s"
-            />
-          </div>
-
-          {/* Upper Left Rectangle */}
-          <div className="absolute top-1/3 left-1/3 transform -translate-y-1/2 -translate-x-1/2 w-72 h-72">
-            <img
-              src="/rectangle-ornament.svg"
-              alt="An SVG of an eye"
-              className="animate-spin-17s"
-            />
-          </div>
-
-          {/* Upper Right Rectangle */}
-          <div className="absolute bottom-1/4 right-1/4 transform translate-y-1/2 translate-x-1/2 w-48 h-48">
-            <img
-              src="/rectangle-ornament.svg"
-              alt="An SVG of an eye"
-              className="animate-spin-17s"
-            />
-          </div>
-        </main>
-
-        {/* About */}
-        <section
-          className="relative flex flex-col w-full md:px-20 py-28 section"
-          id="about"
-          ref={aboutRef}
-        >
-          <div className="absolute right-0 top-0 w-2/5 h-full bg-[url('/rectangle-ornament.svg')] bg-cover bg-left bg-no-repeat"></div>
-
-          <div className="container mx-auto flex flex-col-reverse items-center w-full md:flex-row gap-x-6">
-            <div className="flex flex-col w-full md:w-1/2">
-              <h3 className="section-header">
-                about<span className="section-header-emphasis">me</span>
-              </h3>
-              <p className="section-subheader">
-                Cloud · Container · Linux Enthusiast
-              </p>
-              <p>
-                Hello! I'm Ben and I'm a professional cloud engineer with more
-                than 14 years of experience in IT. I'm originally from London,
-                but in winter 2021 I relocated to the beautiful Cotswolds in
-                central-southwest England.
-              </p>
-              <p>
-                I've been involved in computers in one way or another since I
-                bought my first as a child; a Sinclair ZX Spectrum+. But it was
-                in October 2008 after spending ~10yrs building gaming PCs that I
-                got my big break as a Technical Support Engineer for a pioneer
-                in the Open Access STEM publishing scene: BioMed Central.{" "}
-              </p>
-              <p>
-                I'm a voracious learner, earning multiple IT certifications and
-                I have completed over 30 courses. I have significant experience
-                working with cross-disciplined teams spanning multiple countries
-                and time zones for multi-million Dollar business-critical
-                projects.
-              </p>
-            </div>
-            <div className="flex items-center w-full h-full mb-4 md:w-1/2 md:mb-0">
-              <div className="block relative w-full md:w-3/5 ml-auto">
-                <Image
-                  src="/profile-picture.png"
-                  width={741}
-                  height={841}
-                  layout="responsive"
-                  alt={"Ben Weston headshot"}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Certifications */}
-        <section
-          className="flex flex-col w-full md:px-20 py-28 section"
-          id="certifications"
-          ref={certificationsRef}
-        >
-          <article className="container mx-auto">
-            <h3 className="section-header">
-              my
-              <span className="section-header-emphasis">certifications</span>
-            </h3>
-            <p className="section-subheader">Certifications I have achieved</p>
-
-            {/* certifications icons */}
-            <article className="relative grid grid-cols-3 md:grid-cols-5 gap-12">
-              <Image
-                src="/icons/linux-badge.png"
-                width={500}
-                height={474}
-                layout="responsive"
-              />
-              <Image
-                src="/icons/cje-badge.png"
-                width={400}
-                height={400}
-                layout="responsive"
-              />
-              <Image
-                src="/icons/terraform.png"
-                width={340}
-                height={340}
-                layout="responsive"
-              />
-              <Image
-                src="/icons/aws-cloud.png"
-                width={300}
-                height={300}
-                layout="responsive"
-              />
-
-              <Image
-                src="/icons/aws-sysops.png"
-                width={300}
-                height={300}
-                layout="responsive"
-              />
-            </article>
-          </article>
-        </section>
-
-        {/* Experience */}
-        <section
-          className="flex flex-col w-full md:px-20 py-28 section bg-light/10 dark:bg-darker"
-          id="my-experience"
-          ref={myExperienceRef}
-        >
-          <article className="container mx-auto">
-            {/* Experience header */}
-            <h3 className="section-header">
-              my<span className="section-header-emphasis">experience</span>
-            </h3>
-            <p className="section-subheader">Certifications I have achieved</p>
-
-            <div className="flex flex-col md:flex-row gap-x-12">
-              <article className="flex flex-col w-full items-start mb-8">
-                {/* Springer Nature */}
-                <div className="w-full flex flex-col">
-                  <h4 className="text-2xl">Springer Nature</h4>
-                  <p>
-                    Full-time · 8 yrs 4 mos · London, England, United Kingdom
+              <div className="flex flex-col-reverse items-start w-full md:flex-row">
+                <div className="flex flex-col w-full md:pr-8 md:w-3/5">
+                  <p className="text-lg">
+                    Hello! I&apos;m Dan and I&apos;m a frontend developer,
+                    designer and teacher from Bristol, England.
+                  </p>
+                  <p className="text-lg">
+                    After building my first website aged thirteen, I knew I
+                    wanted to work with computers and technology, and I&apos;ve
+                    never looked back.
+                  </p>
+                  <p className="text-lg">
+                    After graduating University with a Media degree, I began
+                    freelancing as a designer, creating graphics, video content
+                    and websites for small businesses, using content management
+                    systems like Wordpress, Joomla and Squarespace.
+                  </p>
+                  <p className="text-lg">
+                    In recent years, I&apos;ve been focused on programming,
+                    building a solid frontend stack and creating exciting
+                    projects that solve real-world problems.
+                  </p>
+                  <p className="text-lg">
+                    Alongside my design and development work, I run a BA Media
+                    Production degree course and a corporate video production
+                    company called{" "}
+                    <a
+                      href="http://www.wearespotlight.co.uk"
+                      target="_blank"
+                      className="underline-link"
+                      rel="noreferrer"
+                    >
+                      Spotlight Media
+                    </a>
+                    , so I like to keep busy!
+                  </p>
+                  <p className="text-lg">
+                    Take a look at my work below to see what I&apos;m working
+                    on, and get in touch if you&apos;d like to work together!
                   </p>
                 </div>
-
-                {/* Role 1 */}
-                <div className="w-full flex items-center">
-                  <div className="connector-container">
-                    <div className="connector-line">
-                      <div className="connector-bullet"></div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-y-1 flex-1">
-                    <p className="mb-0 font-bold text-lg text-dark dark:text-white">
-                      DevOps Engineer
-                    </p>
-                    <p className="mb-0 text-sm text-mid dark:text-light font-condensed uppercase tracking-wide">
-                      Apr 2019 - Present · 3 yrs 5 mos
-                    </p>
-                    <p className="mb-0">
-                      Provides operations & software development lifecycle
-                      support for deployments on AWS.
-                    </p>
-                    <p className="mb-8">
-                      Reduced ongoing costs significantly using AWS Trusted
-                      Advisor.
-                    </p>
-                  </div>
+                <div className="flex w-full h-full mb-4 md:pl-8 md:w-2/5 md:mb-0">
+                  <Image
+                    src="/headshot-with-frame-2.jpg"
+                    className="overflow-hidden rounded-md"
+                    width={880}
+                    height={880}
+                    alt={"Daniel Cranney headshot"}
+                  />
                 </div>
-
-                {/* Role 2 */}
-                <div className="w-full flex items-center">
-                  <div className="connector-container">
-                    <div className="connector-line">
-                      <div className="connector-bullet"></div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-y-1 flex-1">
-                    <p className="mb-0 font-bold text-lg text-dark dark:text-white">
-                      Senior Platform Support Engineer
-                    </p>
-                    <p className="mb-0 text-sm text-mid dark:text-light font-condensed uppercase tracking-wide">
-                      Mar 2016 - Apr 2019 · 3 yrs 2 mos
-                    </p>
-                    <p className="mb-0">
-                      Managed two staff providing application, infrastructure &
-                      development support services.{" "}
-                    </p>
-                    <p className="mb-8">
-                      Created self-service portal providing thousands of staff
-                      access to services using Jira Service Desk
-                    </p>
-                  </div>
-                </div>
-
-                {/* Role 3 */}
-                <div className="w-full flex items-center">
-                  <div className="connector-container">
-                    <div className="connector-line">
-                      <div className="connector-bullet"></div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-y-1 flex-1">
-                    <p className="mb-0 font-bold text-lg text-dark dark:text-white">
-                      Head of Service Delivery and Workflow Support
-                    </p>
-                    <p className="mb-0 text-sm text-mid dark:text-light font-condensed uppercase tracking-wide">
-                      May 2014 - Mar 2016 · 1 yr 11 mos
-                    </p>
-                    <p className="mb-0">
-                      Managed ~14 staff providing software development &
-                      technical support services.
-                    </p>
-                    <p className="mb-0">
-                      Shipped major software releases ~48 times in 2 years by
-                      implementing release planning.
-                    </p>
-                  </div>
-                </div>
-              </article>
-
-              <article className="flex flex-col w-full items-start">
-                {/* BioMed Central */}
-                <div className="w-full flex flex-col">
-                  <h4 className="text-2xl">BioMed Central</h4>
-                  <p>Full-time · 7 yrs · London, England, United Kingdom</p>
-                </div>
-
-                {/* Role 1 */}
-                <div className="w-full flex items-center">
-                  <div className="connector-container">
-                    <div className="connector-line">
-                      <div className="connector-bullet"></div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-y-1 flex-1">
-                    <p className="mb-0 font-bold text-lg text-dark dark:text-white">
-                      Technical Lead
-                    </p>
-                    <p className="mb-0 text-sm text-mid dark:text-light font-condensed uppercase tracking-wide">
-                      Oct 2012 - May 2014 · 1 yr 8 mos
-                    </p>
-                    <p className="mb-8">
-                      Managed two staff providing 1st line technical support
-                      services Received BioMed Central Staff Excellence Award in
-                      IT at 2013 conference.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Role 2 */}
-                <div className="w-full flex items-center">
-                  <div className="connector-container">
-                    <div className="connector-line">
-                      <div className="connector-bullet"></div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-y-1 flex-1">
-                    <p className="mb-0 font-bold text-lg text-dark dark:text-white">
-                      Technical Support Engineer
-                    </p>
-                    <p className="mb-0 text-sm text-mid dark:text-light font-condensed uppercase tracking-wide">
-                      Oct 2008 - Oct 2012 · 4 yrs 1 mo
-                    </p>
-                    <p className="mb-8">
-                      Provided technical support services to ~250 members of
-                      staff Created incident management system.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Role 3 */}
-                <div className="w-full flex items-center">
-                  <div className="connector-container">
-                    <div className="connector-line">
-                      <div className="connector-bullet"></div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-y-1 flex-1">
-                    <p className="mb-0 font-bold text-lg text-dark dark:text-white">
-                      Customer Services Senior Executive
-                    </p>
-                    <p className="mb-0 text-sm text-mid dark:text-light font-condensed uppercase tracking-wide">
-                      Jun 2007 - Oct 2008 · 1 yr 5 mos
-                    </p>
-                    <p className="mb-0">
-                      Provided support to website users & institutional
-                      subscription holders via telephone & email using
-                      Salesforce
-                    </p>
-                  </div>
-                </div>
-              </article>
+              </div>
             </div>
-          </article>
-        </section>
+          </section>
 
-        {/* Courses */}
-        <section
-          className="flex flex-col w-full md:px-20 py-28 section bg-light/10 dark:bg-darker"
-          id="courses"
-          ref={coursesRef}
-        >
-          <article className="container mx-auto">
-            <h3 className="section-header">
-              <span className="section-header-emphasis">courses</span>
-            </h3>
-            <p className="section-subheader">Courses I have completed</p>
+          {/* Skills */}
+          <section
+            className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
+            id="skills"
+            ref={skillsRef}
+          >
+            <h2 className="text-5xl">Skills</h2>
+            <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
 
-            {/* certifications icons */}
-            <article className="relative grid grid-cols-1 md:grid-cols-2 md:gap-x-12 gap-y-4">
-              <div className="flex flex-col bg-light-200 gap-y-4">
-                <p className="font-bold mb-0 text-dark dark:text-white">
-                  Digital Cloud Training
-                </p>
-                <div className="flex flex-col border border-light/40 dark:border-dark rounded-sm">
-                  <CourseItem
-                    courseTitle={"AWS Certified SysOps Administrator Associate"}
-                    link={
-                      "https://twitter.com/bweston26918/status/1390297506718777345"
-                    }
-                  />
-                  <CourseItem
-                    courseTitle={"AWS Networking Masterclass"}
-                    link={
-                      "https://twitter.com/bweston26918/status/1374390692923863055"
-                    }
-                  />
-                  <CourseItem
-                    courseTitle={
-                      "AWS Identity Management with AWS IAM, SSO & Federation"
-                    }
-                    link={
-                      "https://twitter.com/bweston26918/status/1374390692923863055"
-                    }
-                  />
-                </div>
-                <p className="font-bold mb-0 text-dark dark:text-white">
-                  A Cloud Guru
-                </p>
-                <div className="flex flex-col border border-light/40 dark:border-dark rounded-sm">
-                  <CourseItem
-                    courseTitle={"Docker Certified Associate (DCA)"}
-                    link={"https://verify.acloud.guru/A5AB4DFD8AEB"}
-                  />
-                  <CourseItem
-                    courseTitle={"Learn Docker by Doing"}
-                    link={"https://verify.acloud.guru/2941C0E9C4E7"}
-                  />
-                  <CourseItem
-                    courseTitle={"Docker - Deep Dive"}
-                    link={"https://verify.acloud.guru/E7806789D28A"}
-                  />
-                  <CourseItem
-                    courseTitle={"Docker Quick Start"}
-                    link={"https://verify.acloud.guru/E9CEC367D78E"}
-                  />
-                  <CourseItem
-                    courseTitle={"Introduction to Containers and Docker"}
-                    link={"https://verify.acloud.guru/E9CEC367D78E"}
-                  />
-                  <CourseItem
-                    courseTitle={
-                      "Beginner’s Guide to Containers and Orchestration"
-                    }
-                    link={"https://verify.acloud.guru/97F3FB97FF3D"}
-                  />
-                  <CourseItem
-                    courseTitle={"Essential Container Concepts"}
-                    link={"https://verify.acloud.guru/AF5EAFB5E096"}
-                  />
-                  <CourseItem
-                    courseTitle={"Certified Jenkins Engineer (2020)"}
-                    link={"https://verify.acloud.guru/360D9B6937F0"}
-                  />
-                  <CourseItem
-                    courseTitle={"Certified Jenkins Engineer"}
-                    link={"https://verify.acloud.guru/D5C3BE707EE1"}
-                  />
-                  <CourseItem
-                    courseTitle={"Jenkins Pipelines"}
-                    link={"https://verify.acloud.guru/BF6477837344"}
-                  />
-                  <CourseItem
-                    courseTitle={"Jenkins Administration"}
-                    link={"https://verify.acloud.guru/A1F1C4A8ED49"}
-                  />
-                  <CourseItem
-                    courseTitle={"Learn Jenkins by Doing"}
-                    link={"https://verify.acloud.guru/D5D2A3B57D6B"}
-                  />
-                  <CourseItem
-                    courseTitle={"Jenkins Fundamentals"}
-                    link={"https://verify.acloud.guru/27C7E3E5C37A"}
-                  />
-                  <CourseItem
-                    courseTitle={"Jenkins Quick Start"}
-                    link={"https://verify.acloud.guru/27C7E3E5C37A"}
-                  />
-                  <CourseItem
-                    courseTitle={"HashiCorp Certified Terraform Associate"}
-                    link={"https://verify.acloud.guru/E7A1DD435D75"}
-                  />
-                  <CourseItem
-                    courseTitle={"Introduction to Cloud Computing"}
-                    link={"https://verify.acloud.guru/DE923BC180FD"}
-                  />
-                  <CourseItem
-                    courseTitle={
-                      "LPIC-1: System Administrator – Exam 102 (v5 Objectives)"
-                    }
-                    link={null}
-                  />
-                  <CourseItem
-                    courseTitle={
-                      "LPIC-1: System Administrator Exam 101 (v5 Objectives)"
-                    }
-                    link={null}
-                  />
-                  <CourseItem
-                    courseTitle={"LPI Linux Essentials Certification"}
-                    link={null}
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col bg-light-200 gap-y-4">
-                <p className="font-bold mb-0 text-dark dark:text-white">
-                  Cloud Academy
-                </p>
-                <div className="flex flex-col border border-light/40 dark:border-dark rounded-sm">
-                  <CourseItem
-                    courseTitle={
-                      "Docker Certified Associate (DCA) Exam Preparation"
-                    }
-                    link={
-                      "https://certificates.cloudacademy.com/ae531bed852d520dfc9a0f7b993c07cda8b44c6f.pdf"
-                    }
-                  />
-                  <CourseItem
-                    courseTitle={"Linux Server Professional - LPIC-102"}
-                    link={null}
-                  />
-                  <CourseItem
-                    courseTitle={"Linux Server Professional - LPIC-101"}
-                    link={null}
-                  />
-                </div>
+            {/* Skills icons */}
+            <div className="flex flex-wrap w-full pr-4 mt-8">
+              {/* HTML */}
+              <Icon
+                IconType={Html}
+                title="HTML"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
 
-                <p className="font-bold mb-0 text-dark dark:text-white">
-                  Udemy
-                </p>
-                <div className="flex flex-col border border-light/40 dark:border-dark rounded-sm">
-                  <CourseItem
-                    courseTitle={
-                      "HashiCorp Certified: Terraform Associate 2021"
-                    }
-                    link={
-                      "https://www.udemy.com/certificate/UC-9b68140c-23cd-4e5d-b1ce-24924e1a13a0/"
-                    }
-                  />
-                  <CourseItem
-                    courseTitle={
-                      "Terraform for AWS - Beginner to Expert 2020 (0.12)"
-                    }
-                    link={
-                      "https://www.udemy.com/certificate/UC-64825cb8-29f2-42e4-8261-dbba845ebe0e/"
-                    }
-                  />
-                  <CourseItem
-                    courseTitle={
-                      "HashiCorp Certified: Terraform Associate Prep Course 2020"
-                    }
-                    link={
-                      "https://www.udemy.com/certificate/UC-271c1b53-fdb7-467e-b6bf-4e92ee58d0b1/"
-                    }
-                  />
+              {/* CSS */}
+              <Icon
+                IconType={Css}
+                title="CSS"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
 
-                  <CourseItem
-                    courseTitle={"Building Cloud Infrastructure with Terraform"}
-                    link={
-                      "https://www.udemy.com/certificate/UC-bd3cdf69-395a-462e-a18e-1f3ae3d7b17e/"
-                    }
-                  />
+              {/* Sass */}
+              <Icon
+                IconType={Sass}
+                title="Sass"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
 
-                  <CourseItem
-                    courseTitle={
-                      "Learning Linux Essentials: Taking your first steps in Linux"
-                    }
-                    link={
-                      "https://www.udemy.com/certificate/UC-547e766d-a9b8-4eaf-ab0d-0e2164307cb5/"
-                    }
-                  />
+              {/* Bootstrap */}
+              <Icon
+                IconType={Bootstrap}
+                title="Bootstrap"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
 
-                  <CourseItem
-                    courseTitle={
-                      "LPI Linux Essentials (010-160) Complete Course and Exams"
-                    }
-                    link={
-                      "https://www.udemy.com/certificate/UC-090554a3-85b8-4bf3-be7e-69fa0db28a15/"
-                    }
-                  />
-                </div>
+              {/* Tailwind */}
+              <Icon
+                IconType={Tailwind}
+                title="Tailwind"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
 
-                <p className="font-bold mb-0 text-dark dark:text-white">
-                  CloudBees University
-                </p>
-                <div className="flex flex-col border border-light/40 dark:border-dark rounded-sm">
-                  <CourseItem
-                    courseTitle={"Jenkins Level 1: Pipeline Essentials"}
-                    link={"https://verify.skilljar.com/c/68sd9ofzfz2s"}
-                  />
-                  <CourseItem
-                    courseTitle={"Jenkins Level 1: Administration"}
-                    link={"https://verify.skilljar.com/c/hxhc7co88z6q"}
-                  />
-                  <CourseItem
-                    courseTitle={"Jenkins: Essentials	Link"}
-                    link={"https://verify.skilljar.com/c/uwaeg32f5dpk"}
-                  />
-                </div>
+              {/* Javascript */}
+              <Icon
+                IconType={Javascript}
+                title="Javascript"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
 
-                <p className="font-bold mb-0 text-dark dark:text-white">edX</p>
-                <div className="flex flex-col border border-light/40 dark:border-dark rounded-sm">
-                  <CourseItem
-                    courseTitle={"Introduction to Linux (LFS101x)	"}
-                    link={
-                      "https://courses.edx.org/certificates/d353b70e423541ea8a27a229c4358539"
-                    }
-                  />
-                </div>
+              {/* React */}
+              <Icon
+                IconType={ReactJs}
+                title="React"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
 
-                <p className="font-bold mb-0 text-dark dark:text-white">
-                  Global Knowledge
-                </p>
-                <div className="flex flex-col border border-light/40 dark:border-dark rounded-sm">
-                  <CourseItem
-                    courseTitle={"Systems Operations on AWS"}
-                    link={
-                      "https://twitter.com/bweston26918/status/1285844570115313664/photo/1"
-                    }
-                  />
-                </div>
-              </div>
-            </article>
-          </article>
-        </section>
+              {/* Next */}
+              <Icon
+                IconType={NextJs}
+                title="Next"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
 
-        {/* Contact */}
-        <section
-          className="flex flex-col w-full md:px-20 py-28 section bg-light/10 dark:bg-darker justify-center items-start section"
-          id="contact"
-          ref={contactRef}
-        >
-          <article className="flex flex-col container mx-auto">
-            {/* Header */}
-            <h3 className="section-header">
-              <span className="section-header-emphasis">contact</span>
-            </h3>
-            <p className="section-subheader">
-              Email me at bweston26918@gmail.com or message me below:
+              {/* Node */}
+              <Icon
+                IconType={NodeJs}
+                title="Node"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* Firebase */}
+              <Icon
+                IconType={Firebase}
+                title="Firebase"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* Photoshop */}
+              <Icon
+                IconType={Photoshop}
+                title="Photoshop"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* Illustrator */}
+              <Icon
+                IconType={Illustrator}
+                title="Illustrator"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* After Effects */}
+              <Icon
+                IconType={AfterEffects}
+                title="After Effects"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* Adobe XD */}
+              <Icon
+                IconType={AdobeXd}
+                title="Adobe XD"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* Figma */}
+              <Icon
+                IconType={Figma}
+                title="Figma"
+                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+            </div>
+          </section>
+
+          {/* My Work */}
+          <section
+            className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
+            id="my-work"
+            ref={myWorkRef}
+          >
+            {/* My Work header */}
+            <h2 className="text-5xl">My Work</h2>
+            <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
+
+            {/* Featured Projects Container */}
+            <div className="flex flex-col w-full mb-12">
+              {/* Project One */}
+              <FeaturedProjectCard
+                title={"Reportr"}
+                status={"Just launched"}
+                description={`Write reports for your students in 60 seconds or less`}
+                float={`right-0`}
+                flexDirection={`flex-col lg:flex-row`}
+                imgWidth={"1366"}
+                imgHeight={"666"}
+                imgSrc={"/projects/reportr.png"}
+                liveLink={"https://reportr.io/"}
+                repoLink={null}
+                stack={
+                  <>
+                    <Icon
+                      IconType={Html}
+                      title="HTML"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+
+                    <Icon
+                      IconType={Tailwind}
+                      title="Tailwind"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+
+                    <Icon
+                      IconType={ReactJs}
+                      title="React"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+
+                    <Icon
+                      IconType={NextJs}
+                      title="Next"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+                  </>
+                }
+              />
+              {/* Project Two */}
+              <FeaturedProjectCard
+                title={"ColorHub"}
+                status={"Currently working on"}
+                description={`Create a custom colour palette for your next project. Preview your palette on different layouts and then export the CSS, SCSS or Tailwind code.`}
+                float={`right-0`}
+                flexDirection={`flex-col lg:flex-row-reverse`}
+                imgWidth={"1366"}
+                imgHeight={"666"}
+                imgSrc={"/projects/colorhub.png"}
+                liveLink={"https://colorhub.app/"}
+                repoLink={null}
+                stack={
+                  <>
+                    <Icon
+                      IconType={Html}
+                      title="HTML"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+
+                    <Icon
+                      IconType={Tailwind}
+                      title="Tailwind"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+
+                    <Icon
+                      IconType={ReactJs}
+                      title="React"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+
+                    <Icon
+                      IconType={NextJs}
+                      title="Next"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+                  </>
+                }
+              />
+              {/* Project Three */}
+              <FeaturedProjectCard
+                title={"ProfileMe.dev"}
+                status={"Just launched"}
+                description={`Create an awesome GitHub profile in minutes.`}
+                float={`right-0`}
+                flexDirection={`flex-col lg:flex-row`}
+                imgWidth={"1366"}
+                imgHeight={"666"}
+                imgSrc={"/projects/profileme.png"}
+                liveLink={"https://profileme.dev"}
+                repoLink={"https://github.com/danielcranney/profileme.dev"}
+                stack={
+                  <>
+                    <Icon
+                      IconType={Html}
+                      title="HTML"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+
+                    <Icon
+                      IconType={Tailwind}
+                      title="Tailwind"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+
+                    <Icon
+                      IconType={ReactJs}
+                      title="React"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+
+                    <Icon
+                      IconType={NextJs}
+                      title="Next"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+                  </>
+                }
+              />
+            </div>
+
+            {/* Other Projects header */}
+            <h2 className="text-4xl text-center">Other Projects</h2>
+            <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 mx-auto border-0"></hr>
+            <p className="mb-16 text-lg text-center">
+              Check out some of the projects I&apos;ve been a part of...
             </p>
 
-            <div className="w-full max-w-2xl h-48">
-              {!formResult ? (
-                <form
-                  ref={formRef}
-                  method="POST"
-                  className="flex flex-col items-start"
-                >
-                  <input
-                    type="hidden"
-                    name="subject"
-                    value="New message received via benweston.me.uk"
-                  ></input>
-                  <input
-                    type="hidden"
-                    name="access_key"
-                    value="98270c80-4eec-4d0b-a2c1-8387a68a86bb"
-                  />
-                  <div className="grid gap-6 sm:grid-cols-2 w-full">
-                    <div className="relative z-0">
-                      <input
-                        type="text"
-                        name="name"
-                        className="peer block w-full appearance-none border-0 border-b border-mid bg-transparent py-2.5 px-0 text-base text-dark dark:text-white focus:border-brand focus:outline-none focus:ring-0"
-                        placeholder=" "
-                      />
-                      <label className="absolute top-3 z-10 origin-[0] -translate-y-6 scale-75 transform text-base dark:text-white text-mid font-medium duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-brand peer-focus:dark:text-brand">
-                        Your name
-                      </label>
-                    </div>
-                    <div className="relative z-0">
-                      <input
-                        type="text"
-                        name="email"
-                        className="peer block w-full appearance-none border-0 border-b border-mid bg-transparent py-2.5 px-0 text-base text-dark dark:text-white focus:border-brand focus:outline-none focus:ring-0"
-                        placeholder=" "
-                      />
-                      <label className="absolute top-3 z-10 origin-[0] -translate-y-6 scale-75 transform text-base dark:text-white text-mid font-medium duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-brand peer-focus:dark:text-brand">
-                        Your email
-                      </label>
-                    </div>
-                    <div className="relative z-0 col-span-2">
-                      <textarea
-                        name="message"
-                        rows="5"
-                        className="peer block w-full appearance-none border-0 border-b border-mid bg-transparent py-2.5 px-0 text-base text-dark dark:text-white focus:border-brand focus:outline-none focus:ring-0"
-                        placeholder=" "
-                      ></textarea>
-                      <label className="absolute top-3 z-10 origin-[0] -translate-y-6 scale-75 transform text-base dark:text-white text-mid font-medium duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-brand peer-focus:dark:text-brand">
-                        Your message
-                      </label>
-                    </div>
-                  </div>
-                  <button
-                    onClick={(e) => {
-                      const formData = new FormData(formRef.current);
-                      e.preventDefault();
-                      var object = {};
-                      formData.forEach((value, key) => {
-                        object[key] = value;
-                      });
-                      var json = JSON.stringify(object);
-                      setFormResult("Sorry, we are loading at the moment");
+            {/* Other Projects Container */}
+            <div className="grid grid-flow-row grid-rows-2 gap-4 grid-col-1 lg:grid-cols-3">
+              {projects.map(function (project, i) {
+                return <ProjectCard project={project} key={i} />;
+              })}
+            </div>
+          </section>
 
-                      fetch("https://api.web3forms.com/submit", {
-                        method: "POST",
-                        headers: {
-                          "Content-Type": "application/json",
-                          Accept: "application/json",
-                        },
-                        body: json,
-                      })
-                        .then(async (response) => {
-                          let json = await response.json();
-                          if (response.status == 200) {
-                            setFormResult(json.message);
-                          } else {
-                            console.log(response);
-                            setFormResult(json.message);
-                          }
-                        })
-                        .catch((error) => {
-                          console.log(error);
-                          setFormResult("Oops! Something went wrong!");
-                        });
-                    }}
-                    href={`mailto:ben@benweston.com`}
-                    className="mt-4 btn-brand btn-md group"
-                  >
-                    Send
-                  </button>
-                </form>
-              ) : formResult == "Email sent successfully!" ? (
-                <p>
-                  Thank you for your message. I'll get back to you as soon as I
-                  can.
+          {/* Blog */}
+          <section
+            className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
+            id="blog"
+            ref={blogRef}
+          >
+            {/* Blog header */}
+            <h2 className="text-5xl">Blog</h2>
+            <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
+
+            <BlogList publications={publications} />
+          </section>
+
+          {/* Contact */}
+          <section
+            className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
+            id="contact"
+            ref={contactRef}
+          >
+            <h2 className="text-5xl">Contact</h2>
+            <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
+
+            <div className="flex flex-col-reverse w-full md:flex-row">
+              <div className="w-full mb-4 md:pl-0 md:mb-0">
+                <p className="text-lg">
+                  I&apos;m currently available to get involved in new projects,
+                  so get in touch if you&apos;d like to work together.
                 </p>
-              ) : (
-                <p>{formResult}</p>
-              )}
+                <p className="text-lg">
+                  Email me at{" "}
+                  <Link href="mailto:danielcranney@gmail.com">
+                    <a className="underline-link">danielcranney@gmail.com</a>
+                  </Link>{" "}
+                  and let&apos;s talk about your project!
+                </p>
+              </div>
             </div>
-          </article>
-        </section>
+          </section>
 
-        {/* Footer */}
-        <footer className="bg-white dark:bg-darker justify-center flex-col flex w-full px-0 py-8 section">
-          <div className="container w-full mx-auto flex items-center">
-            {/* Text */}
-            <div className="flex items-center">
-              <p className="text-2.5xl font-light font-display dark:text-white text-darker mb-0 transition-all duration-150 ease-in-out">
-                ben<span className="text-brandAlt font-extrabold">weston</span>
-              </p>
+          {/* Footer */}
+          <footer className="flex flex-col w-full px-0 py-16 md:px-20 lg:px-24 section">
+            <hr className="w-full h-1 mb-16 dark:bg-white bg-dark border-0 opacity-10"></hr>
+            <div className="w-8 mb-4">
+              <svg
+                id="abbe8588-8b21-44fd-a605-eb7de7f82941"
+                data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 93.13 75.2"
+              >
+                <path
+                  className="dark:opacity-50 dark:fill-current dark:text-light fill-brand"
+                  d="M24.05,38.51,7.5,55.06a4.39,4.39,0,1,1-6.21-6.21L14.74,35.41,1.29,22A4.39,4.39,0,0,1,7.5,15.75L24.05,32.3A4.4,4.4,0,0,1,24.05,38.51Z"
+                />
+                <path
+                  className="dark:opacity-50 dark:fill-current dark:text-light fill-brand"
+                  d="M91.85,55.06a4.38,4.38,0,0,1-6.21,0L69.09,38.51a4.4,4.4,0,0,1,0-6.21L85.64,15.75A4.39,4.39,0,0,1,91.85,22L78.41,35.41,91.85,48.85A4.4,4.4,0,0,1,91.85,55.06Z"
+                />
+                <rect
+                  className="dark:opacity-50 dark:fill-current dark:text-light fill-brand"
+                  x="41.93"
+                  y="-1.17"
+                  width="8.78"
+                  height="77.54"
+                  rx="4.39"
+                  transform="translate(11.31 -10.71) rotate(15)"
+                />
+              </svg>
             </div>
-            <p className="w-auto mb-0 ml-auto">&copy; 2022 benweston.me.uk</p>
-          </div>
-        </footer>
+
+            <div className="flex flex-col items-start md:flex-row">
+              <p className="w-auto mb-4 md:mb-0">
+                &copy; 2022 - Designed and built by Daniel Cranney
+              </p>
+
+              <div className="flex md:hidden">
+                <span className="mr-2">
+                  <GitHubProfile marginBottom={"mb-0"} />
+                </span>
+                <span className="mr-2">
+                  <TwitterProfile marginBottom={"mb-0"} />
+                </span>
+                <span className="mr-2">
+                  <LinkedInProfile marginBottom={"mb-0"} />
+                </span>
+              </div>
+            </div>
+          </footer>
+        </div>
 
         {/* Fixed Container */}
+        <div className="fixed bottom-0 z-30 w-full">
+          <div className="container relative flex h-full mx-auto">
+            {/* Profile Icons */}
+            <div className="absolute bottom-0 items-center hidden mt-auto mr-auto text-white left-8 md:flex md:flex-col">
+              <GitHubProfile marginBottom={"mb-4"} />
+              <TwitterProfile marginBottom={"mb-4"} />
+              <LinkedInProfile marginBottom={"mb-4"} />
+              <div className="w-0.5 dark:bg-white bg-dark h-24 opacity-20 mt-2"></div>
+            </div>
+
+            {/* Pagination */}
+            <div className="absolute bottom-0 items-center hidden mt-auto ml-auto text-white right-8 md:flex md:flex-col">
+              {/* Hero - Diamond 1 */}
+              <button
+                className="w-5 h-5 mb-4"
+                onClick={() => {
+                  scrollTo(homeRef.current);
+                }}
+              >
+                <svg
+                  id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                  className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                    visibleSection === "home"
+                      ? "rotate-45 scale-110"
+                      : "rotate-0 scale-100"
+                  }`}
+                  data-name="Layer 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0
+              0 24 24"
+                >
+                  {/* Fill */}
+                  <path
+                    className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark dark:group-hover:text-white group-hover:rotate-90 ${
+                      visibleSection === "home"
+                        ? "dark:text-white text-mid rotate-90"
+                        : "dark:text-dark text-light rotate-0"
+                    }`}
+                    d="M5.64 5.64h12.73v12.73H5.64z"
+                  />
+                  {/* Border */}
+                  <path
+                    className={`fill-current origin-center transform transition duration-500 ease-in-out dark:group-hover:text-white group-hover:text-dark group-hover:rotate-45 group-hover:opacity-100 ${
+                      visibleSection === "home"
+                        ? "dark:text-white text-dark rotate-45 opacity-100"
+                        : "dark:text-white text-light rotate-45"
+                    }`}
+                    d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                  />
+                </svg>
+              </button>
+              {/* About - Diamond 2 */}
+              <button
+                className="w-5 h-5 mb-4"
+                onClick={() => {
+                  scrollTo(aboutRef.current);
+                }}
+              >
+                <svg
+                  id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                  className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                    visibleSection === "about"
+                      ? "rotate-45 scale-110"
+                      : "rotate-0 scale-100"
+                  }`}
+                  data-name="Layer 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0
+              0 24 24"
+                >
+                  {/* Fill */}
+                  <path
+                    className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark dark:group-hover:text-white group-hover:rotate-90 ${
+                      visibleSection === "about"
+                        ? "dark:text-white text-mid rotate-90"
+                        : "dark:text-dark text-light rotate-0"
+                    }`}
+                    d="M5.64 5.64h12.73v12.73H5.64z"
+                  />
+                  {/* Border */}
+                  <path
+                    className={`fill-current origin-center transform transition duration-500 ease-in-out dark:group-hover:text-white group-hover:text-dark group-hover:rotate-45 group-hover:opacity-100 ${
+                      visibleSection === "about"
+                        ? "dark:text-white text-dark rotate-45 opacity-100"
+                        : "dark:text-white text-light rotate-45"
+                    }`}
+                    d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                  />
+                </svg>
+              </button>
+              {/* Skills - Diamond 3 */}
+              <button
+                className="w-5 h-5 mb-4"
+                onClick={() => {
+                  scrollTo(skillsRef.current);
+                }}
+              >
+                <svg
+                  id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                  className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                    visibleSection === "skills"
+                      ? "rotate-45 scale-110"
+                      : "rotate-0 scale-100"
+                  }`}
+                  data-name="Layer 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0
+              0 24 24"
+                >
+                  {/* Fill */}
+                  <path
+                    className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark dark:group-hover:text-white group-hover:rotate-90 ${
+                      visibleSection === "skills"
+                        ? "dark:text-white text-mid rotate-90"
+                        : "dark:text-dark text-light rotate-0"
+                    }`}
+                    d="M5.64 5.64h12.73v12.73H5.64z"
+                  />
+                  {/* Border */}
+                  <path
+                    className={`fill-current origin-center transform transition duration-500 ease-in-out dark:group-hover:text-white group-hover:text-dark group-hover:rotate-45 group-hover:opacity-100 ${
+                      visibleSection === "skills"
+                        ? "dark:text-white text-dark rotate-45 opacity-100"
+                        : "dark:text-white text-light rotate-45"
+                    }`}
+                    d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                  />
+                </svg>
+              </button>
+              {/* My Work - Diamond 4 */}
+              <button
+                className="w-5 h-5 mb-4"
+                onClick={() => {
+                  scrollTo(myWorkRef.current);
+                }}
+              >
+                <svg
+                  id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                  className={`group rounded-sm transform transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                    visibleSection === "my-work"
+                      ? "rotate-45 scale-110"
+                      : "rotate-0 scale-100"
+                  }`}
+                  data-name="Layer 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0
+              0 24 24"
+                >
+                  {/* Fill */}
+                  <path
+                    className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark dark:group-hover:text-white group-hover:rotate-90 ${
+                      visibleSection === "my-work"
+                        ? "dark:text-white text-mid rotate-90"
+                        : "dark:text-dark text-light rotate-0"
+                    }`}
+                    d="M5.64 5.64h12.73v12.73H5.64z"
+                  />
+                  {/* Border */}
+                  <path
+                    className={`fill-current origin-center transform transition duration-500 ease-in-out dark:group-hover:text-white group-hover:text-dark group-hover:rotate-45 group-hover:opacity-100 ${
+                      visibleSection === "my-work"
+                        ? "dark:text-white text-dark rotate-45 opacity-100"
+                        : "dark:text-white text-light rotate-45"
+                    }`}
+                    d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                  />
+                </svg>
+              </button>
+              {/* Blog - Diamond 5 */}
+              <button
+                className="w-5 h-5 mb-4"
+                onClick={() => {
+                  scrollTo(blogRef.current);
+                }}
+              >
+                <svg
+                  id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                  className={`group rounded-sm transform transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                    visibleSection === "blog"
+                      ? "rotate-45 scale-110"
+                      : "rotate-0 scale-100"
+                  }`}
+                  data-name="Layer 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0
+              0 24 24"
+                >
+                  {/* Fill */}
+                  <path
+                    className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark dark:group-hover:text-white group-hover:rotate-90 ${
+                      visibleSection === "blog"
+                        ? "dark:text-white text-mid rotate-90"
+                        : "dark:text-dark text-light rotate-0"
+                    }`}
+                    d="M5.64 5.64h12.73v12.73H5.64z"
+                  />
+                  {/* Border */}
+                  <path
+                    className={`fill-current origin-center transform transition duration-500 ease-in-out dark:group-hover:text-white group-hover:text-dark group-hover:rotate-45 group-hover:opacity-100 ${
+                      visibleSection === "blog"
+                        ? "dark:text-white text-dark rotate-45 opacity-100"
+                        : "dark:text-white text-light rotate-45"
+                    }`}
+                    d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                  />
+                </svg>
+              </button>
+              {/* Contact - Diamond 6 */}
+              <button
+                className="w-5 h-5 mb-4"
+                onClick={() => {
+                  scrollTo(contactRef.current);
+                }}
+              >
+                <svg
+                  id="e5c888e5-3206-4553-8f53-60ee93248ad9"
+                  className={`group rounded-sm transform  transition duration-500 ease-in-out hover:rotate-45 hover:scale-110 ${
+                    visibleSection === "contact"
+                      ? "rotate-45 scale-110"
+                      : "rotate-0 scale-100"
+                  }`}
+                  data-name="Layer 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0
+              0 24 24"
+                >
+                  {/* Fill */}
+                  <path
+                    className={`fill-current origin-center transform transition duration-200 ease-in-out group-hover:text-dark dark:group-hover:text-white group-hover:rotate-90 ${
+                      visibleSection === "contact"
+                        ? "dark:text-white text-mid rotate-90"
+                        : "dark:text-dark text-light rotate-0"
+                    }`}
+                    d="M5.64 5.64h12.73v12.73H5.64z"
+                  />
+                  {/* Border */}
+                  <path
+                    className={`fill-current origin-center transform transition duration-500 ease-in-out dark:group-hover:text-white group-hover:text-dark group-hover:rotate-45 group-hover:opacity-100 ${
+                      visibleSection === "contact"
+                        ? "dark:text-white text-dark rotate-45 opacity-100"
+                        : "dark:text-white text-light rotate-45"
+                    }`}
+                    d="M12 22.41L1.59 12 12 1.59 22.41 12zM4.41 12L12 19.59 19.59 12 12 4.41z"
+                  />
+                </svg>
+              </button>
+
+              {/* Line */}
+              <div className="w-0.5 dark:bg-white bg-dark h-24 opacity-20 mt-2 z-30"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
+}
+
+/**
+ * Method used to fetch data from Hashnode.
+ * @param {Object} context
+ * @returns props
+ */
+export async function getServerSideProps(context) {
+  const res = await fetch("https://api.hashnode.com/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "32ab9fe7-0331-4efc-bdb8-5a3e0bfdd9b9",
+    },
+    body: JSON.stringify({
+      query:
+        'query {user(username: "danielcranney") {publication {posts(page: 0) {title brief slug coverImage dateAdded}}}}',
+    }),
+  });
+  const publications = await res.json();
+
+  if (!publications) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      publications,
+    },
+  };
 }
