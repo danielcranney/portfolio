@@ -1298,7 +1298,8 @@ export default function Home({ publications }) {
 
             <div className="flex flex-col items-start md:flex-row">
               <p className="w-auto mb-4 md:mb-0">
-                &copy; 2022 - Designed and built by Daniel Cranney
+                &copy; {new Date().getFullYear()} - Designed and built by Daniel
+                Cranney
               </p>
 
               <div className="flex md:hidden">
