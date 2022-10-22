@@ -255,7 +255,7 @@ export default function Home({ publications }) {
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "home"
                         ? "selected delay-200"
-                        : "text-mid/50 hover:text-mid border-b-2 border-transparent"
+                        : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -271,7 +271,7 @@ export default function Home({ publications }) {
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "about"
                         ? "selected delay-150"
-                        : "text-mid/50 hover:text-mid border-b-2 border-transparent"
+                        : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -287,7 +287,7 @@ export default function Home({ publications }) {
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "skills"
                         ? "selected delay-150"
-                        : "text-mid/50 hover:text-mid border-b-2 border-transparent"
+                        : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -303,7 +303,7 @@ export default function Home({ publications }) {
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "my-work"
                         ? "selected delay-150"
-                        : "text-mid/50  hover:text-mid border-b-2 border-transparent"
+                        : "dark:text-light dark:hover:text-white text-mid/50  hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -321,7 +321,7 @@ export default function Home({ publications }) {
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "blog"
                         ? "selected delay-150"
-                        : "text-mid/50 hover:text-mid border-b-2 border-transparent"
+                        : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -337,7 +337,7 @@ export default function Home({ publications }) {
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "contact"
                         ? "selected delay-150"
-                        : "text-mid/50 hover:text-mid border-b-2 border-transparent"
+                        : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -365,7 +365,7 @@ export default function Home({ publications }) {
           className={`header top-0 mx-auto flex items-center py-6 z-50 fixed w-full transition-all duration-150 h-20 ${
             scrolling && !navbarOpen
               ? "dark:bg-dark bg-white"
-              : "bg-transparent"
+              : "dark:bg-darker bg-white"
           }`}
           ref={headerRef}
         >
@@ -535,7 +535,7 @@ export default function Home({ publications }) {
                     Hire me
                   </a>
                 </li>
-                <li className="z-50 inline-block ml-5 list-none lg:hidden">
+                <li className="z-50 inline-block list-none lg:hidden">
                   <button
                     className={`relative w-10 h-10 text-dark/50 dark:text-white ${
                       navbarOpen
@@ -568,10 +568,10 @@ export default function Home({ publications }) {
                 </li>
               </ul>
             </nav>
-            <div className="flex mt-auto ml-1.5">
+            <div className="flex mt-auto">
               {/* Dark mode */}
               <button
-                className="flex items-center justify-center w-12 h-12 transition-all duration-150 ease-in rounded-sm focus:outline-none group bg-transparent outline-none"
+                className="flex items-center justify-center w-7 h-12 transition-all duration-150 ease-in rounded-sm focus:outline-none group bg-transparent outline-none"
                 onClick={() => {
                   setTheme(theme === "dark" ? "light" : "dark");
                 }}
