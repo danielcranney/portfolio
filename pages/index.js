@@ -735,70 +735,6 @@ export default function Home({ publications }) {
                 fixedHeight={"h-28"}
               />
 
-              {/* Supabase */}
-              <Icon
-                IconType={Supabase}
-                title="Supabase"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
-                padding={"p-0"}
-                flexDirection={"flex-col"}
-                titleMargins={"mt-4"}
-                titleSize={"text-sm sm:text-sm"}
-                marginBottom={"mb-4"}
-                marginRight={"mr-0"}
-                textTransform={"normal-case"}
-                fixedHeight={"h-28"}
-              />
-
-              {/* MongoDb */}
-              <Icon
-                IconType={MongoDb}
-                title="MongoDb"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
-                padding={"p-0"}
-                flexDirection={"flex-col"}
-                titleMargins={"mt-4"}
-                titleSize={"text-sm sm:text-sm"}
-                marginBottom={"mb-4"}
-                marginRight={"mr-0"}
-                textTransform={"normal-case"}
-                fixedHeight={"h-28"}
-              />
-
-              {/* Sass */}
-              <Icon
-                IconType={Sass}
-                title="Sass"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
-                padding={"p-0"}
-                flexDirection={"flex-col"}
-                titleMargins={"mt-4"}
-                titleSize={"text-sm sm:text-sm"}
-                marginBottom={"mb-4"}
-                marginRight={"mr-0"}
-                textTransform={"normal-case"}
-                fixedHeight={"h-28"}
-              />
-
-              {/* Bootstrap */}
-              <Icon
-                IconType={Bootstrap}
-                title="Bootstrap"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
-                padding={"p-0"}
-                flexDirection={"flex-col"}
-                titleMargins={"mt-4"}
-                titleSize={"text-sm sm:text-sm"}
-                marginBottom={"mb-4"}
-                marginRight={"mr-0"}
-                textTransform={"normal-case"}
-                fixedHeight={"h-28"}
-              />
-
               {/* Tailwind */}
               <Icon
                 IconType={Tailwind}
@@ -879,10 +815,74 @@ export default function Home({ publications }) {
                 fixedHeight={"h-28"}
               />
 
-              {/* Node */}
+              {/* Express */}
               <Icon
                 IconType={Express}
                 title="Express"
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* Supabase */}
+              <Icon
+                IconType={Supabase}
+                title="Supabase"
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* MongoDb */}
+              <Icon
+                IconType={MongoDb}
+                title="MongoDb"
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* Sass */}
+              <Icon
+                IconType={Sass}
+                title="Sass"
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* Bootstrap */}
+              <Icon
+                IconType={Bootstrap}
+                title="Bootstrap"
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
