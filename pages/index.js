@@ -535,13 +535,14 @@ export default function Home({ publications }) {
                     Hire me
                   </a>
                 </li>
-                <li className="z-50 inline-block list-none lg:hidden">
+                <li className="z-50 inline-block list-none lg:hidden group">
                   <button
-                    className={`relative w-10 h-10 text-dark/50 dark:text-white ${
+                    className={`relative w-10 h-10 ${
                       navbarOpen
                         ? ""
-                        : "dark:opacity-50 dark:group-hover:opacity-100 text-mid/50 group-hover:text-dark"
-                    } focus:outline-none`}
+                        : "text-mid/50 group-hover:text-mid dark:opacity-50 dark:group-hover:opacity-100 dark:text-white dark:group-hover:text-white"
+                    } focus:outline-none 
+                    dark:text-white`}
                     onClick={() => setNavbarOpen(!navbarOpen)}
                   >
                     <div className="absolute block w-5 transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
@@ -553,13 +554,13 @@ export default function Home({ publications }) {
                       ></span>
                       <span
                         aria-hidden="true"
-                        className={`block absolute  h-0.5 w-5 bg-current transform transition duration-200 ease-in-out ${
+                        className={`block absolute h-0.5 w-5 bg-current transform transition duration-200 ease-in-out ${
                           navbarOpen ? "opacity-0" : "opacity-100"
                         }`}
                       ></span>
                       <span
                         aria-hidden="true"
-                        className={`block absolute  h-0.5 w-5 bg-current transform transition duration-200 ease-in-out ${
+                        className={`block absolute h-0.5 w-5 bg-current transform transition duration-200 ease-in-out ${
                           navbarOpen ? "-rotate-45" : "translate-y-1.5"
                         }`}
                       ></span>
@@ -568,7 +569,7 @@ export default function Home({ publications }) {
                 </li>
               </ul>
             </nav>
-            <div className="flex mt-auto">
+            <div className="flex mt-auto ml-0 lg:ml-5">
               {/* Dark mode */}
               <button
                 className="flex items-center justify-center w-7 h-12 transition-all duration-150 ease-in rounded-sm focus:outline-none group bg-transparent outline-none"
