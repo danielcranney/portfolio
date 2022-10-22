@@ -16,7 +16,7 @@ export default function BlogItem({ post }) {
 
   return (
     <div
-      className="flex flex-col rounded-sm bg-light/10 dark:bg-mid p-3.5 gap-y-3.5 group border-2 dark:border-mid dark:hover:border-brand hover:border-brand border-transparent cursor-pointer transition-all duration-150 ease-in-out relative"
+      className="flex flex-col rounded-sm bg-white dark:bg-mid p-3.5 gap-y-3.5 group border-2 dark:border-mid dark:hover:border-brand hover:border-brand border-transparent cursor-pointer transition-all duration-150 ease-in-out relative"
       onClick={redirectToHashnode}
     >
       <div className="w-auto">

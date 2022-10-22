@@ -22,10 +22,10 @@ const FeaturedProjectCard = ({
 }) => {
   return (
     <article
-      className={`relative flex items-stretch w-full dark:bg-mid bg-light/10 p-3.5 my-4 ${flexDirection} gap-x-3.5 rounded-md`}
+      className={`relative flex items-stretch w-full dark:bg-mid bg-white p-3.5 my-4 ${flexDirection} gap-x-3.5 rounded-md shadow-md shadow-light/10 dark:shadow-dark`}
     >
       {/* Project image */}
-      <div className="flex flex-col w-full lg:w-7/12 my-auto rounded-md overflow-hidden">
+      <div className="flex flex-col w-full lg:w-7/12 my-auto rounded-md overflow-hidden border border-shadow dark:border-mid">
         <MockupToolbar />
         <Image
           src={imgSrc}

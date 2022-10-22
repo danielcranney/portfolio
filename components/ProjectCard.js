@@ -7,7 +7,7 @@ const ProjectCard = ({ project }) => {
   const { title, overview, stack, link, repo, isSiteLive } = project;
 
   return (
-    <div className="flex flex-col w-full rounded-sm bg-light/10 dark:bg-mid px-7 py-7">
+    <div className="flex flex-col w-full rounded-md bg-white dark:bg-mid px-7 py-7 shadow-md shadow-light/10 dark:shadow-dark">
       <svg
         id="b4200d7e-7896-4022-b85b-f69170875645"
         data-name="Layer 1"
