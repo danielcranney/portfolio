@@ -34,6 +34,9 @@ import BlogItem from "../components/blog/BlogItem";
 
 // Dark Mode
 import { useTheme } from "next-themes";
+import Supabase from "../components/icons/Supabase";
+import MongoDb from "../components/icons/MongoDb";
+import Express from "../components/icons/Express";
 
 const projects = [
   {
@@ -539,10 +542,9 @@ export default function Home({ publications }) {
                   <button
                     className={`relative w-10 h-10 ${
                       navbarOpen
-                        ? ""
+                        ? "dark:text-white text-dark"
                         : "text-mid/50 group-hover:text-mid dark:opacity-50 dark:group-hover:opacity-100 dark:text-white dark:group-hover:text-white"
-                    } focus:outline-none 
-                    dark:text-white`}
+                    } focus:outline-none`}
                     onClick={() => setNavbarOpen(!navbarOpen)}
                   >
                     <div className="absolute block w-5 transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
@@ -700,12 +702,11 @@ export default function Home({ publications }) {
             <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
 
             {/* Skills icons */}
-            <div className="flex flex-wrap w-full pr-4 mt-8">
+            <div className="w-full grid gap-4 grid-cols-4 sm:grid-cols-4 md:grid-cols-7 mt-4">
               {/* HTML */}
               <Icon
                 IconType={Html}
                 title="HTML"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -722,7 +723,38 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Css}
                 title="CSS"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* Supabase */}
+              <Icon
+                IconType={Supabase}
+                title="Supabase"
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* MongoDb */}
+              <Icon
+                IconType={MongoDb}
+                title="MongoDb"
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -739,7 +771,6 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Sass}
                 title="Sass"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -756,7 +787,6 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Bootstrap}
                 title="Bootstrap"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -773,7 +803,6 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Tailwind}
                 title="Tailwind"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -790,7 +819,6 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Javascript}
                 title="Javascript"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -807,7 +835,6 @@ export default function Home({ publications }) {
               <Icon
                 IconType={ReactJs}
                 title="React"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -824,7 +851,6 @@ export default function Home({ publications }) {
               <Icon
                 IconType={NextJs}
                 title="Next"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -841,7 +867,22 @@ export default function Home({ publications }) {
               <Icon
                 IconType={NodeJs}
                 title="Node"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                width={"w-16 sm:w-20"}
+                height={"h-16 sm:h-20"}
+                padding={"p-0"}
+                flexDirection={"flex-col"}
+                titleMargins={"mt-4"}
+                titleSize={"text-sm sm:text-sm"}
+                marginBottom={"mb-4"}
+                marginRight={"mr-0"}
+                textTransform={"normal-case"}
+                fixedHeight={"h-28"}
+              />
+
+              {/* Node */}
+              <Icon
+                IconType={Express}
+                title="Express"
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -858,7 +899,6 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Firebase}
                 title="Firebase"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -875,7 +915,6 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Photoshop}
                 title="Photoshop"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -892,7 +931,6 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Illustrator}
                 title="Illustrator"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -909,7 +947,6 @@ export default function Home({ publications }) {
               <Icon
                 IconType={AfterEffects}
                 title="After Effects"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -926,7 +963,6 @@ export default function Home({ publications }) {
               <Icon
                 IconType={AdobeXd}
                 title="Adobe XD"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -939,11 +975,11 @@ export default function Home({ publications }) {
                 fixedHeight={"h-28"}
               />
 
-              {/* Figma */}
+              {/* Figma
               <Icon
                 IconType={Figma}
                 title="Figma"
-                columnSizing={"w-1/4 sm:w-1/4 lg:w-1/8"}
+                
                 width={"w-16 sm:w-20"}
                 height={"h-16 sm:h-20"}
                 padding={"p-0"}
@@ -954,7 +990,7 @@ export default function Home({ publications }) {
                 marginRight={"mr-0"}
                 textTransform={"normal-case"}
                 fixedHeight={"h-28"}
-              />
+              /> */}
             </div>
           </section>
 

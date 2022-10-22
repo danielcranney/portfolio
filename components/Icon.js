@@ -2,7 +2,6 @@ import React from "react";
 
 const Icon = ({
   IconType,
-  columnSizing,
   padding,
   width,
   height,
@@ -17,7 +16,7 @@ const Icon = ({
 }) => {
   return (
     <div
-      className={`${columnSizing} items-center flex justify-start ${padding} ${flexDirection} ${marginBottom} ${marginRight} ${fixedHeight} sm:h-auto`}
+      className={`items-center flex justify-start ${padding} ${flexDirection} ${marginBottom} ${marginRight} ${fixedHeight} sm:h-auto`}
     >
       <div
         className={`${width} ${height} group transition-all duration-200 ease-in-out transform translate-y-0 group hover:-translate-y-0 translate-x-0`}
