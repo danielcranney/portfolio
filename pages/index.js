@@ -38,7 +38,7 @@ import BlogItem from "../components/blog/BlogItem";
 // Dark Mode
 import { useTheme } from "next-themes";
 
-import { projects } from "./utils/constants";
+import { projects } from "../utils/constants";
 
 const getDimensions = (ele) => {
   const { height } = ele.getBoundingClientRect();
