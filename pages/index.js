@@ -1030,7 +1030,7 @@ export default function Home({ publications }) {
               {/* Project Two */}
               <FeaturedProjectCard
                 title={"ColorHub"}
-                status={"Currently working on"}
+                status={"V2 Just Launched"}
                 description={`Create a custom colour palette for your next project. Preview your palette on different layouts and then export the CSS, SCSS or Tailwind code.`}
                 float={`right-0`}
                 flexDirection={`flex-col lg:flex-row-reverse`}
@@ -1110,8 +1110,8 @@ export default function Home({ publications }) {
               {/* Project Three */}
               <FeaturedProjectCard
                 title={"ProfileMe.dev"}
-                status={"Just launched"}
-                description={`Create an awesome GitHub profile in minutes.`}
+                status={"Open Source"}
+                description={`Create an amazing GitHub profile in minutes.`}
                 float={`right-0`}
                 flexDirection={`flex-col lg:flex-row`}
                 imgWidth={"1366"}
