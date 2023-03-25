@@ -10,7 +10,7 @@
     @apply antialiased;
   }
   body {
-    @apply bg-dark text-white;
+    @apply bg-light/10 dark:bg-dark text-white;
   }
 }
 
@@ -56,13 +56,13 @@
 
 @layer components {
   .nav-item {
-    @apply relative after:absolute after:bg-brand after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:transition-transform after:ease-in-out after:duration-300 font-bold leading-loose cursor-pointer text-light hover:text-white;
+    @apply relative after:absolute after:bg-brand after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:transition-transform after:ease-in-out after:duration-300 font-bold leading-loose cursor-pointer dark:text-light dark:hover:text-white text-light hover:text-darker;
   }
   .nav-item.active {
     @apply after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100;
   }
   .nav-item.current {
-    @apply after:scale-x-100 after:origin-bottom-left text-white;
+    @apply after:scale-x-100 after:origin-bottom-left text-darker dark:text-white;
   }
 }
 

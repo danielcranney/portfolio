@@ -47,6 +47,7 @@ module.exports = {
         dark: "#22222b",
         mid: "#282833",
         light: "#a2a1a6",
+        lightest: "#ffffff",
       },
       backgroundImage: (theme) => ({
         "header-img": "url('/bg.svg')",

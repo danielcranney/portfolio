@@ -24,11 +24,14 @@ const Icon = ({
         <IconType />
       </div>
       {title ? (
-        <p
+        <>
+          {/* <p
           className={`${titleMargins} ${titleSize} font-semibold tracking-wide opacity-100 ${textTransform} text-center`}
         >
           {title}
         </p>
+      ) : null} */}
+        </>
       ) : null}
     </div>
   );

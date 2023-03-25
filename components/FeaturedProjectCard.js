@@ -45,7 +45,9 @@ const FeaturedProjectCard = ({
         <h3>{title}</h3>
         <div className="w-1/4 h-1 bg-brand mb-2">&nbsp;</div>
         <div className="flex flex-wrap mb-2">{stack}</div>
-        <p className="text-sm tracking-wide leading-normal">{description}</p>
+        <p className="text-sm md:text-base tracking-wide leading-normal dark:text-white">
+          {description}
+        </p>
         <div className="flex">
           {liveLink !== null ? (
             <Button

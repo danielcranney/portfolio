@@ -62,7 +62,9 @@ const scrollTo = (ele) => {
 export default function Home({ publications }) {
   const [visibleSection, setVisibleSection] = useState();
   const [scrolling, setScrolling] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { systemTheme, theme, setTheme } = useTheme();
@@ -118,6 +120,39 @@ export default function Home({ publications }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [visibleSection]);
+
+  // Handle Header Scroll Away
+  useEffect(() => {
+    let prevScrollPos = window.pageYOffset;
+    let timeoutId;
+
+    const handleScrollBack = () => {
+      const currentScrollPos = window.pageYOffset;
+
+      // Delay before the header scrolls back into view
+      if (currentScrollPos < scrollPosition - 50 && scrolling) {
+        timeoutId = setTimeout(() => {
+          setShowHeader(true);
+        }, 250);
+      }
+
+      // Add an easing effect when the header scrolls into and out of view
+      if (currentScrollPos > prevScrollPos + 10 && !scrolling && showHeader) {
+        setScrolling(true);
+      } else if (currentScrollPos < prevScrollPos - 10 && scrolling) {
+        clearTimeout(timeoutId);
+        setScrolling(false);
+        setTimeout(() => {
+          setShowHeader(false);
+        }, 250);
+      }
+
+      prevScrollPos = currentScrollPos;
+    };
+
+    window.addEventListener("scroll", handleScrollBack);
+    return () => window.removeEventListener("scroll", handleScrollBack);
+  }, [scrollPosition, scrolling, showHeader]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -319,17 +354,19 @@ export default function Home({ publications }) {
 
         {/* Header and Nav */}
         <header
-          className={`header top-0 mx-auto flex items-center py-6 z-50 fixed w-full transition-all duration-150 h-20 ${
-            scrolling && !navbarOpen
-              ? "dark:bg-dark bg-white"
-              : "dark:bg-darker bg-white"
-          }`}
           ref={headerRef}
+          className={`header top-0 mx-auto flex items-center z-50 fixed w-full transition-all duration-150 h-20 ease-in-out ${
+            scrolling ? "-translate-y-full" : ""
+          } ${
+            scrolling && !navbarOpen
+              ? "dark:bg-darker bg-[#f6f5f6]"
+              : "dark:bg-darker bg-[#f6f5f6]"
+          }`}
         >
           {/* Logo and Nav container */}
           <div className="container relative flex items-center mx-auto">
             {/* Logo */}
-            <div className="z-50 w-9 sm:w-8 h-9 sm:h-8 flex items-center">
+            <div className="z-50 sm:w-8 sm:h-8 w-9 h-9 flex items-center">
               <svg
                 id="b613d120-e911-4f71-b7bc-d9b9e1bbdc6f"
                 data-name="Layer 1"
@@ -644,13 +681,13 @@ export default function Home({ publications }) {
             <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
 
             {/* Skills icons */}
-            <div className="w-full grid gap-4 grid-cols-4 sm:grid-cols-4 md:grid-cols-7 mt-4">
+            <div className="w-full mr-auto grid gap-4 grid-cols-4 sm:grid-cols-4 md:grid-cols-8 mt-4">
               {/* HTML */}
               <Icon
                 IconType={Html}
                 title="HTML"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -665,8 +702,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Css}
                 title="CSS"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -681,8 +718,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Tailwind}
                 title="Tailwind"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -697,8 +734,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Javascript}
                 title="Javascript"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -713,8 +750,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={ReactJs}
                 title="React"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -729,8 +766,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={NextJs}
                 title="Next"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -745,8 +782,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={NodeJs}
                 title="Node"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -761,8 +798,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Express}
                 title="Express"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -777,8 +814,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Supabase}
                 title="Supabase"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -793,8 +830,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={MongoDb}
                 title="MongoDb"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -809,8 +846,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Sass}
                 title="Sass"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -822,11 +859,11 @@ export default function Home({ publications }) {
               />
 
               {/* Bootstrap */}
-              <Icon
+              {/* <Icon
                 IconType={Bootstrap}
                 title="Bootstrap"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -835,14 +872,14 @@ export default function Home({ publications }) {
                 marginRight={"mr-0"}
                 textTransform={"normal-case"}
                 fixedHeight={"h-28"}
-              />
+              /> */}
 
               {/* Firebase */}
               <Icon
                 IconType={Firebase}
                 title="Firebase"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -857,8 +894,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Photoshop}
                 title="Photoshop"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -873,8 +910,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={Illustrator}
                 title="Illustrator"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -889,8 +926,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={AfterEffects}
                 title="After Effects"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -905,8 +942,8 @@ export default function Home({ publications }) {
               <Icon
                 IconType={AdobeXd}
                 title="Adobe XD"
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
+                width={"w-16"}
+                height={"h-16"}
                 padding={"p-0"}
                 flexDirection={"flex-col"}
                 titleMargins={"mt-4"}
@@ -1031,7 +1068,7 @@ export default function Home({ publications }) {
               <FeaturedProjectCard
                 title={"ColorHub"}
                 status={"V2 Just Launched"}
-                description={`Create a custom colour palette for your next project. Preview your palette on different layouts and then export the CSS, SCSS or Tailwind code.`}
+                description={`Find the perfect palette for your next perfect. pick it, preview it and paste it right into your code.`}
                 float={`right-0`}
                 flexDirection={`flex-col lg:flex-row-reverse`}
                 imgWidth={"1366"}
@@ -1111,7 +1148,7 @@ export default function Home({ publications }) {
               <FeaturedProjectCard
                 title={"ProfileMe.dev"}
                 status={"Open Source"}
-                description={`Create an amazing GitHub profile in minutes.`}
+                description={`Create an amazing GitHub profile complete with skills icons, stat graphs and more in just a couple of minutes.`}
                 float={`right-0`}
                 flexDirection={`flex-col lg:flex-row`}
                 imgWidth={"1366"}
