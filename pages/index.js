@@ -21,6 +21,9 @@ import Photoshop from "../components/icons/Photoshop";
 import Illustrator from "../components/icons/Illustrator";
 import AfterEffects from "../components/icons/AfterEffects";
 import AdobeXd from "../components/icons/AdobeXd";
+import Supabase from "../components/icons/Supabase";
+import MongoDb from "../components/icons/MongoDb";
+import Express from "../components/icons/Express";
 // Project Card
 import ProjectCard from "../components/ProjectCard";
 import GitHubProfile from "../components/icons/GitHubProfile";
@@ -34,57 +37,8 @@ import BlogItem from "../components/blog/BlogItem";
 
 // Dark Mode
 import { useTheme } from "next-themes";
-import Supabase from "../components/icons/Supabase";
-import MongoDb from "../components/icons/MongoDb";
-import Express from "../components/icons/Express";
 
-const projects = [
-  {
-    title: "Yodlr",
-    overview:
-      "Shoutout a Twitter user, and generate a profile card in under a minute. Simply find the user, select the style, edit the colors and download the card.",
-    stack: ["Html", "Tailwind", "React", "Next"],
-    link: "http://yodlr.vercel.app",
-    repo: "https://github.com/danielcranney/yodlr",
-    isSiteLive: true,
-  },
-  {
-    title: "Rate My Film",
-    overview:
-      "A single-page application that helps filmmakers learn more about who their film might be suitable for.",
-    stack: ["Html", "React", "Sass"],
-    link: "http://www.ratemyfilm.co.uk",
-    repo: "https://github.com/danielcranney/rate-my-film",
-    isSiteLive: true,
-  },
-  {
-    title: "Spotlight Media",
-    overview:
-      "The website for my corporate videography company. This features a contact form powered by NodeJs and SendGrid.",
-    stack: ["Html", "ReactJs", "Next", "Node"],
-    link: "http://www.wearespotlight.co.uk",
-    repo: "https://github.com/danielcranney/spotlight-media",
-    isSiteLive: true,
-  },
-  {
-    title: "Quotr",
-    overview:
-      "A simple application built to help tradespeople automate the quotation process.",
-    stack: ["Html", "React", "Next"],
-    link: "https://quotr.vercel.app",
-    repo: null,
-    isSiteLive: true,
-  },
-  {
-    title: "GPS Embroidery",
-    overview:
-      "A fully-responsive and quick-rendering image-based website for an ongoing academic project.",
-    stack: ["Html", "React", "Next"],
-    link: "http://www.gps-embroidery.com",
-    repo: "https://github.com/danielcranney/GPS-Embroidery",
-    isSiteLive: true,
-  },
-];
+import { projects } from "./utils/constants";
 
 const getDimensions = (ele) => {
   const { height } = ele.getBoundingClientRect();
@@ -273,7 +227,7 @@ export default function Home({ publications }) {
                     href="#"
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "about"
-                        ? "selected delay-150"
+                        ? "current"
                         : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
@@ -289,7 +243,7 @@ export default function Home({ publications }) {
                     href="#"
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "skills"
-                        ? "selected delay-150"
+                        ? "current"
                         : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
@@ -305,7 +259,7 @@ export default function Home({ publications }) {
                     href="#"
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "my-work"
-                        ? "selected delay-150"
+                        ? "current"
                         : "dark:text-light dark:hover:text-white text-mid/50  hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
@@ -323,7 +277,7 @@ export default function Home({ publications }) {
                     rel="noreferrer"
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "blog"
-                        ? "selected delay-150"
+                        ? "current"
                         : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
@@ -339,7 +293,7 @@ export default function Home({ publications }) {
                     href="#"
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "contact"
-                        ? "selected delay-150"
+                        ? "current"
                         : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
@@ -375,7 +329,7 @@ export default function Home({ publications }) {
           {/* Logo and Nav container */}
           <div className="container relative flex items-center mx-auto">
             {/* Logo */}
-            <div className="z-50 w-9 sm:w-12 h-9 sm:h-12 flex items-center">
+            <div className="z-50 w-9 sm:w-8 h-9 sm:h-8 flex items-center">
               <svg
                 id="b613d120-e911-4f71-b7bc-d9b9e1bbdc6f"
                 data-name="Layer 1"
@@ -441,10 +395,8 @@ export default function Home({ publications }) {
                 <li className="z-50 hidden mx-5 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`header_link font-semibold transition-all duration-150 ease-in-out ${
-                      visibleSection === "home"
-                        ? "selected delay-150"
-                        : "opacity-50 hover:opacity-100 dark:text-white text-dark"
+                    className={`nav-item ${
+                      visibleSection === "home" ? "current" : "active"
                     }`}
                     onClick={() => {
                       scrollTo(homeRef.current);
@@ -456,10 +408,8 @@ export default function Home({ publications }) {
                 <li className="z-50 hidden mx-5 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`header_link font-semibold transition-all duration-150 ease-in-out ${
-                      visibleSection === "about"
-                        ? "selected delay-150"
-                        : "opacity-50 hover:opacity-100 border-b-2 border-transparent  dark:text-white text-dark"
+                    className={`nav-item ${
+                      visibleSection === "about" ? "current" : "active"
                     }`}
                     onClick={() => {
                       scrollTo(aboutRef.current);
@@ -471,10 +421,8 @@ export default function Home({ publications }) {
                 <li className="z-50 hidden mx-5 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`header_link font-semibold transition-all duration-150 ease-in-out ${
-                      visibleSection === "skills"
-                        ? "selected delay-150"
-                        : "opacity-50 hover:opacity-100 border-b-2 border-transparent dark:text-white text-dark"
+                    className={`nav-item ${
+                      visibleSection === "skills" ? "current" : "active"
                     }`}
                     onClick={() => {
                       scrollTo(skillsRef.current);
@@ -486,10 +434,8 @@ export default function Home({ publications }) {
                 <li className="z-50 hidden mx-5 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`header_link font-semibold transition-all duration-150 ease-in-out ${
-                      visibleSection === "my-work"
-                        ? "selected delay-150"
-                        : "opacity-50 hover:opacity-100 border-b-2 border-transparent dark:text-white text-dark"
+                    className={`nav-item ${
+                      visibleSection === "my-work" ? "current" : "active"
                     }`}
                     onClick={() => {
                       scrollTo(myWorkRef.current);
@@ -503,10 +449,8 @@ export default function Home({ publications }) {
                     href="#"
                     target="_blank"
                     rel="noreferrer"
-                    className={`header_link font-semibold transition-all duration-150 ease-in-out ${
-                      visibleSection === "blog"
-                        ? "selected delay-150"
-                        : "opacity-50 hover:opacity-100 border-b-2 border-transparent dark:text-white text-dark"
+                    className={`nav-item ${
+                      visibleSection === "blog" ? "current" : "active"
                     }`}
                     onClick={() => {
                       scrollTo(blogRef.current);
@@ -518,10 +462,8 @@ export default function Home({ publications }) {
                 <li className="z-50 hidden mx-5 list-none lg:inline-block">
                   <button
                     href="#"
-                    className={`header_link font-semibold transition-all duration-150 ease-in-out ${
-                      visibleSection === "contact"
-                        ? "selected delay-150"
-                        : "opacity-50 hover:opacity-100 border-b-2 border-transparent dark:text-white text-dark"
+                    className={`nav-item ${
+                      visibleSection === "contact" ? "current" : "active"
                     }`}
                     onClick={() => {
                       scrollTo(contactRef.current);
@@ -974,23 +916,6 @@ export default function Home({ publications }) {
                 textTransform={"normal-case"}
                 fixedHeight={"h-28"}
               />
-
-              {/* Figma
-              <Icon
-                IconType={Figma}
-                title="Figma"
-                
-                width={"w-16 sm:w-20"}
-                height={"h-16 sm:h-20"}
-                padding={"p-0"}
-                flexDirection={"flex-col"}
-                titleMargins={"mt-4"}
-                titleSize={"text-sm sm:text-sm"}
-                marginBottom={"mb-4"}
-                marginRight={"mr-0"}
-                textTransform={"normal-case"}
-                fixedHeight={"h-28"}
-              /> */}
             </div>
           </section>
 
@@ -1008,15 +933,15 @@ export default function Home({ publications }) {
             <div className="flex flex-col w-full mb-12">
               {/* Project One */}
               <FeaturedProjectCard
-                title={"Reportr"}
-                status={"Just launched"}
-                description={`Write reports for your students in 60 seconds or less`}
+                title={"Smylo"}
+                status={"Join the Waitlist"}
+                description={`Keep your life on track and never miss another important date again`}
                 float={`right-0`}
                 flexDirection={`flex-col lg:flex-row`}
                 imgWidth={"1366"}
                 imgHeight={"666"}
-                imgSrc={"/projects/reportr.png"}
-                liveLink={"https://reportr.io/"}
+                imgSrc={"/projects/smylo.png"}
+                liveLink={"https://smylo.co/"}
                 repoLink={null}
                 stack={
                   <>
@@ -1071,6 +996,22 @@ export default function Home({ publications }) {
                     <Icon
                       IconType={NextJs}
                       title="Next"
+                      columnSizing={"w-auto"}
+                      width={"w-6"}
+                      height={"h-6"}
+                      flexDirection={"flex-row"}
+                      padding={"p-0"}
+                      titleMargins={"my-0 ml-1"}
+                      titleSize={"text-sm"}
+                      marginBottom={"mb-4"}
+                      marginRight={"mr-3"}
+                      textTransform={"uppercase"}
+                      fixedHeight={"h-auto"}
+                    />
+
+                    <Icon
+                      IconType={Supabase}
+                      title="Supabase"
                       columnSizing={"w-auto"}
                       width={"w-6"}
                       height={"h-6"}
@@ -1293,8 +1234,11 @@ export default function Home({ publications }) {
                 </p>
                 <p className="text-lg">
                   Email me at{" "}
-                  <Link href="mailto:danielcranney@gmail.com">
-                    <a className="underline-link">danielcranney@gmail.com</a>
+                  <Link
+                    href="mailto:danielcranney@gmail.com"
+                    className="underline-link"
+                  >
+                    danielcranney@gmail.com
                   </Link>{" "}
                   and let&apos;s talk about your project!
                 </p>

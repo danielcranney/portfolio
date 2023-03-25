@@ -43,10 +43,10 @@ module.exports = {
         soft: "#f0f0f0",
         brand: "#7364d0",
         brandAlt: "#867dd8",
-        light: "#a2a1a6",
-        mid: "#282833",
-        dark: "#22222b",
         darker: "#1d1d23",
+        dark: "#22222b",
+        mid: "#282833",
+        light: "#a2a1a6",
       },
       backgroundImage: (theme) => ({
         "header-img": "url('/bg.svg')",
