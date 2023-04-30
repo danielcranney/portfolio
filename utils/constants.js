@@ -8,9 +8,9 @@ export const projects = [
     isSiteLive: true,
   },
   {
-    title: "Yodlr",
+    title: "Yodlr (Archived)",
     overview:
-      "Shoutout a Twitter user, and generate a profile card in under a minute. Simply find the user, select the style, edit the colors and download the card.",
+      "Shoutout a Twitter user, and generate a custom profile card in under a minute. Update: Since Twitter announced new API pricing in 2023, this project no longer functions correctly, and has been archived.",
     stack: ["Html", "Tailwind", "React", "Next"],
     link: "http://yodlr.vercel.app",
     repo: "https://github.com/danielcranney/yodlr",
