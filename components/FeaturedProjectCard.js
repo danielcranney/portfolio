@@ -22,7 +22,7 @@ const FeaturedProjectCard = ({
 }) => {
   return (
     <article
-      className={`relative flex items-stretch w-full dark:bg-mid bg-white p-3.5 my-4 ${flexDirection} gap-x-3.5 rounded-md shadow-md shadow-light/10 dark:shadow-dark`}
+      className={`relative flex items-stretch w-full dark:bg-dark/20 bg-white p-3.5 my-4 ${flexDirection} gap-x-3.5 rounded-md shadow-md shadow-light/10 dark:shadow-darker`}
     >
       {/* Project image */}
       <div className="flex flex-col w-full lg:w-7/12 my-auto rounded-md overflow-hidden border border-shadow dark:border-mid">

@@ -217,7 +217,7 @@ export default function Home({ publications }) {
   return (
     <div className="bg-white dark:bg-darker transition-all duration-150 ease-in-out">
       <div
-        className={`relative w-full dark:bg-dark/20 bg-light bg-opacity-10 overflow-auto min-h-screen transition-all duration-150 ease-in-out ${
+        className={`relative w-full dark:bg-darker bg-light bg-opacity-10 overflow-auto min-h-screen transition-all duration-150 ease-in-out ${
           navbarOpen ? "overflow-hidden" : "overflow-auto"
         }`}
       >
@@ -359,8 +359,8 @@ export default function Home({ publications }) {
             scrolling ? "-translate-y-full" : ""
           } ${
             scrolling && !navbarOpen
-              ? "dark:bg-darker bg-[#f6f5f6]"
-              : "dark:bg-darker bg-[#f6f5f6]"
+              ? "dark:bg-darker bg-light"
+              : "dark:bg-darker bg-light"
           }`}
         >
           {/* Logo and Nav container */}
@@ -584,12 +584,7 @@ export default function Home({ publications }) {
                     speed={30}
                     eraseSpeed={30}
                     eraseDelay={1500}
-                    text={[
-                      `Frontend Developer`,
-                      `Designer`,
-                      `Teacher`,
-                      `Cat Dad`,
-                    ]}
+                    text={["Developer", `Designer`, `Teacher`, `Cat Dad`]}
                   />
                 </h2>
                 <p className="w-4/5 text-xl md:w-full">
@@ -1242,17 +1237,16 @@ export default function Home({ publications }) {
           </section>
 
           {/* Blog */}
-          <section
+          {/* <section
             className="flex flex-col w-full px-0 md:px-20 lg:px-24 py-28 section"
             id="blog"
             ref={blogRef}
           >
-            {/* Blog header */}
             <h2 className="text-5xl">Blog</h2>
             <hr className="bg-brand w-40 h-1.5 mt-4 mb-6 border-0"></hr>
 
             <BlogList publications={publications} />
-          </section>
+          </section> */}
 
           {/* Contact */}
           <section
@@ -1592,34 +1586,29 @@ export default function Home({ publications }) {
   );
 }
 
-/**
- * Method used to fetch data from Hashnode.
- * @param {Object} context
- * @returns props
- */
-export async function getServerSideProps(context) {
-  const res = await fetch("https://api.hashnode.com/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "32ab9fe7-0331-4efc-bdb8-5a3e0bfdd9b9",
-    },
-    body: JSON.stringify({
-      query:
-        'query {user(username: "danielcranney") {publication {posts(page: 0) {title brief slug coverImage dateAdded}}}}',
-    }),
-  });
-  const publications = await res.json();
+// export async function getServerSideProps(context) {
+//   const res = await fetch("https://api.hashnode.com/", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: "32ab9fe7-0331-4efc-bdb8-5a3e0bfdd9b9",
+//     },
+//     body: JSON.stringify({
+//       query:
+//         'query {user(username: "danielcranney") {publication {posts(page: 0) {title brief slug coverImage dateAdded}}}}',
+//     }),
+//   });
+//   const publications = await res.json();
 
-  if (!publications) {
-    return {
-      notFound: true,
-    };
-  }
+//   if (!publications) {
+//     return {
+//       notFound: true,
+//     };
+//   }
 
-  return {
-    props: {
-      publications,
-    },
-  };
-}
+//   return {
+//     props: {
+//       publications,
+//     },
+//   };
+// }
