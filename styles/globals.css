@@ -56,7 +56,7 @@
 
 @layer components {
   .nav-item {
-    @apply relative after:absolute after:bg-brand after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:transition-transform after:ease-in-out after:duration-300 font-bold leading-loose cursor-pointer dark:text-light dark:hover:text-white text-light hover:text-darker;
+    @apply relative after:absolute after:bg-brand after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:transition-transform after:ease-in-out after:duration-300 font-bold leading-loose cursor-pointer dark:text-light dark:hover:text-white text-mid hover:text-darker;
   }
   .nav-item.active {
     @apply after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100;
@@ -139,7 +139,7 @@
     border-brand
     hover:bg-brandAlt
     hover:border-brandAlt
-    dark:text-white text-white
+    dark:text-darker text-darker hover:text-darker
     focus:outline-none
     focus:ring-0
     transition-all duration-150 ease-in-out;

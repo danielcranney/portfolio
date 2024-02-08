@@ -198,7 +198,7 @@ export default function Home({ publications }) {
     } else {
       return (
         <svg
-          className="w-6 h-6 transition-all duration-150 ease-in-out flex text-mid/50 group-hover:text-dark"
+          className="w-6 h-6 transition-all duration-150 ease-in-out flex text-mid group-hover:text-dark"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -247,7 +247,7 @@ export default function Home({ publications }) {
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "home"
                         ? "selected delay-200"
-                        : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
+                        : "dark:text-light dark:hover:text-white text-mid hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -263,7 +263,7 @@ export default function Home({ publications }) {
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "about"
                         ? "current"
-                        : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
+                        : "dark:text-light dark:hover:text-white text-mid hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -279,7 +279,7 @@ export default function Home({ publications }) {
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "skills"
                         ? "current"
-                        : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
+                        : "dark:text-light dark:hover:text-white text-mid hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -295,7 +295,7 @@ export default function Home({ publications }) {
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "my-work"
                         ? "current"
-                        : "dark:text-light dark:hover:text-white text-mid/50  hover:text-mid border-b-2 border-transparent"
+                        : "dark:text-light dark:hover:text-white text-mid  hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -313,7 +313,7 @@ export default function Home({ publications }) {
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "blog"
                         ? "current"
-                        : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
+                        : "dark:text-light dark:hover:text-white text-mid hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -329,7 +329,7 @@ export default function Home({ publications }) {
                     className={`header_link text-xl font-semibold transition-all duration-150 ease-in-out ${
                       visibleSection === "contact"
                         ? "current"
-                        : "dark:text-light dark:hover:text-white text-mid/50 hover:text-mid border-b-2 border-transparent"
+                        : "dark:text-light dark:hover:text-white text-mid hover:text-mid border-b-2 border-transparent"
                     }`}
                     onClick={() => {
                       setNavbarOpen(false);
@@ -357,11 +357,7 @@ export default function Home({ publications }) {
           ref={headerRef}
           className={`header top-0 mx-auto flex items-center z-50 fixed w-full transition-all duration-150 h-20 ease-in-out ${
             scrolling ? "-translate-y-full" : ""
-          } ${
-            scrolling && !navbarOpen
-              ? "dark:bg-darker bg-light"
-              : "dark:bg-darker bg-light"
-          }`}
+          } ${scrolling && !navbarOpen ? "dark:bg-darker" : "dark:bg-darker"}`}
         >
           {/* Logo and Nav container */}
           <div className="container relative flex items-center mx-auto">
@@ -522,7 +518,7 @@ export default function Home({ publications }) {
                     className={`relative w-10 h-10 ${
                       navbarOpen
                         ? "dark:text-white text-dark"
-                        : "text-mid/50 group-hover:text-mid dark:opacity-50 dark:group-hover:opacity-100 dark:text-white dark:group-hover:text-white"
+                        : "text-mid group-hover:text-dark dark:opacity-50 dark:group-hover:opacity-100 dark:text-white dark:group-hover:text-white"
                     } focus:outline-none`}
                     onClick={() => setNavbarOpen(!navbarOpen)}
                   >
