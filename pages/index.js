@@ -651,7 +651,7 @@ export default function Home({ publications }) {
                 </div>
                 <div className="flex w-full h-full mb-4 md:pl-8 md:w-2/5 md:mb-0">
                   <Image
-                    src="/headshot-with-frame-2.jpg"
+                    src="/headshot-2023.jpg"
                     className="overflow-hidden rounded-md"
                     width={880}
                     height={880}

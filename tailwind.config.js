@@ -46,7 +46,7 @@ module.exports = {
         darker: "#18161A",
         dark: "#494252",
         mid: "#A8A5B1",
-        light: "#DAD5E3",
+        light: "#CDC3AB", // Adjusted to be slightly darker and warmer
         lightest: "#FFFFFF",
       },
       backgroundImage: (theme) => ({
