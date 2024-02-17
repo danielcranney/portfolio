@@ -1,4 +1,4 @@
-@import url("https://use.typekit.net/zpy2zmz.css");
+@import url("https://use.typekit.net/ewi2vgp.css");
 
 /* ./styles/globals.css */
 @tailwind base;
@@ -47,7 +47,7 @@
   }
   p {
     @apply font-body text-base mb-4 leading-relaxed
-    dark:text-light text-dark;
+    dark:text-light text-dark font-normal;
   }
   a {
     @apply font-semibold text-brand opacity-100 transition-all duration-200 hover:text-white;
@@ -56,7 +56,7 @@
 
 @layer components {
   .nav-item {
-    @apply relative after:absolute after:bg-brand after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:transition-transform after:ease-in-out after:duration-300 font-bold leading-loose cursor-pointer dark:text-light dark:hover:text-white text-mid hover:text-darker;
+    @apply relative after:absolute after:bg-brand after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:transition-transform after:ease-in-out after:duration-300 font-bold leading-loose cursor-pointer dark:text-light dark:hover:text-white text-mid hover:text-darker font-body;
   }
   .nav-item.active {
     @apply after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100;
@@ -72,12 +72,17 @@
   }
 }
 
+@layer components {
+  button {
+    @apply font-body;
+  }
+}
 /* Large Button */
 @layer components {
   .btn-lg {
-    @apply inline-flex h-14 items-center px-8 justify-center
+    @apply inline-flex h-[3.25rem] items-center px-5 justify-center
     text-center
-    font-semibold rounded-sm
+    font-semibold rounded-lg
     shadow-none
    self-start transition-all duration-150 ease-in-out;
   }
@@ -88,7 +93,7 @@
   .btn-md {
     @apply inline-flex h-12 py-1 items-center justify-center px-6 flex-grow-0
     text-center
-    font-semibold rounded-sm
+    font-semibold rounded-lg
     shadow-none
     text-base
     transition-all duration-300 ease-in-out;

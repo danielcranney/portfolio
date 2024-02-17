@@ -39,6 +39,7 @@ import BlogItem from "../components/blog/BlogItem";
 import { useTheme } from "next-themes";
 
 import { projects } from "../utils/constants";
+import NewIcon from "../components/NewIcon";
 
 const getDimensions = (ele) => {
   const { height } = ele.getBoundingClientRect();
@@ -344,7 +345,7 @@ export default function Home({ publications }) {
                     href={`mailto:danielcranney@gmail.com`}
                     className="text-lg btn-brand btn-lg group"
                   >
-                    Hire me
+                    Get in touch
                   </a>
                 </li>
               </ul>
@@ -362,59 +363,8 @@ export default function Home({ publications }) {
           {/* Logo and Nav container */}
           <div className="container relative flex items-center mx-auto">
             {/* Logo */}
-            <div className="z-50 sm:w-8 sm:h-8 w-9 h-9 flex items-center">
-              <svg
-                id="b613d120-e911-4f71-b7bc-d9b9e1bbdc6f"
-                data-name="Layer 1"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 93.13 75.2"
-              >
-                <rect
-                  className="fill-current text-brand"
-                  x="-3.43"
-                  y="39.29"
-                  width="32.19"
-                  height="8.78"
-                  rx="4.39"
-                  transform="translate(-27.18 21.75) rotate(-45)"
-                />
-                <rect
-                  className="fill-current text-brand"
-                  x="-3.43"
-                  y="22.74"
-                  width="32.19"
-                  height="8.78"
-                  rx="4.39"
-                  transform="translate(22.89 -1.01) rotate(45)"
-                />
-                <rect
-                  className="fill-current text-brand"
-                  x="64.37"
-                  y="22.74"
-                  width="32.19"
-                  height="8.78"
-                  rx="4.39"
-                  transform="translate(156.55 -10.59) rotate(135)"
-                />
-                <rect
-                  className="fill-current text-brand"
-                  x="64.37"
-                  y="39.29"
-                  width="32.19"
-                  height="8.78"
-                  rx="4.39"
-                  transform="translate(106.48 131.47) rotate(-135)"
-                />
-                <rect
-                  className="fill-current text-brand"
-                  x="41.93"
-                  y="-1.17"
-                  width="8.78"
-                  height="77.54"
-                  rx="4.39"
-                  transform="translate(11.31 -10.71) rotate(15)"
-                />
-              </svg>
+            <div className="z-50 sm:w-10 sm:h-10 w-11 h-11 flex items-center">
+              <NewIcon />
             </div>
             {/* Text */}
             <div className="flex items-center ml-4">
@@ -567,11 +517,11 @@ export default function Home({ publications }) {
             {/* Main */}
             <div className="container relative flex flex-col items-start justify-center flex-grow px-0 mx-auto md:px-20 lg:px-24 section">
               <div className="w-full">
-                <span className="text-2xl font-semibold text-brand">
+                {/* <span className="text-2xl font-semibold text-brand">
                   Hello! 👋 My name is
-                </span>
+                </span> */}
 
-                <h1 className="mb-4 text-5xl md:text-7xl dark:text-white text-dark">
+                <h1 className="mb-2 text-5xl md:text-7xl dark:text-white text-dark">
                   Daniel Cranney
                 </h1>
                 <h2 className="mb-4 text-3xl md:text-4xl dark:text-light text-mid">
@@ -580,7 +530,12 @@ export default function Home({ publications }) {
                     speed={30}
                     eraseSpeed={30}
                     eraseDelay={1500}
-                    text={["Developer", `Designer`, `Teacher`, `Cat Dad`]}
+                    text={[
+                      "Developer Advocate",
+                      "Developer",
+                      "Public Speaker",
+                      `Cat Dad`,
+                    ]}
                   />
                 </h2>
                 <p className="w-4/5 text-xl md:w-full">
@@ -611,8 +566,8 @@ export default function Home({ publications }) {
               <div className="flex flex-col-reverse items-start w-full md:flex-row">
                 <div className="flex flex-col w-full md:pr-8 md:w-3/5">
                   <p className="text-lg">
-                    Hello! I&apos;m Dan and I&apos;m a frontend developer,
-                    designer and teacher from Bristol, England.
+                    Hi! I&apos;m Dan and I&apos;m a frontend developer, designer
+                    and teacher from Bristol, England.
                   </p>
                   <p className="text-lg">
                     After building my first website aged thirteen, I knew I

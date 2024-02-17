@@ -19,8 +19,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        display: ['"acumin-pro-wide"', "sans-serif"],
-        body: ['"acumin-pro"', "sans-serif"],
+        display: ["termina", "sans-serif"],
+        body: ['"neue-haas-grotesk-text"', "sans-serif"],
       },
       width: {
         "30pc": "30%",
@@ -42,11 +42,11 @@ module.exports = {
       colors: {
         soft: "#f0f0f0",
         brandAlt: "#e4bc3b",
-        brand: "#DEB841",
-        darker: "#18161A",
-        dark: "#494252",
-        mid: "#A8A5B1",
-        light: "#CDC3AB", // Adjusted to be slightly darker and warmer
+        brand: "#DFB537",
+        darker: "#0C0C0D",
+        dark: "#2F2E33",
+        mid: "#827F8B",
+        light: "#D4CFDE",
         lightest: "#FFFFFF",
       },
       backgroundImage: (theme) => ({
